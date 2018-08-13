@@ -1,0 +1,35 @@
+<vist-box #searchBox class="search-box">
+  <vist-box-page #newQueryPage title="New Query">
+    <form #queryForm="ngForm">
+        <mat-form-field appearance="standard">
+          <mat-label>Keywords</mat-label>
+          <input matInput [(ngModel)]="query.keywords" name="keywords">
+        </mat-form-field>
+    
+        <mat-form-field appearance="standard">
+          <mat-label>Genes</mat-label>
+          <input matInput [(ngModel)]="query.genes" name="genes">
+        </mat-form-field>
+    
+        <mat-form-field appearance="standard">
+          <mat-label>Mutations</mat-label>
+          <input matInput [(ngModel)]="query.mutations" name="mutations">
+        </mat-form-field>
+      </form>
+  </vist-box-page>
+
+  <vist-box-page title="Sample Queries">
+    <mat-nav-list>
+      <mat-list-item *ngFor="let q of evalQueries">
+        <a matLine (click)="setEvalQuery(q)">{{ q.evaluationQueries_genes }} {{ q.evaluationQueries_mutations }}</a>
+      </mat-list-item>
+    </mat-nav-list>
+  </vist-box-page>
+
+  <div vist-box-footer>
+    <button mat-raised-button (click)="send()" color="primary">
+      <mat-icon>search</mat-icon>
+      Search
+    </button>
+  </div>
+</vist-box>

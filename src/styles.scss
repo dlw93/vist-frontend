@@ -1,0 +1,46 @@
+@import '~@angular/material/theming';
+@import 'app/header/header.component';
+@import 'app/vist-box/vist-box.component';
+
+@include mat-core();
+
+$vist-hu: (
+    50 : #e0e7ed,
+    100 : #b3c3d3,
+    200 : #809bb6,
+    300 : #4d7398,
+    400 : #265582,
+    500 : #00376c,
+    600 : #003164,
+    700 : #002a59,
+    800 : #00234f,
+    900 : #00163d,
+    A100 : #7395ff,
+    A200 : #406fff,
+    A400 : #0d48ff,
+    A700 : #003bf2,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #ffffff,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #ffffff,
+        A400 : #ffffff,
+        A700 : #ffffff,
+    )
+);
+
+$theme-primary: mat-palette($vist-hu);
+$theme-accent: mat-palette($mat-amber);
+$theme: mat-light-theme($theme-primary, $theme-accent);
+
+@include angular-material-theme($theme);
+@include header-theme($theme);
+@include vist-box-theme($theme);

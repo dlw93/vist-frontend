@@ -1,0 +1,38 @@
+<mat-toolbar color="primary" class="main-toolbar">
+  <div class="item-group">
+    <button mat-button>
+      <mat-icon>home</mat-icon>
+      VIST
+    </button>
+
+    <button mat-button [routerLink]="['/query']">
+      <mat-icon>search</mat-icon>
+      Query
+    </button>
+
+    <button mat-button [routerLink]="['/eval']">
+      <mat-icon>grade</mat-icon>
+      Evaluation
+    </button>
+  </div>
+
+  <div class="item-group center">
+    <!--<h1 class="app-title">ViST</h1>-->
+  </div>
+
+  <div class="item-group right">
+    <mat-menu #helpMenu="matMenu" [overlapTrigger]="false">
+      <button mat-menu-item>
+        <mat-icon>help</mat-icon>
+        Help
+      </button>
+      <button mat-menu-item>
+        <mat-icon>info</mat-icon>
+        About
+      </button>
+    </mat-menu>
+    <button mat-icon-button [matMenuTriggerFor]="helpMenu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+  </div>
+</mat-toolbar>

@@ -1,0 +1,23 @@
+@import '~@angular/material/theming';
+
+@mixin header-theme($theme) {
+  $primary: map-get($theme, primary);
+  $config: mat-typography-config();
+
+  .vist-header {
+    background-color: mat-color($primary);
+    color: mat-color($primary, default-contrast);
+    display: flex;
+    left: 0;
+    right: 0;
+    padding-left: 20px;
+  }
+
+  .vist-header > h1 {
+    font-family: mat-font-family($config);
+    font-size: mat-font-size($config, title);
+    font-weight: 300;
+    padding: 28px 8px;
+    margin: 0;
+  }
+}
