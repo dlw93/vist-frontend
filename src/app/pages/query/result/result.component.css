@@ -1,0 +1,14 @@
+pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+pre.genes ::ng-deep .gene {
+    padding: 5px;
+    background-color: rgba(79, 158, 255, 0.42);
+}
+
+pre.mutations ::ng-deep .mutation {
+    padding: 5px;
+    background-color: rgba(40,210,0,0.4);
+}

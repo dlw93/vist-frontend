@@ -1,0 +1,27 @@
+:host {
+  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12);
+}
+
+.main-toolbar {
+  display: flex;
+  flex-direction: row;
+}
+
+.item-group {
+  display: flex;
+  flex-grow: 1;
+  flex-basis: 100%;
+}
+
+.item-group.center {
+  justify-content: center;
+}
+
+.item-group.right {
+  justify-content: flex-end;
+}
+
+.app-title {
+  font-family: 'Cookie', cursive;
+  font-size: 36px;
+}

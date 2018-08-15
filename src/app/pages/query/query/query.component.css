@@ -1,0 +1,25 @@
+:host {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.sidebar-wrap {
+  flex: 1;
+  position: sticky;
+  top: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.result-wrap {
+  flex: 3;
+  margin-left: 50px;
+}
+
+app-search {
+}
+
+app-filter {
+  margin-top: 30px;
+}
