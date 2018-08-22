@@ -1,7 +1,7 @@
-import {Component, OnInit, Input, Output, EventEmitter, ViewChild} from '@angular/core';
-import {Query} from '../query';
-import { IEvalQuery } from '../query.service';
-import { VistBox, VistBoxPage } from '../../../vist-box/vist-box.component';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { VistBox, VistBoxPage, QueryService } from '@app/core';
+import { Query, IEvalQuery, ITerms } from '@app/shared';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-search',
@@ -9,18 +9,15 @@ import { VistBox, VistBoxPage } from '../../../vist-box/vist-box.component';
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
-  private readonly _query: Query;
-  @Input() evalQueries: IEvalQuery[];
-  @Output() search = new EventEmitter<Query>();
   @ViewChild("searchBox") searchBox: VistBox;
   @ViewChild("newQueryPage") newQueryPage: VistBoxPage;
 
-  constructor() {
-    this._query = new Query();
-  }
+  readonly displayedColumns: string[] = ['evaluationQueries_genes', 'evaluationQueries_mutations', 'select'];
 
-  public get query(): Query {
-    return this._query;
+  evalQueries: Observable<IEvalQuery[]>;
+  query: ITerms = { keywords: "", genes: "", mutations: "" };
+
+  constructor(private queryService: QueryService) {
   }
 
   public setEvalQuery(q: IEvalQuery) {
@@ -31,11 +28,10 @@ export class SearchComponent implements OnInit {
   }
 
   public send() {
-    this.search.emit(this.query);
+    this.queryService.terms = this.query;
   }
 
   ngOnInit() {
-
+    this.evalQueries = this.queryService.getEvalQueries();
   }
-
 }

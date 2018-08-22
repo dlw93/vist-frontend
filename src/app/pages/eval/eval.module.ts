@@ -4,9 +4,6 @@ import { EvalComponent } from './eval.component';
 @NgModule({
   declarations: [
     EvalComponent
-  ],
-  exports: [
-    EvalComponent
   ]
 })
 export class EvalModule { }

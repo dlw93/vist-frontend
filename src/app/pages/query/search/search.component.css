@@ -12,6 +12,19 @@ mat-nav-list {
   overflow-y: scroll;
 }
 
+mat-nav-list .column {
+  flex: 1;
+}
+
+.sample-table-wrap {
+  height: 100%;
+  overflow: auto;
+}
+
+.sample-table-wrap table {
+  width: 100%;
+}
+
 .footer {
   display: flex;
   flex-direction: row-reverse;

@@ -1,54 +1,50 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { VistBoxModule } from '../../vist-box/vist-box.module';
+import { VistBoxModule, PipesModule } from '@app/core';
 import { QueryComponent } from './query/query.component';
 import { SearchComponent } from './search/search.component';
 import { FilterComponent } from './filter/filter.component';
 import { ResultComponent } from './result/result.component';
-import { AnnotatePipe } from './annotate.pipe';
-import { SanitizeHtmlPipe } from './sanitize-html.pipe';
 import {
   MatButtonModule,
   MatIconModule,
-  MatListModule,
   MatTabsModule,
   MatFormFieldModule,
   MatInputModule,
   MatPaginatorModule,
-  MatExpansionModule,
-  MatSlideToggleModule
+  MatSlideToggleModule,
+  MatTableModule,
+  MatProgressSpinnerModule,
+  MatAutocompleteModule
 } from '@angular/material';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   imports: [
-    BrowserModule,
+    CommonModule,
     BrowserAnimationsModule,
     HttpClientModule,
     FormsModule,
     VistBoxModule,
+    PipesModule,
     MatButtonModule,
     MatIconModule,
-    MatListModule,
     MatTabsModule,
     MatFormFieldModule,
     MatInputModule,
     MatPaginatorModule,
-    MatExpansionModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatTableModule,
+    MatProgressSpinnerModule,
+    MatAutocompleteModule
   ],
   declarations: [
     QueryComponent,
     SearchComponent,
     FilterComponent,
-    ResultComponent,
-    AnnotatePipe,
-    SanitizeHtmlPipe
-  ],
-  exports: [
-    QueryComponent
+    ResultComponent
   ]
 })
 export class QueryModule { }

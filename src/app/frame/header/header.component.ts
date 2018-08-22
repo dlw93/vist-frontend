@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {Router, NavigationEnd, ActivatedRoute} from '@angular/router';
-import {Title} from '@angular/platform-browser';
-import {filter, map, switchMap} from 'rxjs/operators';
+import { Component, OnInit } from '@angular/core';
+import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
+import { Title } from '@angular/platform-browser';
+import { filter, map, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-header',

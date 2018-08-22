@@ -1,25 +1,40 @@
-<mat-tab-group><!--[@.disabled]="true"-->
+<mat-tab-group>
     <mat-tab label="Medline">
-        <mat-paginator #medlinePager [length]="data['numFound']" [pageSize]="25" [pageSizeOptions]="[10, 25, 50, 100]"></mat-paginator>
+        <div class="loading-shade" *ngIf="isLoading | async">
+            <mat-spinner></mat-spinner>
+        </div>
+        <table mat-table [dataSource]="dataSource" multiTemplateDataRows>
+            <ng-container matColumnDef="score">
+                <th mat-header-cell *matHeaderCellDef> Score </th>
+                <td mat-cell *matCellDef="let doc"> {{doc.score | number:'1.0-2'}} </td>
+            </ng-container>
 
-        <mat-accordion>
-            <mat-expansion-panel *ngFor="let doc of data['docs']">
-                <mat-expansion-panel-header>
-                    <mat-panel-title>
-                        {{ doc['title'] }}
-                    </mat-panel-title>
-                    <mat-panel-description>
-                        {{ doc['classification_score'] }}
-                    </mat-panel-description>
-                </mat-expansion-panel-header>
+            <ng-container matColumnDef="title">
+                <th mat-header-cell *matHeaderCellDef> Title </th>
+                <td mat-cell *matCellDef="let doc"> <span>{{doc.title}}</span> </td>
+            </ng-container>
 
-                <ng-template matExpansionPanelContent>
-                    <pre [ngClass]="highlight" [innerHTML]="doc['abstract'] | annotate:doc['gene_name']:'gene' | annotate:doc['mutation_normalizedValue']:'mutation' | sanitizeHtml"></pre>
-                </ng-template>
-            </mat-expansion-panel>
-        </mat-accordion>
+            <ng-container matColumnDef="year">
+                <th mat-header-cell *matHeaderCellDef> Year </th>
+                <td mat-cell *matCellDef="let doc"> {{doc.pubdate}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="expanded">
+                <td mat-cell *matCellDef="let doc" [attr.colspan]="displayedColumns.length">
+                    <div class="expanded-detail" [@detailExpand]="doc.id == expandedDoc ? 'expanded' : 'collapsed'">
+                        <pre [ngClass]="highlight" [innerHTML]="doc['abstract'] | annotate:doc['gene_name']:'gene' | annotate:doc['mutation_normalizedValue']:'mutation' | sanitizeHtml"></pre>
+                    </div>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let doc; columns: displayedColumns;" class="header-row" [class.selected]="doc == expandedDoc" (click)="expandedDoc = doc.id"></tr>
+            <tr mat-row *matRowDef="let doc; columns: ['expanded']" class="detail-row"></tr>
+        </table>
+        <mat-paginator [length]="resultsLength | async" [pageSizeOptions]="[25, 50, 100]" [pageIndex]="page" [pageSize]="50"
+            showFirstLastButtons></mat-paginator>
     </mat-tab>
     <mat-tab label="Clinical Trials">
-
+        tbd.
     </mat-tab>
 </mat-tab-group>

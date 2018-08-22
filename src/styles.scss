@@ -1,9 +1,6 @@
 @import '~@angular/material/theming';
-@import 'app/header/header.component';
-@import 'app/vist-box/vist-box.component';
-
-html, body { height: 100%; }
-body { margin: 0; font-family: 'Roboto', sans-serif; }
+@import 'app/frame/header/header.component';
+@import 'app/core/components/vist-box/vist-box.component';
 
 @include mat-core();
 
@@ -41,7 +38,7 @@ $vist-hu: (
 );
 
 $theme-primary: mat-palette($vist-hu);
-$theme-accent: mat-palette($mat-amber);
+$theme-accent: mat-palette($mat-teal);
 $theme: mat-light-theme($theme-primary, $theme-accent);
 
 @include angular-material-theme($theme);

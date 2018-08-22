@@ -1,35 +1,64 @@
 <vist-box #searchBox class="search-box">
   <vist-box-page #newQueryPage title="New Query">
     <form #queryForm="ngForm">
-        <mat-form-field appearance="standard">
-          <mat-label>Keywords</mat-label>
-          <input matInput [(ngModel)]="query.keywords" name="keywords">
-        </mat-form-field>
-    
-        <mat-form-field appearance="standard">
-          <mat-label>Genes</mat-label>
-          <input matInput [(ngModel)]="query.genes" name="genes">
-        </mat-form-field>
-    
-        <mat-form-field appearance="standard">
-          <mat-label>Mutations</mat-label>
-          <input matInput [(ngModel)]="query.mutations" name="mutations">
-        </mat-form-field>
-      </form>
+      <mat-form-field appearance="standard">
+        <mat-label>Keywords</mat-label>
+        <input matInput [(ngModel)]="query.keywords" name="keywords">
+      </mat-form-field>
 
-      <div class="footer">
-        <button mat-raised-button (click)="send()" color="primary">
-          <mat-icon>search</mat-icon>
-          Search
-        </button>
-      </div>
+      <mat-form-field appearance="standard">
+        <mat-label>Genes</mat-label>
+        <input matInput [(ngModel)]="query.genes" name="genes">
+      </mat-form-field>
+
+      <mat-form-field appearance="standard">
+        <mat-label>Mutations</mat-label>
+        <input matInput [(ngModel)]="query.mutations" name="mutations">
+      </mat-form-field>
+    </form>
+
+    <div class="footer">
+      <button mat-raised-button (click)="send()" color="primary">
+        <mat-icon>search</mat-icon>
+        Search
+      </button>
+    </div>
   </vist-box-page>
 
   <vist-box-page title="Sample Queries">
+    <div class="sample-table-wrap">
+      <table mat-table [dataSource]="evalQueries">
+        <ng-container matColumnDef="evaluationQueries_genes">
+          <th mat-header-cell *matHeaderCellDef> Gene(s) </th>
+          <td mat-cell *matCellDef="let query"> {{query.evaluationQueries_genes}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="evaluationQueries_mutations">
+          <th mat-header-cell *matHeaderCellDef> Mutation(s) </th>
+          <td mat-cell *matCellDef="let query"> {{query.evaluationQueries_mutations}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="select">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let query">
+            <button mat-button color="accent" (click)="setEvalQuery(query)">Select</button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+
+    <!--<div class="list-header">
+      <span class="column">Genes</span>
+      <span class="column">Mutations</span>
+    </div>
     <mat-nav-list>
-      <mat-list-item *ngFor="let q of evalQueries">
-        <a matLine (click)="setEvalQuery(q)">{{ q.evaluationQueries_genes }} {{ q.evaluationQueries_mutations }}</a>
+      <mat-list-item *ngFor="let q of evalQueries" (click)="setEvalQuery(q)">
+        <span class="column">{{ q.evaluationQueries_genes }}</span>
+        <span class="column">{{ q.evaluationQueries_mutations }}</span>
       </mat-list-item>
-    </mat-nav-list>
+    </mat-nav-list>-->
   </vist-box-page>
 </vist-box>

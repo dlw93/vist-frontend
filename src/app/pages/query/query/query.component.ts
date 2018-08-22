@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { QueryService, IEvalQuery } from '../query.service';
+import { QueryService } from '@app/core';
 import { trigger, style, transition, animate, group } from '@angular/animations';
 import { IHighlighting } from '../highlighting';
-import { Query } from '../query';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-query',
@@ -21,21 +21,12 @@ import { Query } from '../query';
   ]
 })
 export class QueryComponent implements OnInit {
-  data: object;
   highlight: IHighlighting;
+  hasData = this.queryService.data$.pipe(map(data => data.numFound > 0));
 
   constructor(private queryService: QueryService) {
   }
 
-  public get evalQueries(): IEvalQuery[] {
-    return this.queryService.evalQueries;
-  }
-
-  public onQuery(q: Query) {
-    this.queryService.sendQuery(q).subscribe(data => this.data = data);
-  }
-
   ngOnInit() {
   }
-
 }

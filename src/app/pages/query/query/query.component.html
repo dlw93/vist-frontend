@@ -1,7 +1,7 @@
 <div class="sidebar-wrap">
-    <app-search (search)="onQuery($event)" [evalQueries]="evalQueries" @showBox></app-search>
-    <app-filter (highlight)="highlight = $event" *ngIf="data" @showBox></app-filter>
+    <app-search @showBox></app-search>
+    <app-filter (highlight)="highlight = $event" *ngIf="hasData | async" @showBox></app-filter>
 </div>
 <div class="result-wrap">
-    <app-result *ngIf="data" [data]="data" [highlight]="highlight"></app-result>
+    <app-result *ngIf="hasData | async" [highlight]="highlight"></app-result>
 </div>

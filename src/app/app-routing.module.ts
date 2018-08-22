@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { QueryComponent, EvalComponent } from './pages';
-import { QueryModule, EvalModule } from './pages';
+import { QueryComponent, EvalComponent, QueryModule, EvalModule } from '@app/pages';
 
 const routes: Routes = [
   { path: 'query', data: { title: 'Query' }, component: QueryComponent },

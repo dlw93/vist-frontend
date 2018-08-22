@@ -1,3 +1,13 @@
-mat-slide-toggle:not(:first-child) {
-    margin-top: 8px;
+.toggle-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-between;
+    max-height: 120px;
+    padding-left: 8px;
+}
+
+.toggle-wrapper mat-slide-toggle {
+    flex: 1;
+    flex-basis: 180px;
+    margin-bottom: 8px;
 }
