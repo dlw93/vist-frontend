@@ -1,40 +1,42 @@
-<mat-tab-group>
-    <mat-tab label="Medline">
-        <div class="loading-shade" *ngIf="isLoading | async">
-            <mat-spinner></mat-spinner>
-        </div>
-        <table mat-table [dataSource]="dataSource" multiTemplateDataRows>
-            <ng-container matColumnDef="score">
-                <th mat-header-cell *matHeaderCellDef> Score </th>
-                <td mat-cell *matCellDef="let doc"> {{doc.score | number:'1.0-2'}} </td>
-            </ng-container>
+<mat-card>
+    <mat-tab-group dynamicHeight>
+        <mat-tab label="Medline">
+            <div class="loading-shade" *ngIf="isLoading | async">
+                <mat-spinner></mat-spinner>
+            </div>
+            <table mat-table [dataSource]="dataSource" multiTemplateDataRows>
+                <ng-container matColumnDef="score">
+                    <th mat-header-cell *matHeaderCellDef> Score </th>
+                    <td mat-cell *matCellDef="let doc"> {{ (doc.score * doc.classification_score) | number:'1.0-2'}} </td>
+                </ng-container>
 
-            <ng-container matColumnDef="title">
-                <th mat-header-cell *matHeaderCellDef> Title </th>
-                <td mat-cell *matCellDef="let doc"> <span>{{doc.title}}</span> </td>
-            </ng-container>
+                <ng-container matColumnDef="title">
+                    <th mat-header-cell *matHeaderCellDef> Title </th>
+                    <td mat-cell *matCellDef="let doc"> {{doc.title}} </td>
+                </ng-container>
 
-            <ng-container matColumnDef="year">
-                <th mat-header-cell *matHeaderCellDef> Year </th>
-                <td mat-cell *matCellDef="let doc"> {{doc.pubdate}} </td>
-            </ng-container>
+                <ng-container matColumnDef="year">
+                    <th mat-header-cell *matHeaderCellDef> Year </th>
+                    <td mat-cell *matCellDef="let doc"> {{doc.pubdate}} </td>
+                </ng-container>
 
-            <ng-container matColumnDef="expanded">
-                <td mat-cell *matCellDef="let doc" [attr.colspan]="displayedColumns.length">
-                    <div class="expanded-detail" [@detailExpand]="doc.id == expandedDoc ? 'expanded' : 'collapsed'">
-                        <pre [ngClass]="highlight" [innerHTML]="doc['abstract'] | annotate:doc['gene_name']:'gene' | annotate:doc['mutation_normalizedValue']:'mutation' | sanitizeHtml"></pre>
-                    </div>
-                </td>
-            </ng-container>
+                <ng-container matColumnDef="expanded">
+                    <td mat-cell *matCellDef="let doc" [attr.colspan]="displayedColumns.length">
+                        <div *ngIf="doc.id == expandedDoc" class="expanded-detail-wrap" @detailExpand>
+                            <app-doc-viewer [document]="doc" [highlight]="highlight"></app-doc-viewer>
+                        </div>
+                    </td>
+                </ng-container>
 
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let doc; columns: displayedColumns;" class="header-row" [class.selected]="doc == expandedDoc" (click)="expandedDoc = doc.id"></tr>
-            <tr mat-row *matRowDef="let doc; columns: ['expanded']" class="detail-row"></tr>
-        </table>
-        <mat-paginator [length]="resultsLength | async" [pageSizeOptions]="[25, 50, 100]" [pageIndex]="page" [pageSize]="50"
-            showFirstLastButtons></mat-paginator>
-    </mat-tab>
-    <mat-tab label="Clinical Trials">
-        tbd.
-    </mat-tab>
-</mat-tab-group>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let doc; columns: displayedColumns;" class="header-row" [class.selected]="doc.id == expandedDoc"
+                    (click)="expandedDoc = doc.id"></tr>
+                <tr mat-row *matRowDef="let doc; columns: ['expanded']" class="detail-row"></tr>
+            </table>
+            <mat-paginator [length]="resultsLength | async" [pageSizeOptions]="[25, 50, 100]" [pageIndex]="page" [pageSize]="50" showFirstLastButtons></mat-paginator>
+        </mat-tab>
+        <mat-tab label="Clinical Trials">
+            tbd.
+        </mat-tab>
+    </mat-tab-group>
+</mat-card>

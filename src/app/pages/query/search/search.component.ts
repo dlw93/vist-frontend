@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { VistBox, VistBoxPage, QueryService } from '@app/core';
-import { Query, IEvalQuery, ITerms } from '@app/shared';
+import { IEvalQuery, ITerms } from '@app/shared';
 import { Observable } from 'rxjs';
 
 @Component({

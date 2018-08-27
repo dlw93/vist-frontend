@@ -1,7 +1,5 @@
 @import '~@angular/material/theming';
 
-$border-style: 1px solid rgba(63, 81, 181, 0.07);
-
 :host {
     display: flex;
     flex-direction: column;
@@ -46,7 +44,6 @@ $border-style: 1px solid rgba(63, 81, 181, 0.07);
   .header-wrapper {
     height: 44px;
     flex: 0 0;
-    //border-bottom: 2px solid mat-color($primary);
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -84,9 +81,8 @@ $border-style: 1px solid rgba(63, 81, 181, 0.07);
   .main-wrap {
     display: flex;
     flex-direction: column;
-    border: $border-style;
-    border-radius: 4px;
-    @include mat-elevation(4);
+    border-radius: 2px;
+    @include mat-overridable-elevation(2);
     background-color: mat-color($primary, default-contrast);
   }
 

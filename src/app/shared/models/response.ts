@@ -3,11 +3,17 @@ export { IMedlineDoc, IJournal, IResponse };
 interface IMedlineDoc {
     id: string;
     score: number;
+    classification_score: number;
     title: string;
     abstract: string;
     pubdate: number;
     cancerType: string;
+    confidence_is: number;
     journal: string;
+    gene_name: string[];
+    mesh_terms: string[];
+    clinicalRelevance: string;
+    clinical_relevance_scale: number;
 }
 
 interface IJournal {

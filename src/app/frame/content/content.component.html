@@ -1,4 +1,9 @@
 <mat-sidenav-container>
+  <!--<mat-sidenav #sidenav class="sidenav" *ngIf="isScreenSmall()" [opened]="!isScreenSmall()" [mode]="isScreenSmall() ? 'over' : 'side'"
+    [fixedInViewport]="isScreenSmall()" fixedTopGap="92">
+    <app-component-nav [params]="params"></app-component-nav>
+  </mat-sidenav>-->
+
   <mat-sidenav-content>
     <app-header></app-header>
     <div class="router-wrapper">

@@ -1,0 +1,123 @@
+:host {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    padding: 8px 60px 16px 81px;    /* ugly to put this here, but putting padding into the wrapper leads to animation glitches */
+    box-sizing: border-box;
+}
+
+.header {
+    display: flex;
+    font-size: 10pt;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+
+.header .item {
+    cursor: pointer;
+    margin-right: 16px;
+}
+
+.header .item:not(.selected) {
+    color: rgba(0, 0, 0, 0.54);
+    transition: color 0.2s ease-out;
+}
+
+.header .item:not(.selected):hover {
+    color: rgb(0, 55, 108);
+    transition: color 0.2s ease-out;
+}
+
+.header .item.selected {
+    color: rgb(0, 55, 108);
+}
+
+.content {
+    padding: 1em 0;
+}
+
+.content > * {
+    margin: 0;
+}
+
+pre {
+    font-family: 'Roboto', 'Helvetica Neue', sans-serif;
+    font-size: 10pt;
+    text-align: justify;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+pre.genes ::ng-deep .gene {
+    padding: 0 2px;
+    background-color: rgba(79,158,255,.2);
+    color: rgb(0, 49, 109);
+    border-bottom: 2px rgba(0, 49, 109, 0.8) solid;
+}
+
+pre.mutations ::ng-deep .mutation {
+    padding: 0 2px;
+    background-color: rgba(31, 162, 0, 0.2);
+    color: rgb(19, 99, 0);
+    border-bottom: 2px rgb(19, 99, 0) solid;
+}
+
+pre.chemicals ::ng-deep .chemical {
+    padding: 0 2px;
+    background-color: rgba(255, 74, 134, 0.2);
+    color: rgb(165, 0, 55);
+    border-bottom: 2px rgb(165, 0, 55) solid;
+}
+
+pre.sentences ::ng-deep .sentence {
+    padding: 0 2px;
+    background-color: rgba(252, 255, 61, 0.2);
+    color: rgb(162, 165, 0);
+    border-bottom: 2px rgb(162, 165, 0) solid;
+}
+
+.doc-stats {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.doc-stats > .row {
+    width: 100%;
+    display: flex;
+}
+
+.doc-stats > .row:not(:last-of-type) {
+    margin-bottom: 8px;
+}
+
+.doc-stats > .row > .key {
+    width: 140px;
+    font-weight: 500;
+}
+
+.doc-stats > .row > .value {
+    flex: 1;
+}
+
+.doc-stats > .row > .value > a:not(:first-of-type) {
+    margin-left: 8px;
+}
+
+.doc-stats > .row > .value > a:not(:last-of-type)::after {
+    content: ',';
+}
+
+.doc-stats a::after {
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.87);
+}
+
+.doc-stats .value a {
+    text-decoration: none;
+    color: #00376c;
+}
+
+.doc-stats .value a:hover {
+    color: #00376c;
+    border-bottom: 1px #00376c solid;
+}

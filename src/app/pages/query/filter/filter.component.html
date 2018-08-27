@@ -1,7 +1,8 @@
 <vist-box #filterBox class="filter-box">
   <vist-box-page title="Filter Results">
-    <h4 class="mat-subheading-1">Please note that, as of now, the filters only apply to the Medline results.</h4>
+    <h4 class="mat-subheading-1">Please note that, as of now, filters only apply to the Medline results.</h4>
     <form #filterForm="ngForm">
+
       <mat-form-field appearance="standard">
         <mat-label>Journals</mat-label>
         <input matInput name="keywords" [matAutocomplete]="auto">
@@ -9,16 +10,27 @@
           <mat-option *ngFor="let journal of journals | async" [value]="journal">{{journal.name}}</mat-option>
         </mat-autocomplete>
       </mat-form-field>
+
+      <mat-form-field appearance="standard">
+        <mat-label>Start Year</mat-label>
+        <input matInput [(ngModel)]="_filter.minFiltered" name="start">
+      </mat-form-field>
+
+      <mat-form-field appearance="standard">
+        <mat-label>End Year</mat-label>
+        <input matInput [(ngModel)]="_filter.maxFiltered" name="end">
+      </mat-form-field>
+      
     </form>
   </vist-box-page>
 
   <vist-box-page title="Annotations">
     <h4 class="mat-subheading-1">Select which entities to highlight in the results</h4>
     <div class="toggle-wrapper">
-      <mat-slide-toggle color="primary">Relevant Sentences</mat-slide-toggle>
+      <mat-slide-toggle color="primary" [(ngModel)]="_highlight.sentences">Relevant Sentences</mat-slide-toggle>
       <mat-slide-toggle color="primary" [(ngModel)]="_highlight.genes">Genes</mat-slide-toggle>
       <mat-slide-toggle color="primary" [(ngModel)]="_highlight.mutations">Mutations</mat-slide-toggle>
-      <mat-slide-toggle color="primary">Chemicals</mat-slide-toggle>
+      <mat-slide-toggle color="primary" [(ngModel)]="_highlight.chemicals">Chemicals</mat-slide-toggle>
     </div>
   </vist-box-page>
 </vist-box>

@@ -1,0 +1,55 @@
+<div class="header">
+  <span class="item" [class.selected]="!showStats" (click)="showStats = false">Abstract</span>
+  <span class="item" [class.selected]="showStats" (click)="showStats = true">Statistics</span>
+</div>
+<div class="content">
+  <pre *ngIf="!showStats; else stats" [ngClass]="highlight" [innerHtml]="document['abstract'] | annotate:document['gene_name']:'gene' | annotate:document['mutation_normalizedValue']:'mutation' | annotate:document['chemicals']:'chemical'
+    | sanitizeHtml">
+    </pre>
+  <ng-template #stats>
+    <div class="doc-stats">
+
+      <div class="row">
+        <div class="key">Clinical Relevance</div>
+        <div class="value">{{ document.clinicalRelevance }} ({{ document.clinical_relevance_scale }})</div>
+      </div>
+
+      <div class="row">
+        <div class="key">Cancer Type</div>
+        <div class="value">{{ document.cancerType }} ({{ document.confidence_is }})</div>
+      </div>
+
+      <div class="row">
+        <div class="key">Mutations</div>
+        <div class="value">
+          <a *ngFor="let mutation of unique(document.mutation_normalizedValue)" href="{{ 'https://www.ncbi.nlm.nih.gov/gene/' + mutation.key }}" target="_blank">{{ mutation.value
+            }}
+          </a>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="key">Genes</div>
+        <div class="value">
+          <a *ngFor="let gene of unique(document.gene_name)" href="{{ 'https://www.ncbi.nlm.nih.gov/gene/' + gene.key }}" target="_blank">{{ gene.value }}</a>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="key">Chemicals</div>
+        <div class="value">
+          <a *ngFor="let chemical of unique(document.chemicals)" href="{{ 'https://www.drugbank.ca/drugs/' + chemical.key }}" target="_blank">{{ chemical.value }}</a>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="key">Mesh Terms</div>
+        <div class="value">
+          <a *ngFor="let term of mesh(document.mesh_terms, ':') | keyvalue" href="{{ 'https://www.ncbi.nlm.nih.gov/mesh/?term=' + term.id }}" target="_blank">{{
+            term.name }}</a>
+        </div>
+      </div>
+
+    </div>
+  </ng-template>
+</div>

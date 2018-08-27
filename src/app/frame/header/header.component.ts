@@ -12,7 +12,7 @@ export class HeaderComponent implements OnInit {
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private titleService: Title) {
   }
 
-  public title: string;
+  title: string;
 
   ngOnInit() {
     this.router.events.pipe(
@@ -20,10 +20,10 @@ export class HeaderComponent implements OnInit {
       map(() => this.activatedRoute),
       map(route => route.firstChild),
       switchMap(route => route.data),
-      map((data) => data.title)
-    ).subscribe((title) => {
+      map(data => data.title)
+    ).subscribe(title => {
       this.title = title;
-      this.titleService.setTitle(`${title} | VIST`);
+      this.titleService.setTitle(`${title} | VIST`);  // TODO: bad style to set page title from within arbitrary component :/
     });
   }
 }

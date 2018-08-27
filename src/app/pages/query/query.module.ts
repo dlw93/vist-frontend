@@ -17,9 +17,11 @@ import {
   MatSlideToggleModule,
   MatTableModule,
   MatProgressSpinnerModule,
-  MatAutocompleteModule
+  MatAutocompleteModule,
+  MatCardModule
 } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
+import { DocViewerComponent } from './doc-viewer/doc-viewer.component';
 
 @NgModule({
   imports: [
@@ -38,13 +40,15 @@ import { HttpClientModule } from '@angular/common/http';
     MatSlideToggleModule,
     MatTableModule,
     MatProgressSpinnerModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatCardModule
   ],
   declarations: [
     QueryComponent,
     SearchComponent,
     FilterComponent,
-    ResultComponent
+    ResultComponent,
+    DocViewerComponent
   ]
 })
 export class QueryModule { }
