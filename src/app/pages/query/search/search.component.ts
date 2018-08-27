@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
 import { VistBox, VistBoxPage, QueryService } from '@app/core';
 import { IEvalQuery, ITerms } from '@app/shared';
 import { Observable } from 'rxjs';
@@ -11,6 +11,7 @@ import { Observable } from 'rxjs';
 export class SearchComponent implements OnInit {
   @ViewChild("searchBox") searchBox: VistBox;
   @ViewChild("newQueryPage") newQueryPage: VistBoxPage;
+  @Output() terms = new EventEmitter<ITerms>();
 
   readonly displayedColumns: string[] = ['evaluationQueries_genes', 'evaluationQueries_mutations', 'select'];
 
@@ -28,7 +29,7 @@ export class SearchComponent implements OnInit {
   }
 
   public send() {
-    this.queryService.terms = this.query;
+    this.terms.emit(this.query);
   }
 
   ngOnInit() {

@@ -1,7 +1,14 @@
-<div class="sidebar-wrap">
-    <app-search @showBox></app-search>
-    <app-filter (highlight)="highlight = $event" *ngIf="hasData | async" @showBox></app-filter>
-</div>
-<div class="result-wrap">
-    <app-result *ngIf="hasData | async" [highlight]="highlight"></app-result>
-</div>
+<mat-sidenav-container>
+    <mat-sidenav-content>
+        <vist-header [title]="getTitle()"></vist-header>
+        <div class="control-wrap">
+            <div class="sidebar-wrap">
+                <app-search @showBox (terms)="onTerms($event)"></app-search>
+                <app-filter @showBox (highlight)="highlight = $event" *ngIf="hasData | async"></app-filter>
+            </div>
+            <div class="result-wrap">
+                <app-result *ngIf="hasData | async" [highlight]="highlight"></app-result>
+            </div>
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>

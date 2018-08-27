@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TitleService } from '@app/core/services/title.service';
 
 @Component({
   selector: 'app-eval',
@@ -7,7 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EvalComponent implements OnInit {
 
-  constructor() {
+  constructor(private titleService: TitleService) {
+    titleService.title = "Evaluation";
   }
 
   ngOnInit() {

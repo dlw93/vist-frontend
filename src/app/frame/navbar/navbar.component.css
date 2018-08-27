@@ -11,6 +11,7 @@
   display: flex;
   flex-grow: 1;
   flex-basis: 100%;
+  align-items: center;
 }
 
 .item-group.center {
@@ -22,6 +23,13 @@
 }
 
 .app-title {
-  font-family: 'Cookie', cursive;
-  font-size: 36px;
+  user-select: none;
+  margin-left: 15px;
+}
+
+.divider {
+  margin: 15px 0;
+  height: 80%;
+  width: 2px;
+  background-color: rgba(255, 255, 255, 0.7);
 }

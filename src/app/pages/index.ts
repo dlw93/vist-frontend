@@ -1,4 +1,6 @@
-export * from "./query/query.module"
+export * from "./home/home.module"
+export * from "./home/home/home.component"
+export * from "./query/result.module"
 export * from "./query/query/query.component"
 export * from "./eval/eval.module"
 export * from "./eval/eval.component"

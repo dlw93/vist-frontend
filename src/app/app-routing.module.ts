@@ -1,16 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { QueryComponent, EvalComponent, QueryModule, EvalModule } from '@app/pages';
+import { HomeComponent, QueryComponent, EvalComponent, HomeModule, ResultModule, EvalModule } from '@app/pages';
 
 const routes: Routes = [
-  { path: 'query', data: { title: 'Query' }, component: QueryComponent },
-  { path: 'eval', data: { title: 'Evaluation' }, component: EvalComponent },
-  { path: '', redirectTo: 'query', pathMatch: 'full' }
+  { path: '', component: HomeComponent },
+  { path: 'results', component: QueryComponent },
+  { path: 'eval', component: EvalComponent }
 ];
 
 @NgModule({
   imports: [
-    QueryModule,
+    HomeModule,
+    ResultModule,
     EvalModule,
     RouterModule.forRoot(routes)
   ],

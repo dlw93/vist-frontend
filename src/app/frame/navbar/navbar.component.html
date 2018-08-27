@@ -1,23 +1,14 @@
 <mat-toolbar color="primary" class="main-toolbar">
   <div class="item-group">
-    <button mat-button>
+    <button mat-button [routerLink]="['']">
       <mat-icon>home</mat-icon>
       VIST
-    </button>
-
-    <button mat-button [routerLink]="['/query']">
-      <mat-icon>search</mat-icon>
-      Query
     </button>
 
     <button mat-button [routerLink]="['/eval']">
       <mat-icon>grade</mat-icon>
       Evaluation
     </button>
-  </div>
-
-  <div class="item-group center">
-    <!--<h1 class="app-title">ViST</h1>-->
   </div>
 
   <div class="item-group right">

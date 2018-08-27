@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
-import { VistBoxModule, PipesModule } from '@app/core';
+import { VistBoxModule, VistHeaderModule, PipesModule } from '@app/core';
 import { QueryComponent } from './query/query.component';
 import { SearchComponent } from './search/search.component';
 import { FilterComponent } from './filter/filter.component';
@@ -18,6 +18,7 @@ import {
   MatTableModule,
   MatProgressSpinnerModule,
   MatAutocompleteModule,
+  MatSidenavModule,
   MatCardModule
 } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
@@ -30,6 +31,7 @@ import { DocViewerComponent } from './doc-viewer/doc-viewer.component';
     HttpClientModule,
     FormsModule,
     VistBoxModule,
+    VistHeaderModule,
     PipesModule,
     MatButtonModule,
     MatIconModule,
@@ -41,7 +43,8 @@ import { DocViewerComponent } from './doc-viewer/doc-viewer.component';
     MatTableModule,
     MatProgressSpinnerModule,
     MatAutocompleteModule,
-    MatCardModule
+    MatCardModule,
+    MatSidenavModule
   ],
   declarations: [
     QueryComponent,
@@ -49,6 +52,9 @@ import { DocViewerComponent } from './doc-viewer/doc-viewer.component';
     FilterComponent,
     ResultComponent,
     DocViewerComponent
+  ],
+  exports: [
+    SearchComponent
   ]
 })
-export class QueryModule { }
+export class ResultModule { }

@@ -1,5 +1,5 @@
 @import '~@angular/material/theming';
-@import 'app/frame/header/header.component';
+@import 'app/core/components/vist-header/vist-header.component';
 @import 'app/core/components/vist-box/vist-box.component';
 
 @include mat-core();
