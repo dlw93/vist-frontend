@@ -11,3 +11,13 @@
     flex-basis: 180px;
     margin-bottom: 8px;
 }
+
+input[name="journals"] {
+    width: 100%;
+}
+
+.footer {
+    display: flex;
+    flex-direction: row-reverse;
+    margin-top: 8px;
+}

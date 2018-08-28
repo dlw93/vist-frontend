@@ -12,23 +12,17 @@ import { transition, trigger, query, style, animate, group } from '@angular/anim
           query(
             ':enter',
             [
-              style({ opacity: 0, transform: 'translateY(-40px)' }),
+              style({ opacity: 0, transform: 'translateY(-30px)' }),
               group([
-                animate('0.3s ease-in', style({ opacity: 1 })),
-                animate('0.3s ease-out', style({ transform: 'translateY(0)' }))
+                animate('0.35s ease-in', style({ opacity: 1 })),
+                animate('0.35s ease-out', style({ transform: 'translateY(0)' }))
               ])
             ],
             { optional: true }
           ),
           query(
             ':leave',
-            [
-              style({ opacity: 1 }),
-              group([
-                animate('0.3s ease-in', style({ opacity: 0 })),
-                animate('0.3s ease-out', style({ transform: 'translateY(-40px)' }))
-              ])
-            ],
+            [animate('0.35s ease-in', style({ opacity: 0 }))],
             { optional: true }
           )
         ])

@@ -28,9 +28,14 @@ export class FilterComponent implements OnInit {
   journals: Observable<IJournal[]>;
 
   @Output() highlight = new EventEmitter<IHighlighting>();
+  @Output() filter = new EventEmitter<IFilter>();
 
   constructor(private queryService: QueryService) {
     this.journals = this.queryService.data$.pipe(map(data => data.journals));
+  }
+
+  applyFilter(): void {
+    this.filter.emit(this._filter);
   }
 
   ngOnInit() {

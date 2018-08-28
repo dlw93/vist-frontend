@@ -4,7 +4,7 @@ import { trigger, style, transition, animate, group } from '@angular/animations'
 import { IHighlighting } from '../highlighting';
 import { map } from 'rxjs/operators';
 import { TitleService } from '@app/core/services/title.service';
-import { ITerms } from '@app/shared';
+import { ITerms, IFilter } from '@app/shared';
 
 @Component({
   selector: 'app-query',
@@ -36,6 +36,10 @@ export class QueryComponent implements OnInit {
 
   onTerms(terms: ITerms) {
     this.queryService.terms = terms;
+  }
+
+  onFilter(filter: IFilter) {
+    this.queryService.filter = filter;
   }
 
   ngOnInit() {

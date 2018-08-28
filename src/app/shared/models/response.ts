@@ -6,12 +6,16 @@ interface IMedlineDoc {
     classification_score: number;
     title: string;
     abstract: string;
+    articleLink: string;
     pubdate: number;
     cancerType: string;
     confidence_is: number;
     journal: string;
+    sents: string[];
+    mutation_normalizedValue: string[];
     gene_name: string[];
-    mesh_terms: string[];
+    chemicals: string[];
+    mesh_terms: string;
     clinicalRelevance: string;
     clinical_relevance_scale: number;
 }

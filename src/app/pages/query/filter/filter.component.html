@@ -5,22 +5,32 @@
 
       <mat-form-field appearance="standard">
         <mat-label>Journals</mat-label>
-        <input matInput name="keywords" [matAutocomplete]="auto">
+        <input matInput name="journals" [matAutocomplete]="auto">
         <mat-autocomplete #auto="matAutocomplete">
           <mat-option *ngFor="let journal of journals | async" [value]="journal">{{journal.name}}</mat-option>
         </mat-autocomplete>
       </mat-form-field>
 
-      <mat-form-field appearance="standard">
-        <mat-label>Start Year</mat-label>
-        <input matInput [(ngModel)]="_filter.minFiltered" name="start">
-      </mat-form-field>
+      <div>
+        <h4 class="mat-body">Show documents published between</h4>
+        <mat-form-field appearance="standard">
+          <mat-label>Start Year</mat-label>
+          <input matInput [(ngModel)]="_filter.minFiltered" name="start" maxlength="4">
+        </mat-form-field>
+        <h4 class="mat-body">and</h4>
+        <mat-form-field appearance="standard">
+          <mat-label>End Year</mat-label>
+          <input matInput [(ngModel)]="_filter.maxFiltered" name="end">
+        </mat-form-field>
+      </div>
 
-      <mat-form-field appearance="standard">
-        <mat-label>End Year</mat-label>
-        <input matInput [(ngModel)]="_filter.maxFiltered" name="end">
-      </mat-form-field>
-      
+      <div class="footer">
+        <button mat-raised-button (click)="applyFilter()" color="primary">
+          <mat-icon>filter_list</mat-icon>
+          Apply Filters
+        </button>
+      </div>
+
     </form>
   </vist-box-page>
 

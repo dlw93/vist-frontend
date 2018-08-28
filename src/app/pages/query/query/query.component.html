@@ -4,7 +4,7 @@
         <div class="control-wrap">
             <div class="sidebar-wrap">
                 <app-search @showBox (terms)="onTerms($event)"></app-search>
-                <app-filter @showBox (highlight)="highlight = $event" *ngIf="hasData | async"></app-filter>
+                <app-filter @showBox (highlight)="highlight = $event" (filter)="onFilter($event)" *ngIf="hasData | async"></app-filter>
             </div>
             <div class="result-wrap">
                 <app-result *ngIf="hasData | async" [highlight]="highlight"></app-result>

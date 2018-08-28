@@ -1,14 +1,17 @@
 import { NgModule } from '@angular/core';
-import { AnnotatePipe } from './annotate.pipe';
+import { AnnotateRegexPipe } from './annregex.pipe';
+import { AnnotateIndexPipe } from './annidx.pipe';
 import { SanitizeHtmlPipe } from './sanitize-html.pipe';
 
 @NgModule({
   declarations: [
-    AnnotatePipe,
+    AnnotateRegexPipe,
+    AnnotateIndexPipe,
     SanitizeHtmlPipe
   ],
   exports: [
-    AnnotatePipe,
+    AnnotateRegexPipe,
+    AnnotateIndexPipe,
     SanitizeHtmlPipe
   ]
 })

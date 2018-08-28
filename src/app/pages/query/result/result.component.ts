@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
-import { animate, style, transition, trigger } from '@angular/animations';
+import { animate, style, transition, trigger, group, query, stagger } from '@angular/animations';
 import { MatPaginator, MatTable, MatTabGroup } from '@angular/material';
 import { Observable } from 'rxjs';
 import { map, debounceTime } from 'rxjs/operators';

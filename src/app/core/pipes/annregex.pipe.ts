@@ -1,9 +1,9 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'annotate'
+  name: 'annregex'
 })
-export class AnnotatePipe implements PipeTransform {
+export class AnnotateRegexPipe implements PipeTransform {
   transform(value: string, names: string[], cssClass: string): string {
     return !names ? value : names
       .map(name => name.split("|")[0])    // extract named entity

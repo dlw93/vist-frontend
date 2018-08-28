@@ -64,6 +64,8 @@ export class QueryService {
   private send() {
     let q: TQuery = Object.assign({}, this._terms, this._page, this._filter, this._refinement);
 
+    console.log(q);
+
     this._loading$.next(true);
     this.http.get<IResponse>('/assets/response.json', {
       headers: { 'Content-Type': 'application/json' },

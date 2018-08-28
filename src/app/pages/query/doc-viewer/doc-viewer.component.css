@@ -69,11 +69,8 @@ pre.chemicals ::ng-deep .chemical {
     border-bottom: 2px rgb(165, 0, 55) solid;
 }
 
-pre.sentences ::ng-deep .sentence {
-    padding: 0 2px;
-    background-color: rgba(252, 255, 61, 0.2);
-    color: rgb(162, 165, 0);
-    border-bottom: 2px rgb(162, 165, 0) solid;
+pre:not(.sentences) ::ng-deep .sentence {
+    background-color: transparent !important;   /* super ugly! */
 }
 
 .doc-stats {
@@ -97,27 +94,21 @@ pre.sentences ::ng-deep .sentence {
 
 .doc-stats > .row > .value {
     flex: 1;
+    display: flex;
+    flex-wrap: wrap;
 }
 
-.doc-stats > .row > .value > a:not(:first-of-type) {
-    margin-left: 8px;
-}
-
-.doc-stats > .row > .value > a:not(:last-of-type)::after {
-    content: ',';
-}
-
-.doc-stats a::after {
+.doc-stats > .row > .value > a {
+    color: #00376c;
     text-decoration: none;
+}
+
+.doc-stats > .row > .value > a.disabled {
     color: rgba(0, 0, 0, 0.87);
 }
 
-.doc-stats .value a {
-    text-decoration: none;
-    color: #00376c;
-}
-
-.doc-stats .value a:hover {
-    color: #00376c;
-    border-bottom: 1px #00376c solid;
+.doc-stats > .row > .value > a:not(:last-of-type)::after {
+    color: rgba(0, 0, 0, 0.87);
+    content: ', ';
+    white-space: pre;
 }
