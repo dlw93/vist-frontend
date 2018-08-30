@@ -8,9 +8,9 @@
     background-color: mat-color($primary);
     color: mat-color($primary, default-contrast);
     display: flex;
+    align-items: center;
     left: 0;
     right: 0;
-    padding-left: 32px;
   }
 
   .vist-header > h1 {
@@ -19,5 +19,13 @@
     font-weight: 300;
     padding: 28px 0;
     margin: 0;
+  }
+
+  .vist-header > h1:first-child {
+    margin-left: 32px;
+  }
+
+  .vist-header button {
+    margin: 0 16px;
   }
 }

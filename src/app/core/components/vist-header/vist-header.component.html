@@ -1,3 +1,6 @@
 <div class="vist-header">
+  <button *ngIf="showToggle" mat-icon-button (click)="toggle.emit()">
+    <mat-icon>menu</mat-icon>
+  </button>
   <h1>{{title}}</h1>
 </div>

@@ -103,12 +103,12 @@ pre:not(.sentences) ::ng-deep .sentence {
     text-decoration: none;
 }
 
-.doc-stats > .row > .value > a.disabled {
-    color: rgba(0, 0, 0, 0.87);
-}
-
 .doc-stats > .row > .value > a:not(:last-of-type)::after {
     color: rgba(0, 0, 0, 0.87);
     content: ', ';
     white-space: pre;
+}
+
+.doc-stats > .row > .value > a.disabled {
+    color: rgba(0, 0, 0, 0.87);
 }

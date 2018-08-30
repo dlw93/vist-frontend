@@ -20,13 +20,30 @@ mat-sidenav-container {
   top: 32px;
   display: flex;
   flex-direction: column;
+  margin-right: 32px;
+  min-width: 300px;
 }
 
 .result-wrap {
   flex: 3;
-  margin-left: 50px;
 }
 
 app-filter {
   margin-top: 30px;
+}
+
+mat-sidenav {
+  width: 350px;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 16px;
+}
+
+mat-sidenav > * {
+  width: 100%;
+  margin: 0;
+}
+
+mat-sidenav > *:not(:last-child) {
+  margin-bottom: 16px;
 }
