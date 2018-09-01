@@ -1,37 +1,48 @@
 <vist-box #filterBox class="filter-box">
   <vist-box-page title="Filter Results">
-    <h4 class="mat-subheading-1">Please note that, as of now, filters only apply to the Medline results.</h4>
-    <form #filterForm="ngForm">
+    <h4 class="mat-subheading-1" id="filter-header">Please note that, as of now, filters only apply to the Medline results.</h4>
+    <form #filterForm="ngForm" class="filter-form">
 
-      <mat-form-field appearance="standard">
+      <mat-form-field appearance="standard" class="fill">
         <mat-label>Journals</mat-label>
-        <input matInput name="journals" [matAutocomplete]="auto">
-        <mat-autocomplete #auto="matAutocomplete">
-          <mat-option *ngFor="let journal of journals | async" [value]="journal">{{journal.name}}</mat-option>
+        <mat-chip-list #chipList>
+          <mat-chip *ngFor="let journal of _filter.journals" selectable="false" removable="true" (removed)="remove(journal)">
+            {{ journal }}
+            <mat-icon matChipRemove>cancel</mat-icon>
+          </mat-chip>
+          <input [formControl]="journalControl" #journalInput name="journals" [matAutocomplete]="auto" [matChipInputFor]="chipList">
+        </mat-chip-list>
+        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+          <mat-option *ngFor="let journalName of journalNamesFiltered | async" [value]="journalName">{{journalName}}</mat-option>
         </mat-autocomplete>
       </mat-form-field>
 
-      <div>
-        <h4 class="mat-body">Show documents published between</h4>
-        <mat-form-field appearance="standard">
-          <mat-label>Start Year</mat-label>
-          <input matInput [(ngModel)]="_filter.minFiltered" name="start" maxlength="4">
-        </mat-form-field>
-        <h4 class="mat-body">and</h4>
-        <mat-form-field appearance="standard">
-          <mat-label>End Year</mat-label>
-          <input matInput [(ngModel)]="_filter.maxFiltered" name="end">
-        </mat-form-field>
-      </div>
+      <mat-form-field appearance="standard" class="fill">
+        <mat-label>Cancer Type</mat-label>
+        <mat-select [(ngModel)]="_filter.cancerType" name="cancer">
+          <mat-option value="">All</mat-option>
+          <mat-option *ngFor="let cancer of cancers | async" [value]="cancer">{{cancer}}</mat-option>
+        </mat-select>
+      </mat-form-field>
 
-      <div class="footer">
-        <button mat-raised-button (click)="applyFilter()" color="primary">
-          <mat-icon>filter_list</mat-icon>
-          Apply Filters
-        </button>
-      </div>
+      <mat-form-field appearance="standard" class="half">
+        <mat-label>Published From</mat-label>
+        <input matInput [(ngModel)]="_filter.minFiltered" name="start" maxlength="4">
+      </mat-form-field>
+
+      <mat-form-field appearance="standard" class="half">
+        <mat-label>Published Till</mat-label>
+        <input matInput [(ngModel)]="_filter.maxFiltered" name="end" maxlength="4">
+      </mat-form-field>
 
     </form>
+
+    <div class="footer">
+      <button mat-raised-button (click)="applyFilter()" color="primary">
+        <mat-icon>filter_list</mat-icon>
+        Apply Filters
+      </button>
+    </div>
   </vist-box-page>
 
   <vist-box-page title="Annotations">

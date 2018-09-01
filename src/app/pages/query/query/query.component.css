@@ -22,6 +22,7 @@ mat-sidenav-container {
   flex-direction: column;
   margin-right: 32px;
   min-width: 300px;
+  max-width: 400px;
 }
 
 .result-wrap {
@@ -33,9 +34,9 @@ app-filter {
 }
 
 mat-sidenav {
-  width: 350px;
+  width: 400px;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   padding: 16px;
 }
 

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { VistBoxModule, VistHeaderModule, PipesModule } from '@app/core';
 import { QueryComponent } from './query/query.component';
 import { SearchComponent } from './search/search.component';
@@ -19,7 +19,9 @@ import {
   MatProgressSpinnerModule,
   MatAutocompleteModule,
   MatSidenavModule,
-  MatCardModule
+  MatCardModule,
+  MatSelectModule,
+  MatChipsModule
 } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
 import { DocViewerComponent } from './doc-viewer/doc-viewer.component';
@@ -30,6 +32,7 @@ import { DocViewerComponent } from './doc-viewer/doc-viewer.component';
     BrowserAnimationsModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     VistBoxModule,
     VistHeaderModule,
     PipesModule,
@@ -44,7 +47,9 @@ import { DocViewerComponent } from './doc-viewer/doc-viewer.component';
     MatProgressSpinnerModule,
     MatAutocompleteModule,
     MatCardModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatSelectModule,
+    MatChipsModule
   ],
   declarations: [
     QueryComponent,

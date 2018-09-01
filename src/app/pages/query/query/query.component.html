@@ -1,12 +1,12 @@
 <mat-sidenav-container>
-    <mat-sidenav #sidenav *ngIf="isSmall | async" opened>
+    <mat-sidenav #sidenav *ngIf="isSmall" opened>
         <app-search @showBox (terms)="onTerms($event)"></app-search>
         <app-filter @showBox (highlight)="highlight = $event" (filter)="onFilter($event)" *ngIf="hasData | async"></app-filter>
     </mat-sidenav>
     <mat-sidenav-content>
-        <vist-header [title]="getTitle()" [showToggle]="isSmall | async" (toggle)="sidenav.toggle()"></vist-header>
+        <vist-header [title]="getTitle()" [showToggle]="isSmall" (toggle)="sidenav.toggle()"></vist-header>
         <div class="control-wrap">
-            <div *ngIf="!(isSmall | async)" class="sidebar-wrap">
+            <div *ngIf="!isSmall" class="sidebar-wrap">
                 <app-search @showBox (terms)="onTerms($event)"></app-search>
                 <app-filter @showBox (highlight)="highlight = $event" (filter)="onFilter($event)" *ngIf="hasData | async"></app-filter>
             </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { QueryService } from '@app/core';
 import { trigger, style, transition, animate, group } from '@angular/animations';
 import { IHighlighting } from '../highlighting';
@@ -6,7 +6,7 @@ import { map } from 'rxjs/operators';
 import { TitleService } from '@app/core/services/title.service';
 import { ITerms, IFilter } from '@app/shared';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { MatSidenav } from '@angular/material';
 
 @Component({
@@ -21,14 +21,16 @@ import { MatSidenav } from '@angular/material';
           animate('0.5s ease-in', style({ opacity: 1 })),
           animate('0.5s ease-out', style({ transform: 'translateY(0)' }))
         ])
-      ]),
+      ])
     ])
   ]
 })
-export class QueryComponent implements OnInit {
+export class QueryComponent implements OnInit, OnDestroy {
   highlight: IHighlighting;
   hasData = this.queryService.data$.pipe(map(data => data.numFound > 0));
-  isSmall: Observable<boolean>;
+  isSmall: boolean;
+
+  private isSmallSubscription: Subscription;
 
   @ViewChild(MatSidenav) sidenav: MatSidenav;
 
@@ -37,7 +39,13 @@ export class QueryComponent implements OnInit {
     private titleService: TitleService,
     private breakpointObserver: BreakpointObserver) {
     titleService.title = "Query Results";
-    this.isSmall = breakpointObserver.observe([Breakpoints.Small]).pipe(map(state => state.matches));
+    this.isSmallSubscription = breakpointObserver.observe(Breakpoints.Small).subscribe(state => this.isSmall = state.matches);
+  }
+
+  private closeSidenav(): void {
+    if (this.isSmall) {
+      this.sidenav.close();
+    }
   }
 
   getTitle(): string {
@@ -46,12 +54,18 @@ export class QueryComponent implements OnInit {
 
   onTerms(terms: ITerms) {
     this.queryService.terms = terms;
+    this.closeSidenav();
   }
 
   onFilter(filter: IFilter) {
     this.queryService.filter = filter;
+    this.closeSidenav();
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
+  }
+
+  ngOnDestroy(): void {
+    this.isSmallSubscription.unsubscribe();
   }
 }

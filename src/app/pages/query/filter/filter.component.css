@@ -12,8 +12,22 @@
     margin-bottom: 8px;
 }
 
-input[name="journals"] {
+#filter-header {
+    margin: 0;
+}
+
+.filter-form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.filter-form .fill {
     width: 100%;
+}
+
+.filter-form .half {
+    width: 48%;
 }
 
 .footer {
