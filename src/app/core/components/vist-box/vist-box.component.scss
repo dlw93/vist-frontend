@@ -10,6 +10,8 @@
   padding: 16px;
   position: relative;
   display: flex;
+  height: calc(100% - 48px);
+  box-sizing: border-box;
 }
 
 .content-wrap {
@@ -43,7 +45,7 @@
 
   .header-wrapper {
     height: 44px;
-    flex: 0 0;
+    flex: 0 0 auto;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -84,6 +86,7 @@
     border-radius: 2px;
     @include mat-overridable-elevation(2);
     background-color: mat-color($primary, default-contrast);
+    max-height: inherit;
   }
 
   .header-text.active {

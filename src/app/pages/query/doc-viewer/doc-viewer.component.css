@@ -6,37 +6,7 @@
     box-sizing: border-box;
 }
 
-.header {
-    display: flex;
-    font-size: 10pt;
-    text-transform: uppercase;
-    margin-bottom: 8px;
-}
-
-.header .item {
-    cursor: pointer;
-    margin-right: 16px;
-}
-
-.header .item:not(.selected) {
-    color: rgba(0, 0, 0, 0.54);
-    transition: color 0.2s ease-out;
-}
-
-.header .item:not(.selected):hover {
-    color: rgb(0, 55, 108);
-    transition: color 0.2s ease-out;
-}
-
-.header .item.selected {
-    color: rgb(0, 55, 108);
-}
-
-.content {
-    padding: 1em 0;
-}
-
-.content > * {
+pre, .doc-stats > * {
     margin: 0;
 }
 

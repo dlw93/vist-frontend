@@ -26,9 +26,9 @@ export class VistBox implements AfterContentInit {
   }
 
   ngAfterContentInit() {
-    let activeTabs = this.pages.filter(page => page.active);
+    let activePages = this.pages.filter(page => page.active);
 
-    if (activeTabs.length == 0) {
+    if (activePages.length == 0) {
       this.selectPage(this.pages.first);
     }
   }

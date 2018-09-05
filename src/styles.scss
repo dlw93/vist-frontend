@@ -1,6 +1,7 @@
 @import '~@angular/material/theming';
 @import 'app/core/components/vist-header/vist-header.component';
 @import 'app/core/components/vist-box/vist-box.component';
+@import 'app/core/components/vist-tabs/vist-tabs.component';
 
 @include mat-core();
 
@@ -44,3 +45,4 @@ $theme: mat-light-theme($theme-primary, $theme-accent);
 @include angular-material-theme($theme);
 @include header-theme($theme);
 @include vist-box-theme($theme);
+@include vist-tabs-theme($theme);

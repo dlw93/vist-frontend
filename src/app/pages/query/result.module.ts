@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { VistBoxModule, VistHeaderModule, PipesModule } from '@app/core';
+import { VistBoxModule, VistTabsModule, VistHeaderModule, PipesModule } from '@app/core';
 import { QueryComponent } from './query/query.component';
 import { SearchComponent } from './search/search.component';
 import { FilterComponent } from './filter/filter.component';
@@ -34,6 +34,7 @@ import { DocViewerComponent } from './doc-viewer/doc-viewer.component';
     FormsModule,
     ReactiveFormsModule,
     VistBoxModule,
+    VistTabsModule,
     VistHeaderModule,
     PipesModule,
     MatButtonModule,

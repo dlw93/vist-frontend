@@ -1,10 +1,8 @@
-<div class="header">
-  <span class="item" [class.selected]="!showStats" (click)="showStats = false">Abstract</span>
-  <span class="item" [class.selected]="showStats" (click)="showStats = true">Statistics</span>
-</div>
-<div class="content">
-  <pre *ngIf="!showStats; else stats" [ngClass]="highlight" [innerHtml]="document['abstract'] | annidx:document['sents']:'sentence' | annregex:document['gene_name']:'gene' | annregex:document['mutation_normalizedValue']:'mutation' | annregex:document['chemicals']:'chemical' | sanitizeHtml"></pre>
-  <ng-template #stats>
+<vist-tabs>
+  <vist-tab title="Abstract">
+    <pre [ngClass]="highlight" [innerHtml]="document['abstract'] | annidx:document['sents']:'sentence' | annregex:document['gene_name']:'gene' | annregex:document['mutation_normalizedValue']:'mutation' | annregex:document['chemicals']:'chemical' | sanitizeHtml"></pre>
+  </vist-tab>
+  <vist-tab title="Statistics">
     <div class="doc-stats">
 
       <div class="row">
@@ -36,5 +34,5 @@
       </div>
 
     </div>
-  </ng-template>
-</div>
+  </vist-tab>
+</vist-tabs>

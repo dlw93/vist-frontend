@@ -7,7 +7,7 @@ import { FrameModule, AppComponent } from './frame';
     BrowserModule,
     FrameModule
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {
 }

@@ -1,0 +1,37 @@
+@import '~@angular/material/theming';
+
+@mixin vist-tabs-theme($theme) {
+    $primary: map-get($theme, primary);
+    $config: mat-typography-config();
+
+    .header {
+        display: flex;
+        text-transform: uppercase;
+        margin-bottom: 8px;
+        font-family: mat-font-family($config);
+        font-size: 10pt;
+
+        > .item {
+            cursor: pointer;
+            margin-right: 16px;
+
+            &.active {
+                color: mat-color($primary);
+            }
+
+            &:not(.active) {
+                color: rgba(0, 0, 0, 0.54);
+                transition: color 0.2s ease-out;
+            }
+            
+            &:not(.active):hover {
+                color: mat-color($primary);
+                transition: color 0.2s ease-out;
+            }
+        }
+    }
+}
+
+.content {
+    padding: 1em 0;
+}

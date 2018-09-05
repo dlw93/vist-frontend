@@ -7,6 +7,13 @@ import { IFilter } from '@app/shared';
 import { map, startWith } from 'rxjs/operators';
 import { MatAutocompleteSelectedEvent } from '@angular/material';
 
+interface IMatch {
+  index: number;
+  pos: number;
+}
+
+type Index = Map<string, IMatch[]>;
+
 @Component({
   selector: 'app-filter',
   templateUrl: './filter.component.html',
@@ -31,11 +38,13 @@ export class FilterComponent implements OnInit {
   journalControl = new FormControl();
   journalNames: string[];
   journalNamesFiltered: Observable<string[]>;
+  journalNamesIndex: Index;
 
   @Output() highlight = new EventEmitter<IHighlighting>();
   @Output() filter = new EventEmitter<IFilter>();
-
   @ViewChild("journalInput") private journalInput: ElementRef<HTMLInputElement>;
+
+  private static N = 1;
 
   constructor(private queryService: QueryService) {
     // retrieve unique cancer types found across all currently valid documents
@@ -45,33 +54,55 @@ export class FilterComponent implements OnInit {
 
     // retrieve matching journal names while typing (used for autocompletion proposals)
     this.journalNamesFiltered = this.journalControl.valueChanges.pipe(
-      startWith(null),
-      map((journal: string | null) => journal ? this._filterInput(journal) : this.journalNames)
+      startWith(""),
+      map(journal => this._filterInput(journal))
     );
 
     // retrieve the names of the journals of all documents contained in the current result set
     this.queryService.data$.pipe(
       map(data => data.journals.map(journal => journal.name))
-    ).subscribe(journalNames => this.journalNames = journalNames);
+    ).subscribe(journalNames => {
+      this.journalNames = journalNames;
+      this.journalNamesIndex = this._buildIndex(journalNames);
+    });
 
     // set ranges of publication date filter
     this.queryService.data$.pipe(
       map(data => [data.minPublicationFilter, data.maxPublicationFilter])
     ).subscribe(range => {
-      let [min, max] = range;
+      const [min, max] = range;
       this._filter.minFiltered = min;
       this._filter.maxFiltered = max;
     });
   }
 
   private _filterInput(value: string): string[] {
-    return this.journalNames.filter(name => name.indexOf(value) >= 0);
+    return this.journalNames.filter(name => name.toLowerCase().indexOf(value.toLowerCase()) >= 0);
+  }
+
+  private _buildIndex(values: string[]): Index {
+    let result: Index = new Map<string, IMatch[]>();
+
+    values.forEach((value, index) => {
+      for (let i = 0; i < value.length - FilterComponent.N + 1; i++) {
+        const ngram = value.substring(i, i + FilterComponent.N).toLowerCase();
+        if (!result.has(ngram)) {
+          result.set(ngram, []);
+        }
+        result.get(ngram).push({
+          index: index,
+          pos: i
+        });
+      }
+    });
+
+    return result;
   }
 
   selected(event: MatAutocompleteSelectedEvent): void {
     this._filter.journals.push(event.option.viewValue);
     this.journalInput.nativeElement.value = ""; // after adding a chip, clear the actual input element
-    this.journalControl.setValue(null); // signal to the autocompletion observable to reset filters
+    this.journalControl.setValue(""); // signal to the autocompletion observable to reset filters
   }
 
   remove(journal: string): void {
