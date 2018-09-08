@@ -1,31 +1,18 @@
-import { Component, OnInit, Output, EventEmitter, ElementRef, ViewChild } from '@angular/core';
+import { Component, Output, EventEmitter, ElementRef, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { IHighlighting } from '../highlighting';
-import { QueryService } from '@app/core';
+import { QueryService, HighlightingService } from '@app/core';
 import { Observable } from 'rxjs';
-import { IFilter } from '@app/shared';
-import { map, startWith } from 'rxjs/operators';
+import { IFilter, IResponse, IHighlighting } from '@app/shared';
+import { map, startWith, filter } from 'rxjs/operators';
 import { MatAutocompleteSelectedEvent } from '@angular/material';
-
-interface IMatch {
-  index: number;
-  pos: number;
-}
-
-type Index = Map<string, IMatch[]>;
 
 @Component({
   selector: 'app-filter',
   templateUrl: './filter.component.html',
   styleUrls: ['./filter.component.css']
 })
-export class FilterComponent implements OnInit {
-  _highlight: IHighlighting = {
-    genes: true,
-    mutations: true,
-    sentences: true,
-    chemicals: true
-  };
+export class FilterComponent {
+  _highlight: IHighlighting;
   _filter: IFilter = {
     cancerType: "",
     journals: [],
@@ -38,17 +25,18 @@ export class FilterComponent implements OnInit {
   journalControl = new FormControl();
   journalNames: string[];
   journalNamesFiltered: Observable<string[]>;
-  journalNamesIndex: Index;
 
-  @Output() highlight = new EventEmitter<IHighlighting>();
-  @Output() filter = new EventEmitter<IFilter>();
+  @Output() filter = new EventEmitter<void>();
   @ViewChild("journalInput") private journalInput: ElementRef<HTMLInputElement>;
 
-  private static N = 1;
+  constructor(highlightingService: HighlightingService, private queryService: QueryService) {
+    this._highlight = highlightingService.highlighting;
 
-  constructor(private queryService: QueryService) {
+    // only consider valid responses
+    const data$: Observable<IResponse> = this.queryService.data$.pipe(filter(data => !!data));
+
     // retrieve unique cancer types found across all currently valid documents
-    this.cancers = this.queryService.data$.pipe(
+    this.cancers = data$.pipe(
       map(data => new Set<string>(data.docs.map(doc => doc.cancerType)))
     );
 
@@ -59,44 +47,20 @@ export class FilterComponent implements OnInit {
     );
 
     // retrieve the names of the journals of all documents contained in the current result set
-    this.queryService.data$.pipe(
+    data$.pipe(
       map(data => data.journals.map(journal => journal.name))
     ).subscribe(journalNames => {
       this.journalNames = journalNames;
-      this.journalNamesIndex = this._buildIndex(journalNames);
     });
 
     // set ranges of publication date filter
-    this.queryService.data$.pipe(
+    data$.pipe(
       map(data => [data.minPublicationFilter, data.maxPublicationFilter])
     ).subscribe(range => {
       const [min, max] = range;
       this._filter.minFiltered = min;
       this._filter.maxFiltered = max;
     });
-  }
-
-  private _filterInput(value: string): string[] {
-    return this.journalNames.filter(name => name.toLowerCase().indexOf(value.toLowerCase()) >= 0);
-  }
-
-  private _buildIndex(values: string[]): Index {
-    let result: Index = new Map<string, IMatch[]>();
-
-    values.forEach((value, index) => {
-      for (let i = 0; i < value.length - FilterComponent.N + 1; i++) {
-        const ngram = value.substring(i, i + FilterComponent.N).toLowerCase();
-        if (!result.has(ngram)) {
-          result.set(ngram, []);
-        }
-        result.get(ngram).push({
-          index: index,
-          pos: i
-        });
-      }
-    });
-
-    return result;
   }
 
   selected(event: MatAutocompleteSelectedEvent): void {
@@ -114,10 +78,11 @@ export class FilterComponent implements OnInit {
   }
 
   applyFilter(): void {
-    this.filter.emit(this._filter);
+    this.queryService.filter = this._filter;
+    this.filter.emit();
   }
 
-  ngOnInit() {
-    this.highlight.emit(this._highlight);
+  private _filterInput(value: string): string[] {
+    return this.journalNames.filter(name => name.toLowerCase().indexOf(value.toLowerCase()) >= 0);
   }
 }

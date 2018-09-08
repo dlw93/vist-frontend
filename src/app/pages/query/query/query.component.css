@@ -8,10 +8,31 @@ mat-sidenav-container {
   flex: 1;
 }
 
+.loading-indicator {
+  position: absolute;
+  top: 80px;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading-indicator > mat-spinner {
+  margin-bottom: 32px;
+}
+
 .control-wrap {
   display: flex;
   padding: 32px;
   align-items: flex-start;
+}
+
+app-filter {
+  margin-top: 30px;
 }
 
 .sidebar-wrap {
@@ -25,12 +46,27 @@ mat-sidenav-container {
   max-width: 400px;
 }
 
-.result-wrap {
+mat-card {
   flex: 3;
+  padding: 0;
 }
 
-app-filter {
-  margin-top: 30px;
+.no-data-wrapper {
+  position: absolute;
+  top: 80px;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.no-data-wrapper > app-search {
+  width: 25vw;
+  min-width: 400px;
 }
 
 mat-sidenav {

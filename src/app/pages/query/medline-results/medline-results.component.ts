@@ -1,16 +1,15 @@
-import { Component, OnInit, ViewChild, Input } from '@angular/core';
-import { animate, style, transition, trigger, group, query, stagger } from '@angular/animations';
-import { MatPaginator, MatTable, MatTabGroup } from '@angular/material';
-import { Observable } from 'rxjs';
-import { map, debounceTime } from 'rxjs/operators';
-import { IHighlighting } from '../highlighting';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { trigger, transition, style, animate } from '@angular/animations';
+import { MatPaginator, MatTable } from '@angular/material';
 import { IMedlineDoc } from '@app/shared';
+import { Observable } from 'rxjs';
 import { QueryService } from '@app/core';
+import { map } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-result',
-  templateUrl: './result.component.html',
-  styleUrls: ['./result.component.css'],
+  selector: 'app-medline-results',
+  templateUrl: './medline-results.component.html',
+  styleUrls: ['./medline-results.component.css'],
   animations: [
     trigger('detailExpand', [
       transition('void => *', [
@@ -24,9 +23,7 @@ import { QueryService } from '@app/core';
     ])
   ]
 })
-export class ResultComponent implements OnInit {
-  @Input() highlight: IHighlighting;
-  @ViewChild(MatTabGroup) tabs: MatTabGroup;
+export class MedlineResultsComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatTable) table: MatTable<IMedlineDoc>;
 
@@ -35,13 +32,12 @@ export class ResultComponent implements OnInit {
   readonly displayedColumns = ['score', 'title', 'year'];
   dataSource: Observable<IMedlineDoc[]>;
   resultsLength: Observable<number>;
-  isLoading: Observable<boolean>;
   page: number;
 
   constructor(private queryService: QueryService) {
-    this.dataSource = this.queryService.data$.pipe(map(data => data.docs));
-    this.resultsLength = this.queryService.data$.pipe(map(data => data.numFound));
-    this.isLoading = this.queryService.loading$.pipe(debounceTime(200));    // only show loading indicator after waiting for 0.2s
+    this.dataSource = this.queryService.data$.pipe(map(data => data ? data.docs : []));
+    this.resultsLength = this.queryService.data$.pipe(map(data => data ? data.numFound : 0));
+    this.page = this.queryService.page.currentPage;
   }
 
   get expandedDoc(): string {
@@ -57,14 +53,12 @@ export class ResultComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.paginator.page.asObservable().subscribe((event) => {
+    this.paginator.page.asObservable().subscribe(event => {
       this.queryService.page = {
         nrDocuments: event.pageSize,
         currentPage: event.pageIndex
       };
       this.page = event.pageIndex;
     });
-
-    this.tabs.selectedTabChange.asObservable().subscribe(() => this._expandedDoc = undefined);
   }
 }

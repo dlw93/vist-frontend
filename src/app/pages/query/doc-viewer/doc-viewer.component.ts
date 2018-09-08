@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { IMedlineDoc } from '@app/shared';
-import { IHighlighting } from '@app/pages/query/highlighting';
+import { IMedlineDoc, IHighlighting } from '@app/shared';
+import { HighlightingService } from '@app/core';
 
 interface IKeyValue {
   key: string;
@@ -20,12 +20,12 @@ interface IRow {
 })
 export class DocViewerComponent implements OnInit {
   @Input() document: IMedlineDoc;
-  @Input() highlight: IHighlighting;
 
-  showStats = false;
   rows: IRow[];
+  highlighting: IHighlighting;
 
-  constructor() {
+  constructor(private highlightingService: HighlightingService) {
+    this.highlighting = this.highlightingService.highlighting;
   }
 
   private unique(entities: string[]): IKeyValue[] {

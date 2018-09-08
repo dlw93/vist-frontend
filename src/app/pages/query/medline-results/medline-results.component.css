@@ -1,0 +1,7 @@
+table {
+    width: 100%;
+}
+
+.mat-column-score, .mat-column-year {
+    width: 40px;
+}

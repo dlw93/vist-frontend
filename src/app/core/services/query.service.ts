@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, ReplaySubject, Subject } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { IEvalQuery, IResponse, IPage, IFilter, ITerms, IRefinement, TQuery } from '@app/shared';
 
 @Injectable({
@@ -12,8 +12,9 @@ export class QueryService {
   private _filter: IFilter;
   private _refinement: IRefinement;
 
-  private _data$ = new ReplaySubject<IResponse>();
-  private _loading$ = new Subject<boolean>();
+  private _data$ = new BehaviorSubject<IResponse>(null);
+  private _loading$ = new BehaviorSubject<boolean>(false);
+  private _fetching$ = new BehaviorSubject<boolean>(false);
 
   constructor(private http: HttpClient) {
   }
@@ -36,7 +37,7 @@ export class QueryService {
 
   public set page(value: IPage) {
     this._page = value;
-    this.send();
+    this.send(true);
   }
 
   public get filter(): IFilter {
@@ -46,7 +47,7 @@ export class QueryService {
   public set filter(value: IFilter) {
     this._filter = value;
     this._page.currentPage = 0; // after applying a new filter, we need to start from the first page again
-    this.send();
+    this.send(true);
   }
 
   public get data$(): Observable<IResponse> {
@@ -57,16 +58,23 @@ export class QueryService {
     return this._loading$.asObservable();
   }
 
+  public get fetching$(): Observable<boolean> {
+    return this._fetching$.asObservable();
+  }
+
   public getEvalQueries(): Observable<IEvalQuery[]> {
     return this.http.get<IEvalQuery[]>('/assets/examples.json');
   }
 
-  private send() {
-    let q: TQuery = Object.assign({}, this._terms, this._page, this._filter, this._refinement);
+  private send(isRefinement: boolean = false) {
+    const q: TQuery = Object.assign({}, this._terms, this._page, this._filter, this._refinement);
+    const indicator$ = isRefinement ? this._fetching$ : this._loading$;
 
-    console.log(q);
+    indicator$.next(true);
+    if (!isRefinement) {
+      this._data$.next(null); // if this is a new query, we invalidate previous data
+    }
 
-    this._loading$.next(true);
     this.http.get<IResponse>('/assets/response.json', {
       headers: { 'Content-Type': 'application/json' },
       params: <any>q
@@ -74,7 +82,7 @@ export class QueryService {
       data.docs = data.docs.slice(q.currentPage * q.nrDocuments, (q.currentPage + 1) * q.nrDocuments);
       this._refinement = { queryID: data.queryID }; // store the query ID for subsequent refinement queries (paging, filtering)
       this._data$.next(data);
-      this._loading$.next(false);
+      indicator$.next(false);
     });
   }
 }

@@ -1,6 +1,6 @@
 <vist-tabs>
   <vist-tab title="Abstract">
-    <pre [ngClass]="highlight" [innerHtml]="document['abstract'] | annidx:document['sents']:'sentence' | annregex:document['gene_name']:'gene' | annregex:document['mutation_normalizedValue']:'mutation' | annregex:document['chemicals']:'chemical' | sanitizeHtml"></pre>
+    <pre [ngClass]="highlighting" [innerHtml]="document['abstract'] | annidx:document['sents']:'sentence' | annregex:document['gene_name']:'gene' | annregex:document['mutation_normalizedValue']:'mutation' | annregex:document['chemicals']:'chemical' | sanitizeHtml"></pre>
   </vist-tab>
   <vist-tab title="Statistics">
     <div class="doc-stats">

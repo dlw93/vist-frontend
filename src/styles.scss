@@ -2,6 +2,7 @@
 @import 'app/core/components/vist-header/vist-header.component';
 @import 'app/core/components/vist-box/vist-box.component';
 @import 'app/core/components/vist-tabs/vist-tabs.component';
+@import 'app/core/styles';
 
 @include mat-core();
 
@@ -46,3 +47,4 @@ $theme: mat-light-theme($theme-primary, $theme-accent);
 @include header-theme($theme);
 @include vist-box-theme($theme);
 @include vist-tabs-theme($theme);
+@include vist-expandable-table($theme);

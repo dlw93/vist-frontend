@@ -22,7 +22,7 @@ app-navbar {
   right: 0;
 }
 
-::ng-deep router-outlet ~ * {
+router-outlet ::ng-deep ~ * {
   position: absolute;
   width: 100%;
   height: 100%;

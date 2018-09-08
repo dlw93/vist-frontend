@@ -1,18 +1,42 @@
 <mat-sidenav-container>
-    <mat-sidenav #sidenav *ngIf="isSmall" opened>
-        <app-search @showBox (terms)="onTerms($event)"></app-search>
-        <app-filter @showBox (highlight)="highlight = $event" (filter)="onFilter($event)" *ngIf="hasData | async"></app-filter>
+    <mat-sidenav *ngIf="isSidenavEnabled | async">
+        <app-search (terms)="sidenav.close()"></app-search>
+        <app-filter (filter)="sidenav.close()"></app-filter>
     </mat-sidenav>
     <mat-sidenav-content>
-        <vist-header [title]="getTitle()" [showToggle]="isSmall" (toggle)="sidenav.toggle()"></vist-header>
-        <div class="control-wrap">
-            <div *ngIf="!isSmall" class="sidebar-wrap">
-                <app-search @showBox (terms)="onTerms($event)"></app-search>
-                <app-filter @showBox (highlight)="highlight = $event" (filter)="onFilter($event)" *ngIf="hasData | async"></app-filter>
-            </div>
-            <div class="result-wrap">
-                <app-result *ngIf="hasData | async" [highlight]="highlight"></app-result>
-            </div>
+        <vist-header [title]="getTitle()" [showToggle]="isSidenavEnabled | async" (toggle)="sidenav.toggle()"></vist-header>
+        <!-- If a query is executing, we show a loading indicator -->
+        <div class="control-wrap" *ngIf="!(isLoading | async); else loadingIndicator">
+            <!-- If the last query yields no results, we use the available space to display the search box. -->
+            <ng-container *ngIf="(hasData | async); else noData">
+                <div *ngIf="!(isSidenavEnabled | async)" class="sidebar-wrap">
+                    <app-search @showBox></app-search>
+                    <app-filter @showBox></app-filter>
+                </div>
+                <mat-card @showBox>
+                    <mat-tab-group dynamicHeight>
+                        <mat-tab label="Medline">
+                            <app-medline-results></app-medline-results>
+                        </mat-tab>
+                        <mat-tab label="Clinical Trials">
+                            <app-clinical-trials-results></app-clinical-trials-results>
+                        </mat-tab>
+                    </mat-tab-group>
+                </mat-card>
+            </ng-container>
+            <ng-template #noData>
+                <div class="no-data-wrapper">
+                    <h4 class="mat-title">Your last query did not yield any results.</h4>
+                    <h4 class="mat-subheading-1">Refine your query or try one of the sample queries.</h4>
+                    <app-search @showBox></app-search>
+                </div>
+            </ng-template>
         </div>
+        <ng-template #loadingIndicator>
+            <div class="loading-indicator">
+                <mat-spinner></mat-spinner>
+                <h4 class="mat-subheading-1">Evaluating your query...</h4>
+            </div>
+        </ng-template>
     </mat-sidenav-content>
 </mat-sidenav-container>

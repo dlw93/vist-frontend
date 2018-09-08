@@ -1,12 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { VistBoxModule, VistTabsModule, VistHeaderModule, PipesModule } from '@app/core';
 import { QueryComponent } from './query/query.component';
 import { SearchComponent } from './search/search.component';
 import { FilterComponent } from './filter/filter.component';
-import { ResultComponent } from './result/result.component';
+import { MedlineResultsComponent } from './medline-results/medline-results.component';
+import { ClinicalTrialsResultsComponent } from './clinical-trials-results/clinical-trials-results.component';
+import { DocViewerComponent } from './doc-viewer/doc-viewer.component';
 import {
   MatButtonModule,
   MatIconModule,
@@ -23,8 +26,6 @@ import {
   MatSelectModule,
   MatChipsModule
 } from '@angular/material';
-import { HttpClientModule } from '@angular/common/http';
-import { DocViewerComponent } from './doc-viewer/doc-viewer.component';
 
 @NgModule({
   imports: [
@@ -56,8 +57,9 @@ import { DocViewerComponent } from './doc-viewer/doc-viewer.component';
     QueryComponent,
     SearchComponent,
     FilterComponent,
-    ResultComponent,
-    DocViewerComponent
+    DocViewerComponent,
+    MedlineResultsComponent,
+    ClinicalTrialsResultsComponent
   ],
   exports: [
     SearchComponent

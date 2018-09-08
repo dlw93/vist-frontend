@@ -2,7 +2,7 @@
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    padding: 8px 60px 16px 81px;    /* ugly to put this here, but putting padding into the wrapper leads to animation glitches */
+    padding: 8px 60px 16px 70px;    /* ugly to put this here, but putting padding into the wrapper leads to animation glitches */
     box-sizing: border-box;
 }
 

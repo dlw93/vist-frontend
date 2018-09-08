@@ -18,7 +18,7 @@ import { AppRoutingModule } from '../app-routing.module';
     MatIconModule,
     MatToolbarModule,
     MatMenuModule,
-    AppRoutingModule
+    AppRoutingModule 
   ],
   exports: [
     AppComponent

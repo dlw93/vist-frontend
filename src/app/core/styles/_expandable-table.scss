@@ -1,0 +1,33 @@
+@import '~@angular/material/theming';
+
+@mixin vist-expandable-table($theme) {
+    $primary: map-get($theme, primary);
+
+    table[vistExpandable] {
+        td.mat-cell, 
+        th.mat-header-cell {
+            padding: 0 15px;
+        }
+    
+        > tbody > tr.header-row {
+            cursor: pointer;
+    
+            > td {
+                border-bottom-width: 0;
+            }
+    
+            &.selected > td, 
+            &:not(.selected):hover > td {
+                color: mat-color($primary);
+            }
+        }
+    
+        > tbody > tr.detail-row {
+            height: 0;
+    
+            > td > .expanded-detail-wrap {
+                overflow: hidden;
+            }
+        }
+    }
+}

@@ -1,13 +1,13 @@
-import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { QueryService } from '@app/core';
 import { trigger, style, transition, animate, group } from '@angular/animations';
-import { IHighlighting } from '../highlighting';
-import { map } from 'rxjs/operators';
+import { map, distinctUntilChanged } from 'rxjs/operators';
 import { TitleService } from '@app/core/services/title.service';
-import { ITerms, IFilter } from '@app/shared';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Observable, Subscription } from 'rxjs';
+import { Observable, combineLatest } from 'rxjs';
 import { MatSidenav } from '@angular/material';
+import { MedlineResultsComponent } from '@app/pages/query/medline-results/medline-results.component';
+import { ClinicalTrialsResultsComponent } from '@app/pages/query/clinical-trials-results/clinical-trials-results.component';
 
 @Component({
   selector: 'app-query',
@@ -15,7 +15,7 @@ import { MatSidenav } from '@angular/material';
   styleUrls: ['./query.component.css'],
   animations: [
     trigger('showBox', [
-      transition('void => *', [
+      transition(':enter', [
         style({ opacity: 0, transform: 'translateY(40px)' }),
         group([
           animate('0.5s ease-in', style({ opacity: 1 })),
@@ -25,47 +25,28 @@ import { MatSidenav } from '@angular/material';
     ])
   ]
 })
-export class QueryComponent implements OnInit, OnDestroy {
-  highlight: IHighlighting;
-  hasData = this.queryService.data$.pipe(map(data => data.numFound > 0));
-  isSmall: boolean;
-
-  private isSmallSubscription: Subscription;
+export class QueryComponent {
+  isSmall: Observable<boolean>;
+  isLoading: Observable<boolean>;
+  hasData: Observable<boolean>;
+  isSidenavEnabled: Observable<boolean>;
 
   @ViewChild(MatSidenav) sidenav: MatSidenav;
+  @ViewChild(MedlineResultsComponent) medlineResults: MedlineResultsComponent;
+  @ViewChild(ClinicalTrialsResultsComponent) clinicalTrialsResults: ClinicalTrialsResultsComponent;
 
-  constructor(
-    private queryService: QueryService,
-    private titleService: TitleService,
-    private breakpointObserver: BreakpointObserver) {
+  constructor(queryService: QueryService, breakpointObserver: BreakpointObserver, private titleService: TitleService) {
     titleService.title = "Query Results";
-    this.isSmallSubscription = breakpointObserver.observe(Breakpoints.Small).subscribe(state => this.isSmall = state.matches);
-  }
 
-  private closeSidenav(): void {
-    if (this.isSmall) {
-      this.sidenav.close();
-    }
+    this.isSmall = breakpointObserver.observe(Breakpoints.Small).pipe(map(state => state.matches));
+    this.isLoading = queryService.loading$;
+    this.hasData = queryService.data$.pipe(map(data => data ? data.numFound > 0 : false), distinctUntilChanged());
+    this.isSidenavEnabled = combineLatest(this.isSmall, this.isLoading, this.hasData).pipe(
+      map(([isSmall, isLoading, hasData]: string[]) => isSmall && !isLoading && hasData)
+    );
   }
 
   getTitle(): string {
     return this.titleService.title;
-  }
-
-  onTerms(terms: ITerms) {
-    this.queryService.terms = terms;
-    this.closeSidenav();
-  }
-
-  onFilter(filter: IFilter) {
-    this.queryService.filter = filter;
-    this.closeSidenav();
-  }
-
-  ngOnInit(): void {
-  }
-
-  ngOnDestroy(): void {
-    this.isSmallSubscription.unsubscribe();
   }
 }
