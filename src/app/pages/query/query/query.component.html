@@ -10,10 +10,10 @@
             <!-- If the last query yields no results, we use the available space to display the search box. -->
             <ng-container *ngIf="(hasData | async); else noData">
                 <div *ngIf="!(isSidenavEnabled | async)" class="sidebar-wrap">
-                    <app-search @showBox></app-search>
-                    <app-filter @showBox></app-filter>
+                    <app-search @vistSlideIn></app-search>
+                    <app-filter @vistSlideIn></app-filter>
                 </div>
-                <mat-card @showBox>
+                <mat-card @vistSlideIn>
                     <mat-tab-group dynamicHeight>
                         <mat-tab label="Medline">
                             <app-medline-results></app-medline-results>
@@ -28,7 +28,7 @@
                 <div class="no-data-wrapper">
                     <h4 class="mat-title">Your last query did not yield any results.</h4>
                     <h4 class="mat-subheading-1">Refine your query or try one of the sample queries.</h4>
-                    <app-search @showBox></app-search>
+                    <app-search @vistSlideIn></app-search>
                 </div>
             </ng-template>
         </div>

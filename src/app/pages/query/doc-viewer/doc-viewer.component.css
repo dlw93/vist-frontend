@@ -43,42 +43,17 @@ pre:not(.sentences) ::ng-deep .sentence {
     background-color: transparent !important;   /* super ugly! */
 }
 
-.doc-stats {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.doc-stats > .row {
-    width: 100%;
-    display: flex;
-}
-
-.doc-stats > .row:not(:last-of-type) {
-    margin-bottom: 8px;
-}
-
-.doc-stats > .row > .key {
-    width: 140px;
-    font-weight: 500;
-}
-
-.doc-stats > .row > .value {
-    flex: 1;
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.doc-stats > .row > .value > a {
+vist-key-value-table a {
     color: #00376c;
     text-decoration: none;
 }
 
-.doc-stats > .row > .value > a:not(:last-of-type)::after {
+vist-key-value-table a:not(:last-of-type)::after {
     color: rgba(0, 0, 0, 0.87);
     content: ', ';
     white-space: pre;
 }
 
-.doc-stats > .row > .value > a.disabled {
+vist-key-value-table a.disabled {
     color: rgba(0, 0, 0, 0.87);
 }

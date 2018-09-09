@@ -1,27 +1,15 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { trigger, transition, style, animate } from '@angular/animations';
 import { MatPaginator, MatTable } from '@angular/material';
 import { IMedlineDoc } from '@app/shared';
 import { Observable } from 'rxjs';
-import { QueryService } from '@app/core';
+import { QueryService, VIST_EXPAND_ANIMATION } from '@app/core';
 import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-medline-results',
   templateUrl: './medline-results.component.html',
   styleUrls: ['./medline-results.component.css'],
-  animations: [
-    trigger('detailExpand', [
-      transition('void => *', [
-        style({ height: '0px' }),
-        animate('450ms cubic-bezier(0.4, 0.0, 0.2, 1)', style({ height: '*' }))
-      ]),
-      transition('* => void', [
-        style({ height: '*' }),
-        animate('450ms cubic-bezier(0.4, 0.0, 0.2, 1)', style({ height: '0px' }))
-      ])
-    ])
-  ]
+  animations: [VIST_EXPAND_ANIMATION]
 })
 export class MedlineResultsComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;

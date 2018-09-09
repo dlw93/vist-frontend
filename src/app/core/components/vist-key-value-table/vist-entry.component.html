@@ -1,0 +1,7 @@
+<div class="key">{{ key }}</div>
+<div class="value">
+    <div #values>
+        <ng-content></ng-content>
+    </div>
+    <span *ngIf="values.children.length == 0 && values.textContent == ''">&mdash;</span>
+</div>

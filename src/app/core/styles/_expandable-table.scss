@@ -4,28 +4,27 @@
     $primary: map-get($theme, primary);
 
     table[vistExpandable] {
-        td.mat-cell, 
-        th.mat-header-cell {
+        td, th {
             padding: 0 15px;
         }
-    
-        > tbody > tr.header-row {
+
+        > tbody > tr:nth-child(odd) {
             cursor: pointer;
-    
+
             > td {
                 border-bottom-width: 0;
             }
-    
-            &.selected > td, 
-            &:not(.selected):hover > td {
+
+            &:hover > td,
+            &.selected > td {
                 color: mat-color($primary);
             }
         }
-    
-        > tbody > tr.detail-row {
+
+        > tbody > tr:nth-child(even) {
             height: 0;
     
-            > td > .expanded-detail-wrap {
+            > td > [vistExpansionDetail] {
                 overflow: hidden;
             }
         }

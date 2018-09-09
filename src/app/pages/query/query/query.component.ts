@@ -1,6 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { QueryService } from '@app/core';
-import { trigger, style, transition, animate, group } from '@angular/animations';
+import { QueryService, VIST_SLIDE_IN_ANIMATION } from '@app/core';
 import { map, distinctUntilChanged } from 'rxjs/operators';
 import { TitleService } from '@app/core/services/title.service';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
@@ -13,17 +12,7 @@ import { ClinicalTrialsResultsComponent } from '@app/pages/query/clinical-trials
   selector: 'app-query',
   templateUrl: './query.component.html',
   styleUrls: ['./query.component.css'],
-  animations: [
-    trigger('showBox', [
-      transition(':enter', [
-        style({ opacity: 0, transform: 'translateY(40px)' }),
-        group([
-          animate('0.5s ease-in', style({ opacity: 1 })),
-          animate('0.5s ease-out', style({ transform: 'translateY(0)' }))
-        ])
-      ])
-    ])
-  ]
+  animations: [VIST_SLIDE_IN_ANIMATION]
 })
 export class QueryComponent {
   isSmall: Observable<boolean>;

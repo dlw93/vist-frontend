@@ -7,7 +7,7 @@ interface IKeyValue {
   value: string;
 }
 
-interface IRow {
+interface IEntry {
   name: string;
   entries: IKeyValue[];
   url: string;
@@ -21,7 +21,7 @@ interface IRow {
 export class DocViewerComponent implements OnInit {
   @Input() document: IMedlineDoc;
 
-  rows: IRow[];
+  rows: IEntry[];
   highlighting: IHighlighting;
 
   constructor(private highlightingService: HighlightingService) {

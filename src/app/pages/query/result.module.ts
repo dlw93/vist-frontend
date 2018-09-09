@@ -3,13 +3,19 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { VistBoxModule, VistTabsModule, VistHeaderModule, PipesModule } from '@app/core';
 import { QueryComponent } from './query/query.component';
 import { SearchComponent } from './search/search.component';
 import { FilterComponent } from './filter/filter.component';
 import { MedlineResultsComponent } from './medline-results/medline-results.component';
 import { ClinicalTrialsResultsComponent } from './clinical-trials-results/clinical-trials-results.component';
 import { DocViewerComponent } from './doc-viewer/doc-viewer.component';
+import {
+  VistBoxModule,
+  VistTabsModule,
+  VistHeaderModule,
+  VistKeyValueTableModule,
+  PipesModule
+} from '@app/core';
 import {
   MatButtonModule,
   MatIconModule,
@@ -37,6 +43,7 @@ import {
     VistBoxModule,
     VistTabsModule,
     VistHeaderModule,
+    VistKeyValueTableModule,
     PipesModule,
     MatButtonModule,
     MatIconModule,
