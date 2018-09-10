@@ -63,7 +63,8 @@ export class QueryService {
   }
 
   public getEvalQueries(): Observable<IEvalQuery[]> {
-    return this.http.get<IEvalQuery[]>('/assets/examples.json');
+    //return this.http.get<IEvalQuery[]>('/assets/examples.json');
+    return this.http.get<IEvalQuery[]>('/getQueriesExamples');
   }
 
   private send(isRefinement: boolean = false) {
@@ -75,12 +76,21 @@ export class QueryService {
       this._data$.next(null); // if this is a new query, we invalidate previous data
     }
 
-    this.http.get<IResponse>('/assets/response.json', {
+    q.currentPage++;  // the backend starts counting at 1
+
+    //this.http.get<IResponse>('/assets/response.json', {
+    this.http.get<IResponse>('/getQuery', {
       headers: { 'Content-Type': 'application/json' },
       params: <any>q
     }).subscribe(data => {
-      data.docs = data.docs.slice(q.currentPage * q.nrDocuments, (q.currentPage + 1) * q.nrDocuments);
+      this._filter = Object.assign(this._filter || {}, {
+        maxYear: data.maxPublication,
+        minYear: data.minPublication,
+        maxFiltered: data.maxPublicationFilter,
+        minFiltered: data.minPublicationFilter
+      });
       this._refinement = { queryID: data.queryID }; // store the query ID for subsequent refinement queries (paging, filtering)
+
       this._data$.next(data);
       indicator$.next(false);
     });

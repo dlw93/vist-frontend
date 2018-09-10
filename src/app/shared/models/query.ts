@@ -10,8 +10,8 @@ export interface IPage {
 }
 
 export interface IFilter {
-  cancerType: string;
-  journals: string[];
+  cancerType?: string;
+  journals?: string[];
   maxYear: number;
   maxFiltered: number;
   minYear: number;

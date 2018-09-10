@@ -8,7 +8,6 @@ import { SearchComponent } from './search/search.component';
 import { FilterComponent } from './filter/filter.component';
 import { MedlineResultsComponent } from './medline-results/medline-results.component';
 import { ClinicalTrialsResultsComponent } from './clinical-trials-results/clinical-trials-results.component';
-import { DocViewerComponent } from './doc-viewer/doc-viewer.component';
 import {
   VistBoxModule,
   VistTabsModule,
@@ -64,7 +63,6 @@ import {
     QueryComponent,
     SearchComponent,
     FilterComponent,
-    DocViewerComponent,
     MedlineResultsComponent,
     ClinicalTrialsResultsComponent
   ],

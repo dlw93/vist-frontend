@@ -1,5 +1,10 @@
 @import '~@angular/material/theming';
 
+:host {
+    display: flex;
+    flex-direction: column;
+}
+
 @mixin vist-tabs-theme($theme) {
     $primary: map-get($theme, primary);
     $config: mat-typography-config();
