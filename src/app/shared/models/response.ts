@@ -1,6 +1,4 @@
-export { IMedlineDoc, IJournal, IResponse };
-
-interface IMedlineDoc {
+export interface IMedlineDoc {
     id: string;
     score: number;
     classification_score: number;
@@ -20,13 +18,37 @@ interface IMedlineDoc {
     clinical_relevance_scale: number;
 }
 
-interface IJournal {
+export interface IClinicalTrialDoc {
+    condition_name: string;
+    intervention_name: string;
+    condition_downcase_name: string;
+    description: string;
+    mutation_normalizedValue: string[];
+    intervention_type: string;
+    brief_summary: string;
+    overall_status: string;
+    brief_title: string;
+    official_title: string;
+    score: number;
+    intervention_description: string;
+    location: string;
+    criteria: string;
+    phase: string;
+    _version_: number;
+    pmid: string[];
+    chemicals: string[];
+    id: string;
+    gene_name: string[];
+    nct_id: string;
+}
+
+export interface IJournal {
     countValue: number;
     name: string;
     titleName: string;
 }
 
-interface IResponse {
+export interface IResponse {
     numFound: number;
     numFoundCT: number;
     maxPublication: number;
@@ -35,6 +57,6 @@ interface IResponse {
     minPublicationFilter: number;
     journals: IJournal[];
     docs: IMedlineDoc[];
-    ct: any[];
+    ct: IClinicalTrialDoc[];
     queryID: number;
 }

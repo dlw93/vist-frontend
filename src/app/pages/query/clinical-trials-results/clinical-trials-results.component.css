@@ -1,0 +1,41 @@
+table {
+    width: 100%;
+}
+
+.mat-column-score, .mat-column-status {
+    width: 40px;
+}
+
+.mat-column-phase {
+    width: 110px;
+}
+
+.article-footer {
+    display: flex;
+    flex-direction: row-reverse;
+    margin-top: 8px
+}
+
+vist-tabs {
+    overflow: hidden;
+    padding: 8px 70px 16px 70px;
+}
+
+pre, .doc-stats > * {
+    margin: 0;
+}
+
+vist-key-value-table a {
+    color: #00376c;
+    text-decoration: none;
+}
+
+vist-key-value-table a:not(:last-of-type)::after {
+    color: rgba(0, 0, 0, 0.87);
+    content: ', ';
+    white-space: pre;
+}
+
+vist-key-value-table a.disabled {
+    color: rgba(0, 0, 0, 0.87);
+}

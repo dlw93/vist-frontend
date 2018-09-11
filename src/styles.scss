@@ -48,3 +48,4 @@ $theme: mat-light-theme($theme-primary, $theme-accent);
 @include vist-box-theme($theme);
 @include vist-tabs-theme($theme);
 @include vist-expandable-table($theme);
+@include vist-annotated();

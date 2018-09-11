@@ -61,12 +61,32 @@ mat-card {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
 }
 
 .no-data-wrapper > app-search {
   width: 25vw;
   min-width: 400px;
+}
+
+.no-data-wrapper > .message-wrap {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  height: 90px;
+  justify-content: space-evenly;
+  width: 460px;
+}
+
+.no-data-wrapper > .message-wrap > mat-icon {
+	font-size: 80px;
+  width: 80px;
+  height: 80px;
+  padding: 5px;
+}
+
+.no-data-wrapper > .message-wrap h4 {
+	margin: 0;
 }
 
 mat-sidenav {

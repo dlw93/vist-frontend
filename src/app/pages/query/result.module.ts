@@ -29,7 +29,8 @@ import {
   MatSidenavModule,
   MatCardModule,
   MatSelectModule,
-  MatChipsModule
+  MatChipsModule,
+  MatTooltipModule
 } from '@angular/material';
 
 @NgModule({
@@ -57,7 +58,8 @@ import {
     MatCardModule,
     MatSidenavModule,
     MatSelectModule,
-    MatChipsModule
+    MatChipsModule,
+    MatTooltipModule
   ],
   declarations: [
     QueryComponent,

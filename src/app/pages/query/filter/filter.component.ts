@@ -13,6 +13,7 @@ import { MatAutocompleteSelectedEvent } from '@angular/material';
 })
 export class FilterComponent {
   _highlight: IHighlighting;
+  _enabled: IHighlighting;
   _filter: IFilter = {
     cancerType: "",
     journals: [],
@@ -31,6 +32,7 @@ export class FilterComponent {
 
   constructor(highlightingService: HighlightingService, private queryService: QueryService) {
     this._highlight = highlightingService.highlighting;
+    this._enabled = highlightingService.enabled;
 
     // only consider valid responses
     const data$: Observable<IResponse> = this.queryService.data$.pipe(filter(data => !!data));

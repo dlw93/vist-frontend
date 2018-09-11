@@ -14,7 +14,7 @@
                     <app-filter @vistSlideIn></app-filter>
                 </div>
                 <mat-card @vistSlideIn>
-                    <mat-tab-group dynamicHeight>
+                    <mat-tab-group dynamicHeight (selectedTabChange)="onTabChange($event)">
                         <mat-tab label="Medline">
                             <app-medline-results></app-medline-results>
                         </mat-tab>
@@ -26,9 +26,14 @@
             </ng-container>
             <ng-template #noData>
                 <div class="no-data-wrapper">
-                    <h4 class="mat-title">Your last query did not yield any results.</h4>
-                    <h4 class="mat-subheading-1">Refine your query or try one of the sample queries.</h4>
+                    <div class="message-wrap">
+                        <mat-icon>sentiment_dissatisfied</mat-icon>
+                        <h4 class="mat-title">Your last query did not yield any results.</h4>
+                        <h4 class="mat-subheading-1">Refine your query or try one of the sample queries.</h4>
+                    </div>
                     <app-search @vistSlideIn></app-search>
+                    <!-- since we use the "space-between" strategy, an empty div suffices to adjust the space distribution -->
+                    <div></div>
                 </div>
             </ng-template>
         </div>

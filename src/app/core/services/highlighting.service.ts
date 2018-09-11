@@ -12,9 +12,20 @@ export class HighlightingService {
     chemicals: true
   };
 
+  private _enabled: IHighlighting = {
+    genes: true,
+    mutations: true,
+    sentences: true,
+    chemicals: true
+  };
+
   constructor() { }
 
   get highlighting(): IHighlighting {
     return this._highlighting;
+  }
+
+  get enabled(): IHighlighting {
+    return this._enabled;
   }
 }

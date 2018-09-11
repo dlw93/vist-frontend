@@ -1,3 +1,65 @@
-<p>
-  clinical-trials-results works!
-</p>
+<table vistExpandable mat-table [dataSource]="dataSource" multiTemplateDataRows>
+  <ng-container matColumnDef="score">
+    <th mat-header-cell *matHeaderCellDef> Score </th>
+    <td mat-cell *matCellDef="let doc"> {{ doc.score | number:'1.0-2' }} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="title">
+    <th mat-header-cell *matHeaderCellDef> Title </th>
+    <td mat-cell *matCellDef="let doc"> {{ doc.brief_title }} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="phase">
+    <th mat-header-cell *matHeaderCellDef> Phase </th>
+    <td mat-cell *matCellDef="let doc"> {{ doc.phase }} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="status">
+    <th mat-header-cell *matHeaderCellDef> Status </th>
+    <td mat-cell *matCellDef="let doc"> {{ doc.overall_status }} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="expanded">
+    <td mat-cell *matCellDef="let doc" [attr.colspan]="displayedColumns.length">
+      <div vistExpansionDetail *ngIf="doc.id == expandedDoc" @vistExpand>
+        <vist-tabs>
+          <vist-tab title="Report">
+            <div vistAnnotated [ngClass]="highlighting">
+              <p *ngFor="let sec of sections(doc)">
+                <b>{{sec.title}}</b>&nbsp;&mdash;&nbsp;
+                <span [innerHTML]="sec.content"></span>
+              </p>
+            </div>
+            <div class="article-footer">
+              <a mat-button color="primary" href="{{ 'https://clinicaltrials.gov/ct2/show/' + doc.nct_id }}">
+                <mat-icon>exit_to_app</mat-icon>
+                Open Original
+              </a>
+            </div>
+          </vist-tab>
+          <vist-tab title="Statistics">
+            <vist-key-value-table>
+              <vist-entry key="Condition">{{ doc.condition_name }}</vist-entry>
+              <vist-entry key="Intervention Type">{{ doc.intervention_type }}</vist-entry>
+              <vist-entry key="Mutations">
+                <a *ngFor="let mut of unique(doc.mutation_normalizedValue)" class="disabled">{{mut.value}}</a>
+              </vist-entry>
+              <vist-entry key="Genes">
+                <a *ngFor="let gene of unique(doc.gene_name)" [class.disabled]="!gene.url" [attr.href]="gene.url"
+                  target="_blank">{{gene.value}}</a>
+              </vist-entry>
+              <vist-entry key="Chemicals">
+                <a *ngFor="let chem of unique(doc.chemicals)" [class.disabled]="!chem.url" [attr.href]="chem.url"
+                  target="_blank">{{chem.value}}</a>
+              </vist-entry>
+            </vist-key-value-table>
+          </vist-tab>
+        </vist-tabs>
+      </div>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let doc; columns: displayedColumns;" [class.selected]="doc.id == expandedDoc" (click)="expandedDoc = doc.id"></tr>
+  <tr mat-row *matRowDef="let doc; columns: ['expanded']"></tr>
+</table>

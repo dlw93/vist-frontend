@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, isDevMode } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { IEvalQuery, IResponse, IPage, IFilter, ITerms, IRefinement, TQuery } from '@app/shared';
@@ -63,11 +63,12 @@ export class QueryService {
   }
 
   public getEvalQueries(): Observable<IEvalQuery[]> {
-    //return this.http.get<IEvalQuery[]>('/assets/examples.json');
-    return this.http.get<IEvalQuery[]>('/getQueriesExamples');
+    const url: string = isDevMode() ? '/assets/examples.json' : '/getQueriesExamples';
+    return this.http.get<IEvalQuery[]>(url);
   }
 
   private send(isRefinement: boolean = false) {
+    const url: string = isDevMode() ? '/assets/response.json' : '/getQuery';
     const q: TQuery = Object.assign({}, this._terms, this._page, this._filter, this._refinement);
     const indicator$ = isRefinement ? this._fetching$ : this._loading$;
 
@@ -78,8 +79,7 @@ export class QueryService {
 
     q.currentPage++;  // the backend starts counting at 1
 
-    //this.http.get<IResponse>('/assets/response.json', {
-    this.http.get<IResponse>('/getQuery', {
+    this.http.get<IResponse>(url, {
       headers: { 'Content-Type': 'application/json' },
       params: <any>q
     }).subscribe(data => {

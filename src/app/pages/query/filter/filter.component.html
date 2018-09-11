@@ -1,6 +1,7 @@
 <vist-box #filterBox class="filter-box">
   <vist-box-page title="Filter Results">
-    <h4 class="mat-subheading-1" id="filter-header">Please note that, as of now, filters only apply to the Medline results.</h4>
+    <h4 class="mat-subheading-1" id="filter-header">Please note that, as of now, filters only apply to the Medline
+      results.</h4>
     <form #filterForm="ngForm" class="filter-form">
 
       <mat-form-field appearance="standard" class="fill">
@@ -10,7 +11,8 @@
             {{ journal }}
             <mat-icon matChipRemove>cancel</mat-icon>
           </mat-chip>
-          <input [formControl]="journalControl" #journalInput name="journals" [matAutocomplete]="auto" [matChipInputFor]="chipList">
+          <input [formControl]="journalControl" #journalInput name="journals" [matAutocomplete]="auto"
+            [matChipInputFor]="chipList">
         </mat-chip-list>
         <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
           <mat-option *ngFor="let journalName of journalNamesFiltered | async" [value]="journalName">{{journalName}}</mat-option>
@@ -48,7 +50,9 @@
   <vist-box-page title="Annotations">
     <h4 class="mat-subheading-1">Select which entities to highlight in the results</h4>
     <div class="toggle-wrapper">
-      <mat-slide-toggle color="primary" [(ngModel)]="_highlight.sentences">Relevant Sentences</mat-slide-toggle>
+      <mat-slide-toggle color="primary" [(ngModel)]="_highlight.sentences" [disabled]="!_enabled.sentences"
+        matTooltipPosition="above" matTooltip="Highlighting of relevant sentences is not available for clinical trials."
+        [matTooltipDisabled]="_enabled.sentences">Relevant Sentences</mat-slide-toggle>
       <mat-slide-toggle color="primary" [(ngModel)]="_highlight.genes">Genes</mat-slide-toggle>
       <mat-slide-toggle color="primary" [(ngModel)]="_highlight.mutations">Mutations</mat-slide-toggle>
       <mat-slide-toggle color="primary" [(ngModel)]="_highlight.chemicals">Chemicals</mat-slide-toggle>
