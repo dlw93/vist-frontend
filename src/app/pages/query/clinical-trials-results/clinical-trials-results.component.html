@@ -31,16 +31,14 @@
               </p>
             </div>
             <div class="article-footer">
-              <a mat-button color="primary" href="{{ 'https://clinicaltrials.gov/ct2/show/' + doc.nct_id }}">
-                <mat-icon>exit_to_app</mat-icon>
-                Open Original
-              </a>
+              <app-rating></app-rating>
             </div>
           </vist-tab>
           <vist-tab title="Statistics">
             <vist-key-value-table>
               <vist-entry key="Condition">{{ doc.condition_name }}</vist-entry>
               <vist-entry key="Intervention Type">{{ doc.intervention_type }}</vist-entry>
+              <vist-entry key="Article Source"><a href="{{ 'https://clinicaltrials.gov/ct2/show/' + doc.nct_id }}">{{ 'https://clinicaltrials.gov/ct2/show/' + doc.nct_id }}</a></vist-entry>
               <vist-entry key="Mutations">
                 <a *ngFor="let mut of unique(doc.mutation_normalizedValue)" class="disabled">{{mut.value}}</a>
               </vist-entry>

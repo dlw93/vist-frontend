@@ -1,7 +1,10 @@
+@import '~@angular/cdk/overlay-prebuilt.css';
+@import '~@angular/cdk/a11y-prebuilt.css';
 @import '~@angular/material/theming';
 @import 'app/core/components/vist-header/vist-header.component';
 @import 'app/core/components/vist-box/vist-box.component';
 @import 'app/core/components/vist-tabs/vist-tabs.component';
+@import 'app/core/components/vist-overlay/vist-overlay.component';
 @import 'app/core/styles';
 
 @include mat-core();
@@ -48,4 +51,15 @@ $theme: mat-light-theme($theme-primary, $theme-accent);
 @include vist-box-theme($theme);
 @include vist-tabs-theme($theme);
 @include vist-expandable-table($theme);
+@include vist-overlay-theme($theme);
 @include vist-annotated();
+
+a {
+    color: mat-color($theme-accent);
+    text-decoration: none;
+}
+
+hr {
+    border: 0;
+    border-bottom: 1px dashed mat-color($theme-primary, 100);
+}

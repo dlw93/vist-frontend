@@ -8,7 +8,16 @@
 
       <mat-form-field appearance="standard">
         <mat-label>Genes</mat-label>
-        <input matInput [(ngModel)]="query.genes" name="genes">
+        <mat-chip-list #chipList>
+          <mat-chip *ngFor="let gene of query.genes" selectable="false" removable="true" (removed)="onRemoved(gene)">
+            {{ gene.text }}
+            <mat-icon matChipRemove>cancel</mat-icon>
+          </mat-chip>
+          <input [formControl]="geneControl" #geneInput name="genes" [matAutocomplete]="auto" [matChipInputFor]="chipList">
+        </mat-chip-list>
+        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onSelected($event)">
+          <mat-option *ngFor="let geneCandidate of geneCandidates | async" [value]="geneCandidate">{{geneCandidate.text}}</mat-option>
+        </mat-autocomplete>
       </mat-form-field>
 
       <mat-form-field appearance="standard">

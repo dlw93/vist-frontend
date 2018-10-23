@@ -1,7 +1,7 @@
 import { Injectable, isDevMode } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
-import { IEvalQuery, IResponse, IPage, IFilter, ITerms, IRefinement, TQuery } from '@app/shared';
+import { IEvalQuery, IResponse, IPage, IFilter, ITerms, IRefinement, TQuery, IGeneCandidate } from '@app/shared';
 
 @Injectable({
   providedIn: 'root'
@@ -67,10 +67,24 @@ export class QueryService {
     return this.http.get<IEvalQuery[]>(url);
   }
 
+  public getGeneCandidates(partial: string, selected: IGeneCandidate[]): Observable<IGeneCandidate[]> {
+    const url: string = isDevMode() ? '/assets/geneCandidates.json' : '/getGeneCandidates';
+    return this.http.get<IGeneCandidate[]>(url, {
+      headers: { 'Content-Type': 'application/json' },
+      params: {
+        query: partial,
+        selected: selected.map(candidate => candidate.id).join(',')
+      }
+    });
+  }
+
   private send(isRefinement: boolean = false) {
     const url: string = isDevMode() ? '/assets/response.json' : '/getQuery';
     const q: TQuery = Object.assign({}, this._terms, this._page, this._filter, this._refinement);
     const indicator$ = isRefinement ? this._fetching$ : this._loading$;
+
+    // stringify IGeneCandidates
+    Object.assign(q, { genes: q.genes.map(gene => `"${gene.text}"`).join(" ") });
 
     indicator$.next(true);
     if (!isRefinement) {

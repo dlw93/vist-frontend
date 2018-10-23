@@ -12,6 +12,16 @@
   </div>
 
   <div class="item-group right">
+    <vist-overlay #authOverlay>
+      <div class="auth-wrap">
+        <router-outlet name="auth"></router-outlet>
+      </div>
+    </vist-overlay>
+    <button mat-button [vistOverlayTriggerFor]="authOverlay" [routerLink]="[{ outlets: { 'auth': [authView | async] } }]">
+      <mat-icon>account_circle</mat-icon>
+      {{ accountButtonTitle | async }}
+    </button>
+
     <mat-menu #helpMenu="matMenu" [overlapTrigger]="false">
       <button mat-menu-item>
         <mat-icon>help</mat-icon>

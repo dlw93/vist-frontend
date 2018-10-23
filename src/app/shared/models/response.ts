@@ -60,3 +60,11 @@ export interface IResponse {
     ct: IClinicalTrialDoc[];
     queryID: number;
 }
+
+export interface IGeneCandidate {
+    text: string;
+    frequency: number;
+    extended_annotations: string[];
+    id: string;
+    other_designations: string[];
+}

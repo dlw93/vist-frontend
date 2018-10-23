@@ -1,0 +1,34 @@
+.header {
+    margin: 0;
+    font-weight: 500;
+}
+
+form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.info {
+    margin-bottom: 16px;
+}
+
+.form-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.fill {
+    width: 100%;
+}
+
+.half {
+    width: 48%;
+}
+
+.footer {
+    margin-top: 8px;
+    display: flex;
+    flex-direction: row-reverse;
+}

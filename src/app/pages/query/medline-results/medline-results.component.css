@@ -8,7 +8,7 @@ table {
 
 vist-tabs {
     overflow: hidden;
-    padding: 8px 60px 16px 70px;
+    padding: 8px 60px 0 70px;
 }
 
 pre, .doc-stats > * {
@@ -22,6 +22,13 @@ pre {
 
 pre:not(.sentences) ::ng-deep .sentence {
     background-color: transparent !important;   /* super ugly! */
+}
+
+.article-footer {
+    display: flex;
+    align-items: center;
+    color: #00796b;
+    margin-top: 24px;
 }
 
 vist-key-value-table a {

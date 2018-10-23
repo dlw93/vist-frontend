@@ -6,6 +6,11 @@ import { IFilter, IResponse, IHighlighting } from '@app/shared';
 import { map, startWith, filter } from 'rxjs/operators';
 import { MatAutocompleteSelectedEvent } from '@angular/material';
 
+interface ICancerType {
+  disease: string;
+  name: string;
+}
+
 @Component({
   selector: 'app-filter',
   templateUrl: './filter.component.html',
@@ -15,17 +20,25 @@ export class FilterComponent {
   _highlight: IHighlighting;
   _enabled: IHighlighting;
   _filter: IFilter = {
-    cancerType: "",
+    cancerType: "any",
     journals: [],
     maxYear: 0,
     maxFiltered: 0,
     minYear: 0,
     minFiltered: 0
   }
-  cancers: Observable<Set<string>>;
   journalControl = new FormControl();
   journalNames: string[];
   journalNamesFiltered: Observable<string[]>;
+  readonly cancers: ICancerType[] = [
+    { disease: 'Not cancer', name: 'Non-cancer documents' },
+    { disease: 'any', name: 'All documents' },
+    { disease: 'all', name: 'All cancer types' },
+    { disease: 'colorectal cancer', name: 'Colorectal' },
+    { disease: 'head and neck cancer', name: 'Head and neck' },
+    { disease: 'melanoma', name: 'Melanoma' },
+    { disease: 'disease', name: 'Other cancer' }
+  ];
 
   @Output() filter = new EventEmitter<void>();
   @ViewChild("journalInput") private journalInput: ElementRef<HTMLInputElement>;
@@ -36,11 +49,6 @@ export class FilterComponent {
 
     // only consider valid responses
     const data$: Observable<IResponse> = this.queryService.data$.pipe(filter(data => !!data));
-
-    // retrieve unique cancer types found across all currently valid documents
-    this.cancers = data$.pipe(
-      map(data => new Set<string>(data.docs.map(doc => doc.cancerType)))
-    );
 
     // retrieve matching journal names while typing (used for autocompletion proposals)
     this.journalNamesFiltered = this.journalControl.valueChanges.pipe(

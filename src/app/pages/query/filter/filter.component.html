@@ -22,8 +22,7 @@
       <mat-form-field appearance="standard" class="fill">
         <mat-label>Cancer Type</mat-label>
         <mat-select [(ngModel)]="_filter.cancerType" name="cancer">
-          <mat-option value="">All</mat-option>
-          <mat-option *ngFor="let cancer of cancers | async" [value]="cancer">{{cancer}}</mat-option>
+          <mat-option *ngFor="let cancer of cancers" [value]="cancer.disease">{{cancer.name}}</mat-option>
         </mat-select>
       </mat-form-field>
 

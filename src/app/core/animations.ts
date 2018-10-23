@@ -1,4 +1,4 @@
-import { trigger, transition, style, animate, group } from "@angular/animations";
+import { trigger, transition, style, animate, group, state } from "@angular/animations";
 
 export const VIST_EXPAND_ANIMATION = trigger('vistExpand', [
     transition(':enter', [
@@ -19,4 +19,17 @@ export const VIST_SLIDE_IN_ANIMATION = trigger('vistSlideIn', [
             animate('0.5s ease-out', style({ transform: 'translateY(0)' }))
         ])
     ])
+]);
+
+export const VIST_SOFT_IN_OUT_ANIMATION = trigger('vistSoft', [
+    state('void', style({
+        opacity: 0.5,
+        transform: 'scale(0.95)'
+    })),
+    transition(':enter',
+        animate('140ms cubic-bezier(0, 0, 0.2, 1)', style({ transform: 'scale(1)', opacity: 1 }))
+    ),
+    transition(':leave',
+        animate('100ms 25ms linear', style({ opacity: 0 }))
+    )
 ]);

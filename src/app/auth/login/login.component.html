@@ -1,0 +1,18 @@
+<h1 class="mat-headline header">Sign In</h1>
+<h1 class="mat-caption info">Not yet registered? <a routerLink="../register">Sign up</a>.</h1>
+<form [formGroup]="loginForm">
+    <mat-form-field class="fill" color="accent">
+        <input matInput formControlName="username" placeholder="Username">
+        <mat-icon matSuffix>person</mat-icon>
+        <mat-error *ngIf="loginForm.get('username').hasError('required')">Your username can't be empty.</mat-error>
+        <mat-error *ngIf="loginForm.get('username').hasError('email')">Your username must be an email address.</mat-error>
+    </mat-form-field>
+    <mat-form-field class="fill" color="accent">
+        <input matInput formControlName="password" placeholder="Password" type="password">
+        <mat-icon matSuffix>lock</mat-icon>
+        <mat-error *ngIf="loginForm.get('password').hasError('required')">Your password can't be empty.</mat-error>
+    </mat-form-field>
+</form>
+<div class="footer">
+    <button mat-flat-button color="accent" [disabled]="loginForm.invalid" (click)="login()">Sign In</button>
+</div>

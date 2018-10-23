@@ -1,7 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
-import { QueryService, VIST_SLIDE_IN_ANIMATION, HighlightingService } from '@app/core';
-import { map, distinctUntilChanged } from 'rxjs/operators';
-import { TitleService } from '@app/core/services/title.service';
+import { QueryService, VIST_SLIDE_IN_ANIMATION, HighlightingService, TitleService } from '@app/core';
+import { map, distinctUntilChanged, tap } from 'rxjs/operators';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable, combineLatest } from 'rxjs';
 import { MatSidenav, MatTabGroup, MatTabChangeEvent } from '@angular/material';
@@ -19,6 +18,9 @@ export class QueryComponent {
   isLoading: Observable<boolean>;
   hasData: Observable<boolean>;
   isSidenavEnabled: Observable<boolean>;
+  hasMedlineData: boolean;
+  hasCTData: boolean;
+  selectedTabIndex: number;
 
   @ViewChild(MatSidenav) sidenav: MatSidenav;
   @ViewChild(MedlineResultsComponent) medlineResults: MedlineResultsComponent;
@@ -26,15 +28,21 @@ export class QueryComponent {
   @ViewChild(MatTabGroup) tabs: MatTabGroup;
 
   constructor(
-    queryService: QueryService, 
-    breakpointObserver: BreakpointObserver, 
-    private titleService: TitleService, 
+    queryService: QueryService,
+    breakpointObserver: BreakpointObserver,
+    private titleService: TitleService,
     private highlightingService: HighlightingService) {
     titleService.title = "Query Results";
 
     this.isSmall = breakpointObserver.observe(Breakpoints.Small).pipe(map(state => state.matches));
     this.isLoading = queryService.loading$;
-    this.hasData = queryService.data$.pipe(map(data => data ? data.numFound > 0 : false), distinctUntilChanged());
+    this.hasData = queryService.data$.pipe(
+      tap(data => this.hasMedlineData = data ? data.numFound > 0 : false),
+      tap(data => this.hasCTData = data ? data.numFoundCT > 0 : false),
+      tap(data => this.selectedTabIndex = data ? 1 - Math.sign(data.numFound) : 0),  // if there are no Medline results, switch to second tab
+      map(data => data ? (data.numFound > 0 || data.numFoundCT > 0) : false),
+      distinctUntilChanged()
+    );
     this.isSidenavEnabled = combineLatest(this.isSmall, this.isLoading, this.hasData).pipe(
       map(([isSmall, isLoading, hasData]: string[]) => isSmall && !isLoading && hasData)
     );

@@ -1,0 +1,39 @@
+[
+    {
+        "text": "KRAS",
+        "frequency": 14684,
+        "extended_annotations": [
+            "C-K-RAS",
+            "CFC2",
+            "K-RAS2A",
+            "K-RAS2B",
+            "K-RAS4A",
+            "K-RAS4B",
+            "K-Ras",
+            "KI-RAS",
+            "KRAS1",
+            "KRAS2",
+            "NS",
+            "NS3",
+            "RALD",
+            "RASK2",
+            "c-Ki-ras2"
+        ],
+        "id": "3845",
+        "other_designations": [
+            "GTPase KRas",
+            "K-Ras 2",
+            "K-ras p21 protein",
+            "Kirsten rat sarcoma viral oncogene homolog",
+            "Kirsten rat sarcoma viral proto-oncogene",
+            "PR310 c-K-ras oncogene",
+            "c-Ki-ras",
+            "c-Kirsten-ras protein",
+            "cellular c-Ki-ras2 proto-oncogene",
+            "cellular transforming proto-oncogene",
+            "oncogene KRAS2",
+            "transforming protein p21",
+            "v-Ki-ras2 Kirsten rat sarcoma 2 viral oncogene homolog"
+        ]
+    }
+]

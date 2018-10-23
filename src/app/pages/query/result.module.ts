@@ -32,6 +32,7 @@ import {
   MatChipsModule,
   MatTooltipModule
 } from '@angular/material';
+import { RatingComponent } from './rating/rating.component';
 
 @NgModule({
   imports: [
@@ -66,7 +67,8 @@ import {
     SearchComponent,
     FilterComponent,
     MedlineResultsComponent,
-    ClinicalTrialsResultsComponent
+    ClinicalTrialsResultsComponent,
+    RatingComponent
   ],
   exports: [
     SearchComponent

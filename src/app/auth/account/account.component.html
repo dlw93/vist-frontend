@@ -1,0 +1,12 @@
+<ng-container *ngIf="isSignedIn; else expired">
+  <h1 class="mat-headline">Hi {{ userName | async }}</h1>
+  <h4 class="mat-body">You are signed in as {{ userEmail | async }}.</h4>
+  <div class="footer">
+    <button mat-flat-button color="accent" (click)="signOut()">Sign Out</button>
+  </div>
+</ng-container>
+<ng-template #expired>
+  <h1 class="mat-headline">Session expired</h1>
+  <h4 class="mat-body">Your session has expired and you were automatically signed out. <a routerLink="../login">Sign in</a>
+    again.</h4>
+</ng-template>
