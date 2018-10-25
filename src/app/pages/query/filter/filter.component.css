@@ -4,6 +4,8 @@
     align-content: space-between;
     max-height: 120px;
     padding-left: 8px;
+    font-size: 14px;
+    font-weight: 400;
 }
 
 .toggle-wrapper mat-slide-toggle {
