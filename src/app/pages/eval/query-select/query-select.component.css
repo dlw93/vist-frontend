@@ -1,0 +1,32 @@
+.search-box {
+    max-height: 400px;
+}
+
+mat-form-field {
+    width: 100%;
+}
+
+mat-nav-list {
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+}
+
+mat-nav-list .column {
+    flex: 1;
+}
+
+.table-wrap {
+    height: 100%;
+    overflow: auto;
+}
+
+.table-wrap table {
+    width: 100%;
+}
+
+.footer {
+    display: flex;
+    flex-direction: row-reverse;
+    padding-top: 8px;
+}

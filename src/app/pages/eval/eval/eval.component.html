@@ -1,0 +1,40 @@
+<mat-sidenav-container>
+  <mat-sidenav *ngIf="isSidenavEnabled | async">
+    <app-query-select></app-query-select>
+    <app-eval-status></app-eval-status>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <vist-header [title]="getTitle()" [showToggle]="isSidenavEnabled | async" (toggle)="sidenav.toggle()"></vist-header>
+    <!-- If a query is executing, we show a loading indicator -->
+    <div class="control-wrap" *ngIf="!(isLoading | async); else loadingIndicator">
+      <!-- If the last query yields no results, we use the available space to display the search box. -->
+      <ng-container *ngIf="(hasData | async); else noData">
+        <div *ngIf="!(isSidenavEnabled | async)" class="sidebar-wrap">
+          <app-query-select></app-query-select>
+          <app-eval-status></app-eval-status>
+        </div>
+        <mat-card @vistSlideIn>
+          ...
+        </mat-card>
+      </ng-container>
+      <ng-template #noData>
+        <div class="no-data-wrapper">
+          <div class="message-wrap">
+            <mat-icon>sentiment_dissatisfied</mat-icon>
+            <h4 class="mat-title">Something went wrong.</h4>
+            <h4 class="mat-subheading-1">Please choose another query from the list.</h4>
+          </div>
+          <app-query-select></app-query-select>
+          <!-- since we use the "space-between" strategy, an empty div suffices to adjust the space distribution -->
+          <div></div>
+        </div>
+      </ng-template>
+    </div>
+    <ng-template #loadingIndicator>
+      <div class="loading-indicator">
+        <mat-spinner></mat-spinner>
+        <h4 class="mat-subheading-1">Evaluating your query...</h4>
+      </div>
+    </ng-template>
+  </mat-sidenav-content>
+</mat-sidenav-container>

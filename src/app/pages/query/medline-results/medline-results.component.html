@@ -21,7 +21,7 @@
           <vist-tab title="Abstract">
             <pre vistAnnotated [ngClass]="highlighting" [innerHtml]="doc['abstract'] | annidx:doc['sents']:'sentence' | annregex:doc['gene_name']:'gene' | annregex:doc['mutation_normalizedValue']:'mutation' | annregex:doc['chemicals']:'chemical' | sanitizeHtml"></pre>
             <div class="article-footer">
-              <app-rating></app-rating>
+              <app-rating [docId]="doc.id" [docType]="'medline'"></app-rating>
             </div>
           </vist-tab>
           <vist-tab title="Statistics">

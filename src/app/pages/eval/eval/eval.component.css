@@ -1,0 +1,106 @@
+:host {
+  display: flex;
+  flex: 1;
+  overflow: auto;
+}
+
+mat-sidenav-container {
+  flex: 1;
+}
+
+.loading-indicator {
+  position: absolute;
+  top: 80px;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading-indicator > mat-spinner {
+  margin-bottom: 32px;
+}
+
+.control-wrap {
+  display: flex;
+  padding: 32px;
+  align-items: flex-start;
+}
+
+app-filter {
+  margin-top: 30px;
+}
+
+.sidebar-wrap {
+  flex: 1;
+  position: sticky;
+  top: 32px;
+  display: flex;
+  flex-direction: column;
+  margin-right: 32px;
+  min-width: 300px;
+  max-width: 400px;
+}
+
+mat-card {
+  flex: 3;
+  padding: 0;
+}
+
+.no-data-wrapper {
+  position: absolute;
+  top: 80px;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.no-data-wrapper > app-search {
+  width: 25vw;
+  min-width: 400px;
+}
+
+.no-data-wrapper > .message-wrap {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  height: 90px;
+  justify-content: space-evenly;
+  width: 460px;
+}
+
+.no-data-wrapper > .message-wrap > mat-icon {
+  font-size: 80px;
+  width: 80px;
+  height: 80px;
+  padding: 5px;
+}
+
+.no-data-wrapper > .message-wrap h4 {
+    margin: 0;
+}
+
+mat-sidenav {
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+}
+
+mat-sidenav > * {
+  width: 100%;
+  margin: 0;
+}
+
+mat-sidenav > *:not(:last-child) {
+  margin-bottom: 16px;
+}
