@@ -10,8 +10,7 @@ import { transition, trigger, query, style, animate, group } from '@angular/anim
       transition('* <=> *', [
         group([
           query(
-            ':enter',
-            [
+            ':enter', [
               style({ opacity: 0, transform: 'translateY(-30px)' }),
               group([
                 animate('0.35s ease-in', style({ opacity: 1 })),
@@ -19,24 +18,11 @@ import { transition, trigger, query, style, animate, group } from '@angular/anim
               ])
             ],
             { optional: true }
-          ),
-          query(
-            ':leave',
-            [animate('0.35s ease-in', style({ opacity: 0 }))],
-            { optional: true }
           )
         ])
       ])
     ])
   ]
 })
-export class AppComponent implements OnInit {
-  title = 'VIST';
-
-  constructor() {
-  }
-
-  ngOnInit(): void {
-
-  }
+export class AppComponent {
 }

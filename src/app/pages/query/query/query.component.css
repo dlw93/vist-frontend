@@ -67,6 +67,7 @@ mat-card {
 .no-data-wrapper > app-search {
   width: 25vw;
   min-width: 400px;
+  max-width: 500px;
 }
 
 .no-data-wrapper > .message-wrap {

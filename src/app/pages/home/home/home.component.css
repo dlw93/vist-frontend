@@ -3,6 +3,16 @@ h1, h2, a {
     color: whitesmoke;
 }
 
+h1 {
+    font-size: 3rem;
+    font-weight: 300;
+}
+
+h2 {
+    font-size: 1.3rem;
+    font-weight: 400;
+}
+
 a {
     text-decoration: underline;
 }
@@ -32,8 +42,7 @@ a {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 16px;
-    height: 42%;
+    height: 100%;
     justify-content: space-evenly;
 }
 
@@ -41,35 +50,15 @@ a {
     text-align: center;
 }
 
-#desc h1 {
-    font-size: 3rem;
-    font-weight: 300;
-}
-
-#desc h2 {
-    font-size: 1.5rem;
-    font-weight: 400;
-    text-align: center;
-}
-
 #desc img {
     width: 6vw;
     min-width: 140px;
-    margin-top: 4rem;
-}
-
-#search {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 16px;
-    height: 42%;
+    margin: 3vh;
 }
 
 app-search {
     width: 25vw;
     min-width: 400px;
     max-width: 500px;
-    height: 40vh;
-    margin: 40px;
+    margin: 3vh;
 }
