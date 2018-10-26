@@ -1,9 +1,9 @@
-import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, EventEmitter, Output } from '@angular/core';
 import { MatPaginator, MatTable } from '@angular/material';
-import { IMedlineDoc, IHighlighting } from '@app/shared';
 import { Observable } from 'rxjs';
-import { QueryService, VIST_EXPAND_ANIMATION, HighlightingService } from '@app/core';
 import { map } from 'rxjs/operators';
+import { IMedlineDoc, IHighlighting } from '@app/shared';
+import { QueryService, VIST_EXPAND_ANIMATION, HighlightingService } from '@app/core';
 
 interface IKeyValue {
   key: string;
@@ -24,9 +24,8 @@ interface IEntry {
 })
 export class MedlineResultsComponent implements OnInit {
   @Input() showEval: boolean;
-
+  @Output() navigate = new EventEmitter<void>();
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatTable) table: MatTable<IMedlineDoc>;
 
   private _expandedDoc: string;
 
@@ -50,6 +49,7 @@ export class MedlineResultsComponent implements OnInit {
         currentPage: event.pageIndex
       };
       this.page = event.pageIndex;
+      this.navigate.emit();
     });
   }
 

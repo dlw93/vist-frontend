@@ -14,11 +14,8 @@
   <div class="item-group right">
     <vist-overlay #authOverlay>
       <app-auth></app-auth>
-      <!--<div class="auth-wrap">
-        <router-outlet name="auth"></router-outlet>
-      </div>-->
     </vist-overlay>
-    <button mat-button [vistOverlayTriggerFor]="authOverlay" [routerLink]="[{ outlets: { 'auth': [authView | async] } }]">
+    <button mat-button [vistOverlayTriggerFor]="authOverlay">
       <mat-icon>account_circle</mat-icon>
       {{ accountButtonTitle | async }}
     </button>

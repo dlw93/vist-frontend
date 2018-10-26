@@ -1,11 +1,9 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { MatTable } from '@angular/material';
-import { IHighlighting, IClinicalTrialDoc } from '@app/shared';
 import { Observable } from 'rxjs';
-import { QueryService, VIST_EXPAND_ANIMATION, HighlightingService } from '@app/core';
 import { map } from 'rxjs/operators';
-import { AnnotateRegexPipe } from '@app/core/pipes/annregex.pipe';
+import { IHighlighting, IClinicalTrialDoc } from '@app/shared';
+import { QueryService, VIST_EXPAND_ANIMATION, HighlightingService, AnnotateRegexPipe } from '@app/core';
 
 interface IEntry {
   url: string;
@@ -24,7 +22,7 @@ interface ISection {
   animations: [VIST_EXPAND_ANIMATION]
 })
 export class ClinicalTrialsResultsComponent {
-  @ViewChild(MatTable) table: MatTable<IClinicalTrialDoc>;
+  @Output() navigate = new EventEmitter<void>();
 
   private _expandedDoc: string;
 
@@ -33,7 +31,7 @@ export class ClinicalTrialsResultsComponent {
   resultsLength: Observable<number>;
   highlighting: IHighlighting;
 
-  constructor(private queryService: QueryService, private highlightingService: HighlightingService, private sanitizer:DomSanitizer) {
+  constructor(private queryService: QueryService, private highlightingService: HighlightingService, private sanitizer: DomSanitizer) {
     this.dataSource = this.queryService.data$.pipe(map(data => data ? data.ct : []));
     this.resultsLength = this.queryService.data$.pipe(map(data => data ? data.numFoundCT : 0));
     this.highlighting = this.highlightingService.highlighting;

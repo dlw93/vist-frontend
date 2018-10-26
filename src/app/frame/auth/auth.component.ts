@@ -33,6 +33,10 @@ export class AuthComponent {
     return this.authService.isValid();
   }
 
+  get expires(): number {
+    return Math.floor((this.authService.expires().getTime() - new Date().getTime()) / (1000 * 60)); // minutes till expiration
+  }
+
   login() {
     this.userService.signIn(this.loginForm.value.username, this.loginForm.value.password).then(resp => {
       console.log(resp);

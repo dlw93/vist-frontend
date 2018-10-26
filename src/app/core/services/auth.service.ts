@@ -16,6 +16,10 @@ export class AuthService {
     return this._token ? this.getAuthData(this._token).expires > new Date() : false;
   }
 
+  public expires(): Date {
+    return this._token ? this.getAuthData(this._token).expires : null;
+  }
+
    /**
     * Gets or sets the token used to authenticate with the server.
     */

@@ -1,11 +1,9 @@
-import { Component, ViewChild } from '@angular/core';
-import { QueryService, VIST_SLIDE_IN_ANIMATION, HighlightingService, TitleService } from '@app/core';
-import { map, distinctUntilChanged, tap } from 'rxjs/operators';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { MatSidenav, MatTabChangeEvent } from '@angular/material';
 import { Observable, combineLatest } from 'rxjs';
-import { MatSidenav, MatTabGroup, MatTabChangeEvent } from '@angular/material';
-import { MedlineResultsComponent } from '@app/pages/query/medline-results/medline-results.component';
-import { ClinicalTrialsResultsComponent } from '@app/pages/query/clinical-trials-results/clinical-trials-results.component';
+import { map, distinctUntilChanged, tap } from 'rxjs/operators';
+import { QueryService, VIST_SLIDE_IN_ANIMATION, HighlightingService, TitleService, VistHeader } from '@app/core';
 
 @Component({
   selector: 'app-query',
@@ -22,10 +20,8 @@ export class QueryComponent {
   hasCTData: boolean;
   selectedTabIndex: number;
 
+  @ViewChild(VistHeader, { read: ElementRef }) header: ElementRef;
   @ViewChild(MatSidenav) sidenav: MatSidenav;
-  @ViewChild(MedlineResultsComponent) medlineResults: MedlineResultsComponent;
-  @ViewChild(ClinicalTrialsResultsComponent) clinicalTrialsResults: ClinicalTrialsResultsComponent;
-  @ViewChild(MatTabGroup) tabs: MatTabGroup;
 
   constructor(
     queryService: QueryService,
@@ -54,5 +50,12 @@ export class QueryComponent {
 
   onTabChange(event: MatTabChangeEvent) {
     this.highlightingService.enabled.sentences = event.index == 0;  // disable sentence highlighting toggle on clinical trials tabs
+  }
+
+  onResultNavigate() {
+    this.header.nativeElement.scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
   }
 }
