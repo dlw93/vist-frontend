@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewChild, Output, EventEmitter, Input, ElementRef } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { MatAutocompleteSelectedEvent } from '@angular/material';
+import { MatAutocompleteSelectedEvent, MatTabGroup } from '@angular/material';
 import { Observable, merge } from 'rxjs';
 import { startWith, switchMap, filter } from 'rxjs/operators';
-import { VistBox, VistBoxPage, QueryService } from '@app/core';
+import { QueryService } from '@app/core';
 import { IEvalQuery, ITerms, IGeneCandidate } from '@app/shared';
 
 @Component({
@@ -12,8 +12,7 @@ import { IEvalQuery, ITerms, IGeneCandidate } from '@app/shared';
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
-  @ViewChild("searchBox") searchBox: VistBox;
-  @ViewChild("newQueryPage") newQueryPage: VistBoxPage;
+  @ViewChild(MatTabGroup) tabs: MatTabGroup;
   @ViewChild("geneInput") geneInput: ElementRef<HTMLInputElement>;
   @Input() reset: boolean = false;
   @Output() terms = new EventEmitter<void>();
@@ -69,7 +68,7 @@ export class SearchComponent implements OnInit {
 
     this.query.keywords = "";
     this.query.mutations = q.evaluationQueries_mutations;
-    this.searchBox.selectPage(this.newQueryPage);
+    this.tabs.selectedIndex = 0;
   }
 
   public send() {

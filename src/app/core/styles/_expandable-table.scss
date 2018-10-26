@@ -15,6 +15,13 @@
                 border-bottom-width: 0;
             }
 
+            &:not(.selected) > td {
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                overflow: hidden;
+                max-width: 0;
+            }
+
             &:hover > td,
             &.selected > td {
                 color: mat-color($primary);

@@ -1,7 +1,9 @@
 <mat-sidenav-container>
     <mat-sidenav *ngIf="isSidenavEnabled | async">
-        <app-search (terms)="sidenav.close()"></app-search>
-        <app-filter (filter)="sidenav.close()"></app-filter>
+        <div class="sidenav-wrap">
+            <app-search (terms)="sidenav.close()"></app-search>
+            <app-filter (filter)="sidenav.close()"></app-filter>
+        </div>
     </mat-sidenav>
     <mat-sidenav-content>
         <vist-header [title]="getTitle()" [showToggle]="isSidenavEnabled | async" (toggle)="sidenav.toggle()"></vist-header>

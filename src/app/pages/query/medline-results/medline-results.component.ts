@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { MatPaginator, MatTable } from '@angular/material';
 import { IMedlineDoc, IHighlighting } from '@app/shared';
 import { Observable } from 'rxjs';
@@ -23,6 +23,8 @@ interface IEntry {
   animations: [VIST_EXPAND_ANIMATION]
 })
 export class MedlineResultsComponent implements OnInit {
+  @Input() showEval: boolean;
+
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatTable) table: MatTable<IMedlineDoc>;
 

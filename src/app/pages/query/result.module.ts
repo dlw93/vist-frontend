@@ -71,7 +71,8 @@ import { RatingComponent } from './rating/rating.component';
     RatingComponent
   ],
   exports: [
-    SearchComponent
+    SearchComponent,
+    MedlineResultsComponent
   ]
 })
 export class ResultModule { }

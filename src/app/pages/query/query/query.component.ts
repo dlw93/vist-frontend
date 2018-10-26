@@ -44,7 +44,7 @@ export class QueryComponent {
       distinctUntilChanged()
     );
     this.isSidenavEnabled = combineLatest(this.isSmall, this.isLoading, this.hasData).pipe(
-      map(([isSmall, isLoading, hasData]: string[]) => isSmall && !isLoading && hasData)
+      map(([isSmall, isLoading, hasData]: boolean[]) => isSmall && !isLoading && hasData)
     );
   }
 

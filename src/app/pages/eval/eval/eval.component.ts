@@ -28,7 +28,7 @@ export class EvalComponent {
       distinctUntilChanged()
     );
     this.isSidenavEnabled = combineLatest(isSmall, this.isLoading, this.hasData).pipe(
-      map(([isSmall, isLoading, hasData]: string[]) => isSmall && !isLoading && hasData)
+      map(([isSmall, isLoading, hasData]: boolean[]) => isSmall && !isLoading && hasData)
     );
   }
 

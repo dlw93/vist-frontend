@@ -30,6 +30,7 @@ import {
 } from '@angular/material';
 import { QuerySelectComponent } from './query-select/query-select.component';
 import { EvalStatusComponent } from './eval-status/eval-status.component';
+import { ResultModule } from '../query/result.module'
 
 @NgModule({
   imports: [
@@ -57,7 +58,8 @@ import { EvalStatusComponent } from './eval-status/eval-status.component';
     MatSidenavModule,
     MatSelectModule,
     MatChipsModule,
-    MatTooltipModule
+    MatTooltipModule,
+    ResultModule
   ],
   declarations: [
     EvalComponent,

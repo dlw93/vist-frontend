@@ -1,27 +1,29 @@
-<vist-box class="search-box">
-  <vist-box-page title="Evaluation Queries">
-    <div class="table-wrap">
-      <table mat-table [dataSource]="evalQueries">
-        <ng-container matColumnDef="evaluationQueries_genes">
-          <th mat-header-cell *matHeaderCellDef> Gene(s) </th>
-          <td mat-cell *matCellDef="let query"> {{query.evaluationQueries_genes}} </td>
-        </ng-container>
+<mat-card>
+  <mat-tab-group dynamicHeight>
+    <mat-tab label="Evaluation Queries">
+      <div class="table-wrap">
+        <table mat-table [dataSource]="evalQueries">
+          <ng-container matColumnDef="evaluationQueries_genes">
+            <th mat-header-cell *matHeaderCellDef> Gene(s) </th>
+            <td mat-cell *matCellDef="let query"> {{query.evaluationQueries_genes}} </td>
+          </ng-container>
 
-        <ng-container matColumnDef="evaluationQueries_mutations">
-          <th mat-header-cell *matHeaderCellDef> Mutation(s) </th>
-          <td mat-cell *matCellDef="let query"> {{query.evaluationQueries_mutations}} </td>
-        </ng-container>
+          <ng-container matColumnDef="evaluationQueries_mutations">
+            <th mat-header-cell *matHeaderCellDef> Mutation(s) </th>
+            <td mat-cell *matCellDef="let query"> {{query.evaluationQueries_mutations}} </td>
+          </ng-container>
 
-        <ng-container matColumnDef="execute">
-          <th mat-header-cell *matHeaderCellDef></th>
-          <td mat-cell *matCellDef="let query">
-            <button mat-button color="accent" (click)="runEvalQuery(query)">Execute</button>
-          </td>
-        </ng-container>
+          <ng-container matColumnDef="execute">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let query">
+              <button mat-button color="accent" (click)="runEvalQuery(query)">Execute</button>
+            </td>
+          </ng-container>
 
-        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      </table>
-    </div>
-  </vist-box-page>
-</vist-box>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</mat-card>
