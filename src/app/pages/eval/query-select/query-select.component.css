@@ -15,13 +15,35 @@ mat-form-field {
     width: 100%;
 }
 
-.table-wrap {
+.content-wrap {
     height: 100%;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+.content-wrap mat-checkbox {
+    margin: 16px;
+}
+
+.table-wrap {
     overflow: auto;
 }
 
 .table-wrap table {
     width: 100%;
+}
+
+.mat-column-genes {
+    width: 100px;
+}
+
+.mat-column-mutations {
+    width: 100px;
+}
+
+.mat-column-cancer {
+    width: 100px;
 }
 
 .footer {

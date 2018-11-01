@@ -7,7 +7,7 @@
     <mat-card-subtitle>You are signed in as &quot;{{ userEmail | async }}&quot;.</mat-card-subtitle>
     <mat-card-content>
       <h4 class="mat-body">You can access the <a [routerLink]="['/eval']">evaluation</a> from the top-left menu.</h4>
-      <h4 class="mat-body">This session expires in {{ expires }} minutes.</h4>
+      <h4 class="mat-body">Session expires in {{ expires }} minutes</h4>
     </mat-card-content>
     <mat-card-actions>
       <button mat-button color="accent" (click)="signOut()">Sign Out</button>

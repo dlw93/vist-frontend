@@ -30,6 +30,10 @@
 
         > tbody > tr:nth-child(even) {
             height: 0;
+
+            > td {
+                padding: 0;
+            }
     
             > td > [vistExpansionDetail] {
                 overflow: hidden;

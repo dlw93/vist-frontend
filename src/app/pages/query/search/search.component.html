@@ -18,7 +18,19 @@
               <input [formControl]="geneControl" #geneInput name="genes" [matAutocomplete]="auto" [matChipInputFor]="chipList">
             </mat-chip-list>
             <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onSelected($event)">
-              <mat-option *ngFor="let geneCandidate of geneCandidates | async" [value]="geneCandidate">{{geneCandidate.text}}</mat-option>
+              <mat-option *ngFor="let geneCandidate of geneCandidates | async" [value]="geneCandidate">
+                <div class="option-wrap">
+                  <span class="gene">{{geneCandidate.text}}</span>
+                  <div class="item">
+                    <div class="title">Extensions</div>
+                    <div class="value">{{ geneCandidate.extended_annotations.join(', ') }}</div>
+                  </div>
+                  <div class="item">
+                    <span class="title">Designations</span>
+                    <span class="value">{{ geneCandidate.other_designations.join(', ') }}</span>
+                  </div>
+                </div>
+              </mat-option>
             </mat-autocomplete>
           </mat-form-field>
 

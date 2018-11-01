@@ -2,24 +2,21 @@ table {
     width: 100%;
 }
 
-.mat-column-score, .mat-column-status {
+.mat-column-score {
     width: 40px;
+}
+
+.mat-column-status {
+    width: 80px;
 }
 
 .mat-column-phase {
     width: 110px;
 }
 
-.article-footer {
-    display: flex;
-    align-items: center;
-    color: #00796b;
-    margin-top: 24px;
-}
-
 vist-tabs {
     overflow: hidden;
-    padding: 8px 70px 0 70px;
+    padding: 8px 124px 8px 94px;
 }
 
 pre, .doc-stats > * {

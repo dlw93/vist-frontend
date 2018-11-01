@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewChild, Input, EventEmitter, Output } from '@angular/core';
-import { MatPaginator, MatTable } from '@angular/material';
+import { MatPaginator } from '@angular/material';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { IMedlineDoc, IHighlighting } from '@app/shared';
-import { QueryService, VIST_EXPAND_ANIMATION, HighlightingService } from '@app/core';
+import { QueryService, VIST_EXPAND_ANIMATION, HighlightingService, AuthService } from '@app/core';
 
 interface IKeyValue {
   key: string;
@@ -23,6 +23,7 @@ interface IEntry {
   animations: [VIST_EXPAND_ANIMATION]
 })
 export class MedlineResultsComponent implements OnInit {
+  @Input() data: IMedlineDoc[];
   @Input() showEval: boolean;
   @Output() navigate = new EventEmitter<void>();
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -34,12 +35,15 @@ export class MedlineResultsComponent implements OnInit {
   resultsLength: Observable<number>;
   page: number;
   highlighting: IHighlighting;
+  isLoading: boolean;
 
-  constructor(private queryService: QueryService, private highlightingService: HighlightingService) {
+  constructor(private queryService: QueryService, private highlightingService: HighlightingService, private authService: AuthService) {
     this.dataSource = this.queryService.data$.pipe(map(data => data ? data.docs : []));
     this.resultsLength = this.queryService.data$.pipe(map(data => data ? data.numFound : 0));
     this.page = this.queryService.page.currentPage;
     this.highlighting = this.highlightingService.highlighting;
+
+    this.dataSource.subscribe(() => this.isLoading = false);
   }
 
   ngOnInit() {
@@ -49,8 +53,13 @@ export class MedlineResultsComponent implements OnInit {
         currentPage: event.pageIndex
       };
       this.page = event.pageIndex;
+      this.isLoading = true;
       this.navigate.emit();
     });
+  }
+
+  get showRating(): boolean {
+    return this.authService.isValid();
   }
 
   get expandedDoc(): string {

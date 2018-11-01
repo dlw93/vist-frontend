@@ -1,4 +1,13 @@
 :host {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+}
+
+span {
+    padding-left: 2px;
+    margin-bottom: 4px;
+}
+
+mat-icon {
+    cursor: pointer;
 }

@@ -34,3 +34,34 @@ table {
   flex-direction: row-reverse;
   padding-top: 8px;
 }
+
+.mat-option {
+  height: 75px;
+  line-height: 20px;
+}
+
+.option-wrap {
+  display: flex;
+  flex-wrap: wrap
+}
+
+.option-wrap > .gene {
+  width: 100%;
+  font-weight: 500;
+}
+
+.option-wrap > .item {
+  font-size: 10pt;
+  display: flex;
+}
+
+.option-wrap > .item > .title {
+  font-weight: 500;
+  width: 90px;
+}
+
+.option-wrap > .item > .value {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}

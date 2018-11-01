@@ -1,3 +1,20 @@
+.loading-shade {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 56px;
+    right: 0;
+    background: rgba(0, 0, 0, 0.15);
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.loading-shade > mat-spinner {
+    position: absolute;
+    top: calc(50vh - 175px);    /* 175px = navbar + header + tabs_hdr + padding - spinner/2 */
+}
+
 table {
     width: 100%;
 }
@@ -8,7 +25,15 @@ table {
 
 vist-tabs {
     overflow: hidden;
-    padding: 8px 60px 0 70px;
+    padding: 8px 84px 8px 94px;
+}
+
+.article-footer {
+    display: flex;
+    color: #265582;
+    background-color: rgba(38, 85, 130, 0.02);
+    border-top: 1px solid rgba(0, 0, 0, 0.12);
+    padding: 8px 0 8px 94px;
 }
 
 pre, .doc-stats > * {
@@ -22,13 +47,6 @@ pre {
 
 pre:not(.sentences) ::ng-deep .sentence {
     background-color: transparent !important;   /* super ugly! */
-}
-
-.article-footer {
-    display: flex;
-    align-items: center;
-    color: #00796b;
-    margin-top: 24px;
 }
 
 vist-key-value-table a {

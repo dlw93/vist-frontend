@@ -42,7 +42,6 @@ app-filter {
   display: flex;
   flex-direction: column;
   margin-right: 32px;
-  min-width: 300px;
   max-width: 400px;
 }
 

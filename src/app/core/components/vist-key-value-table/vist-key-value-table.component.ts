@@ -14,5 +14,4 @@ export class VistEntry {
   template: '<ng-content></ng-content>',
   styles: [':host {display: flex; flex-wrap: wrap;}']
 })
-export class VistKeyValueTable {
-}
+export class VistKeyValueTable { }

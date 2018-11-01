@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, Output, EventEmitter, Input, ElementRef } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { MatAutocompleteSelectedEvent, MatTabGroup } from '@angular/material';
+import { MatAutocompleteSelectedEvent, MatTabGroup, MatAutocompleteTrigger, AUTOCOMPLETE_PANEL_HEIGHT, MatAutocomplete } from '@angular/material';
 import { Observable, merge } from 'rxjs';
 import { startWith, switchMap, filter } from 'rxjs/operators';
 import { QueryService } from '@app/core';
@@ -14,6 +14,9 @@ import { IEvalQuery, ITerms, IGeneCandidate } from '@app/shared';
 export class SearchComponent implements OnInit {
   @ViewChild(MatTabGroup) tabs: MatTabGroup;
   @ViewChild("geneInput") geneInput: ElementRef<HTMLInputElement>;
+  @ViewChild("geneInput", { read: MatAutocompleteTrigger }) geneAutocompleteTrigger: MatAutocompleteTrigger;
+  @ViewChild("auto") geneAutocomplete: MatAutocomplete;
+
   @Input() reset: boolean = false;
   @Output() terms = new EventEmitter<void>();
 
@@ -32,7 +35,28 @@ export class SearchComponent implements OnInit {
     );
   }
 
+  /**
+   * Returns a function that can be used to override the MatAutocomplete's hardcoded item height.
+   * @param optionHeight The height of a single mat-option
+   */
+  private _scrollToOption(optionHeight: number): () => void {
+    return () => {
+      const index = this.geneAutocomplete._keyManager.activeItemIndex || 0;
+      const offset = index * optionHeight;
+
+      let pos = this.geneAutocomplete._getScrollTop();
+      if (offset < pos) {
+        pos = offset;
+      } else if (offset + optionHeight > pos + AUTOCOMPLETE_PANEL_HEIGHT) {
+        pos = Math.max(0, offset - AUTOCOMPLETE_PANEL_HEIGHT + optionHeight);
+      }
+
+      this.geneAutocomplete._setScrollTop(pos);
+    }
+  }
+
   ngOnInit() {
+    this.geneAutocompleteTrigger['_scrollToOption'] = this._scrollToOption(75);
     this.evalQueries = this.queryService.getEvalQueries();
 
     // remember and show the parameters of the most recent query if exists and not explicitly told not to do so

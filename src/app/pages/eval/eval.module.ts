@@ -5,7 +5,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
-  VistBoxModule,
   VistTabsModule,
   VistHeaderModule,
   VistKeyValueTableModule,
@@ -26,11 +25,13 @@ import {
   MatCardModule,
   MatSelectModule,
   MatChipsModule,
-  MatTooltipModule
+  MatTooltipModule,
+  MatCheckboxModule,
+  MatStepperModule
 } from '@angular/material';
 import { QuerySelectComponent } from './query-select/query-select.component';
-import { EvalStatusComponent } from './eval-status/eval-status.component';
-import { ResultModule } from '../query/result.module'
+import { ResultModule } from '../query/result.module';
+import { WizardComponent } from './wizard/wizard.component'
 
 @NgModule({
   imports: [
@@ -39,7 +40,6 @@ import { ResultModule } from '../query/result.module'
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    VistBoxModule,
     VistTabsModule,
     VistHeaderModule,
     VistKeyValueTableModule,
@@ -59,12 +59,14 @@ import { ResultModule } from '../query/result.module'
     MatSelectModule,
     MatChipsModule,
     MatTooltipModule,
+    MatCheckboxModule,
+    MatStepperModule,
     ResultModule
   ],
   declarations: [
     EvalComponent,
     QuerySelectComponent,
-    EvalStatusComponent
+    WizardComponent
   ]
 })
 export class EvalModule { }

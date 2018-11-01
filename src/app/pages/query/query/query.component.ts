@@ -30,7 +30,7 @@ export class QueryComponent {
     private highlightingService: HighlightingService) {
     titleService.title = "Query Results";
 
-    this.isSmall = breakpointObserver.observe(Breakpoints.Small).pipe(map(state => state.matches));
+    this.isSmall = breakpointObserver.observe([Breakpoints.Small, Breakpoints.Medium]).pipe(map(state => state.matches));
     this.isLoading = queryService.loading$;
     this.hasData = queryService.data$.pipe(
       tap(data => this.hasMedlineData = data ? data.numFound > 0 : false),

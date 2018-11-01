@@ -1,5 +1,6 @@
 export interface IMedlineDoc {
     id: string;
+    pmid: string;
     score: number;
     classification_score: number;
     title: string;
@@ -59,6 +60,18 @@ export interface IResponse {
     docs: IMedlineDoc[];
     ct: IClinicalTrialDoc[];
     queryID: number;
+}
+
+export interface IEvalHistory {
+    useful: string;
+    classification: string;
+    queryId: number;
+    pmid: string;
+}
+
+export interface IEvalResponse {
+    alreadyEvaluated: IEvalHistory[] | null;
+    docs: IMedlineDoc[];
 }
 
 export interface IGeneCandidate {

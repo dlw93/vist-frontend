@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
 
+type TRating = 1 | 2 | 3 | 4 | 5;
+
 @Component({
   selector: 'app-rating',
   templateUrl: './rating.component.html',
@@ -9,15 +11,15 @@ export class RatingComponent {
   @Input() docId: string;
   @Input() docType: "medline" | "ct";
 
-  private _isRelevant: boolean = false;
+  private _rating: TRating;
 
   constructor() { }
 
-  public get isRelevant(): boolean {
-    return this._isRelevant;
+  get rating(): TRating {
+    return this._rating;
   }
 
-  public set isRelevant(value: boolean) {
-    this._isRelevant = value;
+  set rating(value: TRating) {
+    this._rating = value;
   }
 }

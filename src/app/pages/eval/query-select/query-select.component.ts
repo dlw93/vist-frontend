@@ -1,25 +1,26 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { IEvalQuery } from '@app/shared';
-import { QueryService } from '@app/core';
+import { EvalService } from '@app/core';
 
 @Component({
   selector: 'app-query-select',
   templateUrl: './query-select.component.html',
   styleUrls: ['./query-select.component.css']
 })
-export class QuerySelectComponent implements OnInit {
-  readonly displayedColumns: string[] = ['evaluationQueries_genes', 'evaluationQueries_mutations', 'execute'];
-  evalQueries: Observable<IEvalQuery[]>;
+export class QuerySelectComponent {
+  readonly cols: string[] = ['genes', 'mutations', 'cancer', 'execute'];
+  queries: Promise<IEvalQuery[]>;
+  selection: IEvalQuery;
+  showFinished = false;
 
-  constructor(private queryService: QueryService) {
-    this.evalQueries = this.queryService.getEvalQueries();
+  @Output() terms = new EventEmitter<IEvalQuery>();
+
+  constructor(private evalService: EvalService) {
+    this.queries = this.evalService.queries;
   }
 
-  ngOnInit() {
-  }
-
-  runEvalQuery(): void {
-
+  run(q: IEvalQuery): void {
+    this.selection = q;
+    this.terms.emit(q);
   }
 }

@@ -1,7 +1,4 @@
-<span class="mat-body-2">Was this article relevant to you?</span>
-<button mat-icon-button (click)="isRelevant = true">
-  <mat-icon>thumb_up_outline</mat-icon>
-</button>
-<button mat-icon-button (click)="isRelevant = false">
-  <mat-icon>thumb_down_outline</mat-icon>
-</button>
+<span class="mat-body-2">Relevance</span>
+<div>
+  <mat-icon *ngFor="let r of [1,2,3,4,5]" (click)="rating = r">{{ rating >= r ? 'star' : 'star_border' }}</mat-icon>
+</div>

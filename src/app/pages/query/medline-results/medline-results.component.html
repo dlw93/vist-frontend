@@ -1,3 +1,6 @@
+<div class="loading-shade" *ngIf="isLoading">
+  <mat-spinner></mat-spinner>
+</div>
 <table vistExpandable mat-table [dataSource]="dataSource" multiTemplateDataRows>
   <ng-container matColumnDef="score">
     <th mat-header-cell *matHeaderCellDef> Score </th>
@@ -20,9 +23,6 @@
         <vist-tabs>
           <vist-tab title="Abstract">
             <pre vistAnnotated [ngClass]="highlighting" [innerHtml]="doc['abstract'] | annidx:doc['sents']:'sentence' | annregex:doc['gene_name']:'gene' | annregex:doc['mutation_normalizedValue']:'mutation' | annregex:doc['chemicals']:'chemical' | sanitizeHtml"></pre>
-            <div class="article-footer">
-              <app-rating [docId]="doc.id" [docType]="'medline'"></app-rating>
-            </div>
           </vist-tab>
           <vist-tab title="Statistics">
             <vist-key-value-table>
@@ -39,6 +39,9 @@
             ...
           </vist-tab>
         </vist-tabs>
+        <div class="article-footer" *ngIf="showRating && !showEval">
+          <app-rating [docId]="doc.id" [docType]="'medline'"></app-rating>
+        </div>
       </div>
     </td>
   </ng-container>

@@ -1,0 +1,173 @@
+[
+    {
+        "evaluationQueries_yearsFrom": 2007,
+        "evaluationQueries_id": 13,
+        "evaluationQueries_yearsTo": 2017,
+        "evaluationQueries_mutations": "G12V",
+        "evaluationQueries_genes": "KRAS",
+        "evaluationQueries_cancerType": "all",
+        "evaluationQueries_publications": "Journals from CiVIC database"
+    },
+    {
+        "evaluationQueries_yearsFrom": 2007,
+        "evaluationQueries_id": 14,
+        "evaluationQueries_yearsTo": 2017,
+        "evaluationQueries_mutations": "",
+        "evaluationQueries_genes": "STK11",
+        "evaluationQueries_cancerType": "all",
+        "evaluationQueries_publications": "Journals from CiVIC database"
+    },
+    {
+        "evaluationQueries_yearsFrom": 2007,
+        "evaluationQueries_id": 16,
+        "evaluationQueries_yearsTo": 2017,
+        "evaluationQueries_mutations": "",
+        "evaluationQueries_genes": "ATM",
+        "evaluationQueries_cancerType": "all",
+        "evaluationQueries_publications": "Journals from CiVIC database"
+    },
+    {
+        "evaluationQueries_yearsFrom": 2007,
+        "evaluationQueries_id": 18,
+        "evaluationQueries_yearsTo": 2017,
+        "evaluationQueries_mutations": "",
+        "evaluationQueries_genes": "BRCA2",
+        "evaluationQueries_cancerType": "all",
+        "evaluationQueries_publications": "Journals from CiVIC database"
+    },
+    {
+        "evaluationQueries_yearsFrom": 2007,
+        "evaluationQueries_id": 19,
+        "evaluationQueries_yearsTo": 2017,
+        "evaluationQueries_mutations": "",
+        "evaluationQueries_genes": "CDKN2a",
+        "evaluationQueries_cancerType": "all",
+        "evaluationQueries_publications": "Journals from CiVIC database"
+    },
+    {
+        "evaluationQueries_yearsFrom": 2007,
+        "evaluationQueries_id": 20,
+        "evaluationQueries_yearsTo": 2017,
+        "evaluationQueries_mutations": "",
+        "evaluationQueries_genes": "AKT3",
+        "evaluationQueries_cancerType": "all",
+        "evaluationQueries_publications": "Journals from CiVIC database"
+    },
+    {
+        "evaluationQueries_yearsFrom": 2007,
+        "evaluationQueries_id": 25,
+        "evaluationQueries_yearsTo": 2017,
+        "evaluationQueries_mutations": "V600E",
+        "evaluationQueries_genes": "BRAF",
+        "evaluationQueries_cancerType": "all",
+        "evaluationQueries_publications": "Journals from CiVIC database"
+    },
+    {
+        "evaluationQueries_yearsFrom": 2007,
+        "evaluationQueries_id": 26,
+        "evaluationQueries_yearsTo": 2017,
+        "evaluationQueries_mutations": "Q209P",
+        "evaluationQueries_genes": "GNAQ",
+        "evaluationQueries_cancerType": "all",
+        "evaluationQueries_publications": "Journals from CiVIC database"
+    },
+    {
+        "evaluationQueries_yearsFrom": 2007,
+        "evaluationQueries_id": 27,
+        "evaluationQueries_yearsTo": 2017,
+        "evaluationQueries_mutations": "Q209L",
+        "evaluationQueries_genes": "GNA11",
+        "evaluationQueries_cancerType": "all",
+        "evaluationQueries_publications": "Journals from CiVIC database"
+    },
+    {
+        "evaluationQueries_yearsFrom": 2007,
+        "evaluationQueries_id": 28,
+        "evaluationQueries_yearsTo": 2017,
+        "evaluationQueries_mutations": "R625C",
+        "evaluationQueries_genes": "SF3B1",
+        "evaluationQueries_cancerType": "all",
+        "evaluationQueries_publications": "Journals from CiVIC database"
+    },
+    {
+        "evaluationQueries_yearsFrom": 2007,
+        "evaluationQueries_id": 29,
+        "evaluationQueries_yearsTo": 2017,
+        "evaluationQueries_mutations": "",
+        "evaluationQueries_genes": "HDAC3",
+        "evaluationQueries_cancerType": "colorectal cancer",
+        "evaluationQueries_publications": "Journals from CiVIC database"
+    },
+    {
+        "evaluationQueries_yearsFrom": 2007,
+        "evaluationQueries_id": 30,
+        "evaluationQueries_yearsTo": 2017,
+        "evaluationQueries_mutations": "",
+        "evaluationQueries_genes": "SMAD4",
+        "evaluationQueries_cancerType": "colorectal cancer",
+        "evaluationQueries_publications": "Journals from CiVIC database"
+    },
+    {
+        "evaluationQueries_yearsFrom": 2007,
+        "evaluationQueries_id": 31,
+        "evaluationQueries_yearsTo": 2017,
+        "evaluationQueries_mutations": "",
+        "evaluationQueries_genes": "FBXW7",
+        "evaluationQueries_cancerType": "colorectal cancer",
+        "evaluationQueries_publications": "Journals from CiVIC database"
+    },
+    {
+        "evaluationQueries_yearsFrom": 2007,
+        "evaluationQueries_id": 32,
+        "evaluationQueries_yearsTo": 2017,
+        "evaluationQueries_mutations": "",
+        "evaluationQueries_genes": "HDAC3",
+        "evaluationQueries_cancerType": "all",
+        "evaluationQueries_publications": "Journals from CiVIC database"
+    },
+    {
+        "evaluationQueries_yearsFrom": 2007,
+        "evaluationQueries_id": 33,
+        "evaluationQueries_yearsTo": 2017,
+        "evaluationQueries_mutations": "A146T",
+        "evaluationQueries_genes": "KRAS",
+        "evaluationQueries_cancerType": "colorectal cancer",
+        "evaluationQueries_publications": "Journals from CiVIC database"
+    },
+    {
+        "evaluationQueries_yearsFrom": 2007,
+        "evaluationQueries_id": 34,
+        "evaluationQueries_yearsTo": 2017,
+        "evaluationQueries_mutations": "A146T",
+        "evaluationQueries_genes": "KRAS",
+        "evaluationQueries_cancerType": "all",
+        "evaluationQueries_publications": "Journals from CiVIC database"
+    },
+    {
+        "evaluationQueries_yearsFrom": 2007,
+        "evaluationQueries_id": 37,
+        "evaluationQueries_yearsTo": 2017,
+        "evaluationQueries_mutations": "",
+        "evaluationQueries_genes": "KRAS, ERBB2, APC, ATM",
+        "evaluationQueries_cancerType": "all",
+        "evaluationQueries_publications": "Journals from CiVIC database"
+    },
+    {
+        "evaluationQueries_yearsFrom": 2007,
+        "evaluationQueries_id": 38,
+        "evaluationQueries_yearsTo": 2017,
+        "evaluationQueries_mutations": "",
+        "evaluationQueries_genes": "KRAS, TP53, ERBB3, ZBF521",
+        "evaluationQueries_cancerType": "all",
+        "evaluationQueries_publications": "Journals from CiVIC database"
+    },
+    {
+        "evaluationQueries_yearsFrom": 2007,
+        "evaluationQueries_id": 39,
+        "evaluationQueries_yearsTo": 2017,
+        "evaluationQueries_mutations": "",
+        "evaluationQueries_genes": "KRAS, APC, TP53, ERBB4, ATM",
+        "evaluationQueries_cancerType": "all",
+        "evaluationQueries_publications": "Journals from CiVIC database"
+    }
+]

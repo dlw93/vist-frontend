@@ -3,7 +3,8 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { MatSidenav } from '@angular/material';
 import { Observable, combineLatest } from 'rxjs';
 import { map, distinctUntilChanged } from 'rxjs/operators';
-import { QueryService, TitleService, VIST_SLIDE_IN_ANIMATION } from '@app/core';
+import { EvalService, TitleService, VIST_SLIDE_IN_ANIMATION } from '@app/core';
+import { IEvalQuery, IEvalResponse } from '@app/shared';
 
 @Component({
   selector: 'app-eval',
@@ -12,27 +13,32 @@ import { QueryService, TitleService, VIST_SLIDE_IN_ANIMATION } from '@app/core';
   animations: [VIST_SLIDE_IN_ANIMATION]
 })
 export class EvalComponent {
-  isLoading: Observable<boolean>;
-  hasData: Observable<boolean>;
-  isSidenavEnabled: Observable<boolean>;
+  isSmall: boolean;
+  isLoading: boolean;
+  hasData: boolean;
+  data: IEvalResponse;
 
   @ViewChild(MatSidenav) sidenav: MatSidenav;
 
-  constructor(queryService: QueryService, breakpointObserver: BreakpointObserver, private titleService: TitleService) {
+  constructor(private evalService: EvalService, breakpointObserver: BreakpointObserver, private titleService: TitleService) {
     titleService.title = "Evaluation";
+    breakpointObserver.observe([Breakpoints.Small, Breakpoints.Medium]).subscribe(state => this.isSmall = state.matches);
+  }
 
-    const isSmall = breakpointObserver.observe(Breakpoints.Small).pipe(map(state => state.matches));
-    this.isLoading = queryService.loading$;
-    this.hasData = queryService.data$.pipe(
-      map(data => data ? (data.numFound > 0 || data.numFoundCT > 0) : false),
-      distinctUntilChanged()
-    );
-    this.isSidenavEnabled = combineLatest(isSmall, this.isLoading, this.hasData).pipe(
-      map(([isSmall, isLoading, hasData]: boolean[]) => isSmall && !isLoading && hasData)
-    );
+  get isSidenavEnabled(): boolean {
+    return this.isSmall && !this.isLoading && this.hasData;
   }
 
   getTitle(): string {
     return this.titleService.title;
+  }
+
+  onQuery(q: IEvalQuery) {
+    this.isLoading = true;
+    this.evalService.send(null).then(response => {
+      this.data = response;
+      this.hasData = response.docs && response.docs.length > 0;
+      this.isLoading = false;
+    });
   }
 }

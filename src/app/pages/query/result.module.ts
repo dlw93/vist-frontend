@@ -9,7 +9,6 @@ import { FilterComponent } from './filter/filter.component';
 import { MedlineResultsComponent } from './medline-results/medline-results.component';
 import { ClinicalTrialsResultsComponent } from './clinical-trials-results/clinical-trials-results.component';
 import {
-  VistBoxModule,
   VistTabsModule,
   VistHeaderModule,
   VistKeyValueTableModule,
@@ -30,7 +29,8 @@ import {
   MatCardModule,
   MatSelectModule,
   MatChipsModule,
-  MatTooltipModule
+  MatTooltipModule,
+  MatRadioModule
 } from '@angular/material';
 import { RatingComponent } from './rating/rating.component';
 
@@ -41,7 +41,6 @@ import { RatingComponent } from './rating/rating.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    VistBoxModule,
     VistTabsModule,
     VistHeaderModule,
     VistKeyValueTableModule,
@@ -60,7 +59,8 @@ import { RatingComponent } from './rating/rating.component';
     MatSidenavModule,
     MatSelectModule,
     MatChipsModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatRadioModule
   ],
   declarations: [
     QueryComponent,
