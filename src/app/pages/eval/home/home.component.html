@@ -1,0 +1,11 @@
+<vist-page title="Evaluation">
+  <div>
+    <mat-card>
+      <mat-card-title>Welcome to the Evaluation</mat-card-title>
+      <mat-card-subtitle>Choose a query from the list below and execute it.</mat-card-subtitle>
+      <mat-card-footer>
+        <app-query-select (terms)="onQuery($event)"></app-query-select>
+      </mat-card-footer>
+    </mat-card>
+  </div>
+</vist-page>

@@ -1,0 +1,262 @@
+{
+    "docs": [
+        {
+            "nlm_unique_id": "9005373",
+            "mutation_normalizedValue": [
+                "G12V"
+            ],
+            "mesh_terms": "Adenocarcinoma, Adult, Aged, Antineoplastic Combined Chemotherapy Protocols, Carboplatin, Chi-Square Distribution, Cisplatin, DNA Mutational Analysis, Disease-Free Survival, European Continental Ancestry Group, Female, Genetic Predisposition to Disease, Humans, Hungary, Kaplan-Meier Estimate, Lung Neoplasms, Male, Middle Aged, Multivariate Analysis, Mutation, Neoplasm Staging, Patient Selection, Phenotype, Proportional Hazards Models, Proto-Oncogene Proteins, Proto-Oncogene Proteins p21(ras), Retrospective Studies, Risk Factors, Smoking, Time Factors, Treatment Outcome, ras Proteins",
+            "pubdate": 2014,
+            "title": "Subtype-specific KRAS mutations in advanced lung adenocarcinoma: a retrospective study of patients treated with platinum-based chemotherapy.",
+            "journal": "European journal of cancer (Oxford, England : 1990)",
+            "articleLink": "https://www.ncbi.nlm.nih.gov/pubmed/24768329",
+            "id": "adbf1151ae2eee11",
+            "source": "pubmed",
+            "cancerType": "disease",
+            "score": 18.486729,
+            "confidence_which": 0.0,
+            "pmc": "",
+            "_version_": 1570201079119872000,
+            "pmid": "24768329",
+            "confidence_is": 0.9999394,
+            "abstract": "Platinum-based chemotherapy is the most common treatment in advanced-stage lung adenocarcinoma. Because the clinical significance of KRAS mutational status in this setting has not yet been clearly determined, a mutation subtype-specific analysis was performed in the so far largest cohort of Caucasian patients with KRAS mutant advanced-stage lung adenocarcinoma treated with platinum-based chemotherapy.",
+            "gene_name": [
+                "KRAS"
+            ]
+        },
+        {
+            "nlm_unique_id": "9502015",
+            "mutation_normalizedValue": [
+                "G12V"
+            ],
+            "mesh_terms": "Adenocarcinoma, Aged, Animals, Antibodies, Monoclonal, Antibodies, Monoclonal, Humanized, Antineoplastic Combined Chemotherapy Protocols, Apoptosis, Cell Line, Tumor, Cell Proliferation, Cisplatin, Dasatinib, Discoidin Domain Receptor 1, Female, Gene Expression Regulation, Neoplastic, Humans, Intracellular Signaling Peptides and Proteins, Lung Neoplasms, Male, Membrane Proteins, Mice, Middle Aged, Mutation, Neoplasm Transplantation, Neoplasms, Experimental, Paclitaxel, Proto-Oncogene Proteins p21(ras), Receptor Protein-Tyrosine Kinases, Receptors, Notch, Reverse Transcriptase Polymerase Chain Reaction, Signal Transduction",
+            "pubdate": 2016,
+            "title": "Combined inhibition of DDR1 and Notch signaling is a therapeutic strategy for KRAS-driven lung adenocarcinoma.",
+            "journal": "Nature medicine",
+            "articleLink": "https://www.ncbi.nlm.nih.gov/pubmed/26855149",
+            "id": "4f12fa047ecb8262",
+            "source": "pubmed",
+            "cancerType": "disease",
+            "score": 18.398897,
+            "confidence_which": 0.0,
+            "pmc": "",
+            "_version_": 1570230991544385542,
+            "pmid": "26855149",
+            "confidence_is": 1.0,
+            "abstract": "Patients with advanced Kirsten rat sarcoma viral oncogene homolog (KRAS)-mutant lung adenocarcinoma are currently treated with standard chemotherapy because of a lack of efficacious targeted therapies. We reasoned that the identification of mediators of Kras signaling in early mouse lung hyperplasias might bypass the difficulties that are imposed by intratumor heterogeneity in advanced tumors, and that it might unveil relevant therapeutic targets. Transcriptional profiling of Kras(G12V)-driven mouse hyperplasias revealed intertumor diversity with a subset that exhibited an aggressive transcriptional profile analogous to that of advanced human adenocarcinomas. The top-scoring gene in this profile encodes the tyrosine kinase receptor DDR1. The genetic and pharmacological inhibition of DDR1 blocked tumor initiation and tumor progression, respectively. The concomitant inhibition of both DDR1 and Notch signaling induced the regression of KRAS;TP53-mutant patient-derived lung xenografts (PDX) with a therapeutic efficacy that was at least comparable to that of standard chemotherapy. Our data indicate that the combined inhibition of DDR1 and Notch signaling could be an effective targeted therapy for patients with KRAS-mutant lung adenocarcinoma.",
+            "gene_name": [
+                "KRAS",
+                "TP53",
+                "DDR1",
+                "Kras"
+            ]
+        },
+        {
+            "nlm_unique_id": "100890581",
+            "mutation_normalizedValue": [
+                "G12V"
+            ],
+            "mesh_terms": "Animals, Cell Line, Tumor, Cell Proliferation, Disease Models, Animal, Gene Expression, Gene Order, Genetic Vectors, Humans, Male, Mice, Mutation, Neoplasms, Proto-Oncogene Proteins p21(ras), RNA, RNA, Catalytic, Targeted Gene Repair, Trans-Splicing, Xenograft Model Antitumor Assays",
+            "pubdate": 2017,
+            "title": "Specific and Efficient Regression of Cancers Harboring KRAS Mutation by Targeted RNA Replacement.",
+            "journal": "Molecular therapy : the journal of the American Society of Gene Therapy",
+            "articleLink": "https://www.ncbi.nlm.nih.gov/pubmed/28153088",
+            "id": "d85d04216dc0cc03",
+            "source": "pubmed",
+            "cancerType": "disease",
+            "score": 18.486729,
+            "confidence_which": 0.0,
+            "pmc": "",
+            "_version_": 1570231195114930183,
+            "pmid": "28153088",
+            "confidence_is": 0.98940593,
+            "abstract": "Mutations in the KRAS gene, which persistently activate RAS function, are most frequently found in many types of human cancers. Here, we proposed and verified a new approach against cancers harboring the KRAS mutation with high cancer selectivity and efficient anti-cancer effects based on targeted RNA replacement. To this end, trans-splicing ribozymes from Tetrahymena group I intron were developed, which can specifically target and reprogram the mutant KRAS G12V transcript to induce therapeutic gene activity in cells. Adenoviral vectors containing the specific ribozymes with downstream suicide gene were constructed and then infection with the adenoviruses specifically downregulated KRAS G12V expression and killed KRAS G12V-harboring cancer cells additively upon pro-drug\u00a0treatment, but it did not affect the growth of wild-type KRAS-expressing cells. Minimal liver toxicity was noted when the adenoviruses were administered systemically in\u00a0vivo. Importantly, intratumoral injection of the adenoviruses with pro-drug treatment specifically and significantly impeded the growth of xenografted tumors harboring KRAS G12V through a trans-splicing reaction with the target RNA. In contrast, xenografted tumors harboring wild-type KRAS were not affected by the adenoviruses. Therefore, RNA replacement with a mutant KRAS-targeting trans-splicing ribozyme is a potentially useful therapeutic strategy to combat tumors harboring KRAS mutation.",
+            "gene_name": [
+                "KRAS"
+            ]
+        },
+        {
+            "mutation_normalizedValue": [
+                "G12V,G12D"
+            ],
+            "confidence_which": 0.0,
+            "title": "Association of KRAS G12D mutation with outcome in patients with pancreatic cancer after surgery.",
+            "abstract": "Abstracts that were granted an exception in accordance with ASCO's Conflict of Interest Policy are designated with a caret symbol (^).Abstract:\\u00a0Background: The frequency of KRAS gene mutations in pancreatic adenocarcinoma is high and most mutations occur in codon 12 and 13. However, the association of KRAS mutation status with clinical outcome of pancreatic cancer patients after surgery is not clearly understood. The aim of present study was to clarify whether presence of mutation in KRAS is of prognostic significance, and to determine whether the different type of KRAS mutation have different impact on clinical outcome in pancreatic cancer.  Methods: A total of 62 pancreatic adenocarcinoma tissues from patients underwent curative surgery were analyzed for KRAS mutation. DNA was extracted from the tissue microarray. The domain containing the KRAS gene codons 12 and 13 was amplified by PCR, and KRAS mutation was detected by loop hybrid mobility shift assay (LH-MSA). Results: KRAS mutation was detected in 41 of 62 tumors (66.1%). Mutations of KRAS codon 12 and codon 13 were detected in 37 of 62 tumors (59.7%) and in 4 of 62 tumors (6.5%), respectively. G12D mutation were detected in 35.5% (22/62) and G12V mutation in 19.4% (12/62) of all. The patients with KRAS mutations had a significantly shorter overall survival (OS) (log rank, p=0.0375) and disease free survival (DFS) (p=0.0175). When the type of mutation were evaluated, G12D mutation was significantly associated with both shorter OS (p=0.0410) and DFS (p=0.0214), whereas G12V mutation was associated with neither OS (p=0.6727) nor DFS (p=0.9854).  Conclusions: The presence of KRAS mutation was significantly associated with poor outcome of pancreatic cancer patients after surgery. A specific mutation G12D demonstrated significant association with shorter OS and DFS in pancreatic cancer. The different type of KRAS mutation might have different impact on clinical outcome in pancreatic cancer.",
+            "articleLink": "http://meetinglibrary.asco.org/content/88462-115",
+            "id": "392ffaf9e5fdb34c",
+            "source": "ASCO",
+            "cancerType": "disease",
+            "score": 17.69411,
+            "authors": "",
+            "_version_": 1570239099661451264,
+            "pmid": "88462-115",
+            "confidence_is": 1.0,
+            "pubdate": 2012,
+            "journal": "Yo Mikayama, Soichiro Morinaga, Takuo Watanabe, Masakatsu Numata, Hiroshi Tamagawa, Naoto Yamamoto, Manabu Shiozawa, Makoto Akaike, Kameda Yoichi, Shoichi Matsukuma, Yohei Miyagi; Department of Gastrointestinal Surgery, Kanagawa Cancer Center, Yokohama , Japan; Department of Gastrointestinal Surgery, Kanagawa Cancer Center, Yokohama, Japan; Division of Pathology, Kanagawa Cancer Center, Yokohama, Japan; Division of Molecular Pathology, Kanagawa Cancer Center, Yokohama, Japan",
+            "gene_name": [
+                "KRAS G12D,KRAS gene,KRAS,KRAS,KRAS,KRAS,LH-MSA,KRAS codon 12,KRAS"
+            ],
+            "mesh_terms": ""
+        },
+        {
+            "nlm_unique_id": "101532965",
+            "mutation_normalizedValue": [
+                "G12V"
+            ],
+            "mesh_terms": "Animals, Apoptosis, Breast Neoplasms, Cell Line, Tumor, Cell Proliferation, Enzyme Activation, Female, Humans, MAP Kinase Signaling System, Mice, Mitogen-Activated Protein Kinase Kinases, Phosphatidylinositol 3-Kinases, Proto-Oncogene Proteins c-akt, ras Proteins",
+            "pubdate": 2015,
+            "title": "The combinatorial activation of the PI3K and Ras/MAPK pathways is sufficient for aggressive tumor formation, while individual pathway activation supports cell persistence.",
+            "journal": "Oncotarget",
+            "articleLink": "https://www.ncbi.nlm.nih.gov/pubmed/26497685",
+            "id": "2ad92626f06e88fd",
+            "source": "pubmed",
+            "cancerType": "disease",
+            "score": 17.83715,
+            "confidence_which": 0.0,
+            "pmc": "PMC4742101",
+            "_version_": 1570222501544329217,
+            "pmid": "26497685",
+            "confidence_is": 0.9908264,
+            "abstract": "A high proportion of human tumors maintain activation of both the PI3K and Ras/MAPK pathways. In basal-like breast cancer (BBC), PTEN expression is decreased/lost in over 50% of cases, leading to aberrant activation of the PI3K pathway. Additionally, BBC cell lines and tumor models have been shown to exhibit an oncogenic Ras-like gene transcriptional signature, indicating activation of the Ras/MAPK pathway. To directly test how the PI3K and Ras/MAPK pathways contribute to tumorigenesis, we deleted PTEN and activated KRas within non-tumorigenic MCF-10A breast cells. Neither individual mutation was sufficient to promote tumorigenesis, but the combination promoted robust tumor growth in mice. However, in vivo bioluminescence reveals that each mutation has the ability to promote a persistent phenotype. Inherent in the concept of tumor cell dormancy, a stage in which residual disease is present but remains asymptomatic, viable cells with each individual mutation can persist in vivo during a period of latency. The persistent cells were excised from the mice and showed increased levels of the cell cycle arrest proteins p21 and p27 compared to the aggressively growing PTEN-/-KRAS(G12V) cells. Additionally, when these persistent cells were placed into growth-promoting conditions, they were able to re-enter the cell cycle and proliferate. These results highlight the potential for either PTEN loss or KRAS activation to promote cell survival in vivo, and the unique ability of the combined mutations to yield rapid tumor growth. This could have important implications in determining recurrence risk and disease progression in tumor subtypes where these mutations are common.",
+            "gene_name": [
+                "PTEN",
+                "p27",
+                "KRas",
+                "p21",
+                "KRAS"
+            ]
+        },
+        {
+            "nlm_unique_id": "0370536",
+            "mutation_normalizedValue": [
+                "G12V"
+            ],
+            "mesh_terms": "Colorectal Neoplasms, Genes, ras, Humans, Microscopy, Confocal, Mutation, Polymerase Chain Reaction",
+            "pubdate": 2016,
+            "title": "HistoMosaic Detecting KRAS G12V Mutation Across Colorectal Cancer Tissue Slices through in Situ PCR.",
+            "journal": "Analytical chemistry",
+            "articleLink": "https://www.ncbi.nlm.nih.gov/pubmed/26820161",
+            "id": "935d204d0c574009",
+            "source": "pubmed",
+            "cancerType": "colorectal cancer",
+            "score": 18.486729,
+            "confidence_which": 0.0,
+            "pmc": "",
+            "_version_": 1570220288566624262,
+            "pmid": "26820161",
+            "confidence_is": 0.94201,
+            "abstract": "We report on HistoMosaic, a novel technique for genetic analysis of formalin-fixed, paraffin-embedded tissue slices. It combines microfluidic compartmentalization, in situ allele-specific PCR, and fluorescence microscopy. The experimental proof of principle was achieved by in situ detection of KRAS G12V mutation in colorectal cancer tissues and is presented herein. HistoMosaic offers the ability to detect mutations over the entire tissue slide simultaneously, rapidly, economically, and without selection bias, while coregistering the genetic information with the preserved morphological information. Thus, HistoMosaic has wide applicability in basic science as a tool to map genetic heterogeneity. It is also a platform to build companion diagnostics for targeted therapies in oncology, to help ensure that the right drug is given to the right patient, thereby saving healthcare resources and improving patient outcomes.",
+            "gene_name": [
+                "KRAS"
+            ]
+        },
+        {
+            "nlm_unique_id": "0204634",
+            "mutation_normalizedValue": [
+                "G12V"
+            ],
+            "mesh_terms": "Adult, Aged, Benzimidazoles, Cell Death, Cystadenocarcinoma, Serous, Cystadenoma, Serous, DNA Mutational Analysis, DNA, Neoplasm, Female, High-Throughput Nucleotide Sequencing, Humans, Kaplan-Meier Estimate, MAP Kinase Kinase Kinases, Middle Aged, Mutation, Neoplasm Grading, Neoplasm Proteins, Neoplasm Recurrence, Local, Ovarian Neoplasms, Prognosis, Protein Kinase Inhibitors, Proto-Oncogene Proteins, Proto-Oncogene Proteins B-raf, Proto-Oncogene Proteins p21(ras), Tumor Cells, Cultured, Young Adult, ras Proteins",
+            "pubdate": 2013,
+            "title": "KRAS (but not BRAF) mutations in ovarian serous borderline tumour are associated with recurrent low-grade serous carcinoma.",
+            "journal": "The Journal of pathology",
+            "articleLink": "https://www.ncbi.nlm.nih.gov/pubmed/24549645",
+            "id": "2462e2fb7fbef53d",
+            "source": "pubmed",
+            "cancerType": "disease",
+            "score": 17.15987,
+            "confidence_which": 0.0,
+            "pmc": "PMC4095747",
+            "_version_": 1570227918193295368,
+            "pmid": "24549645",
+            "confidence_is": 0.9999966,
+            "abstract": "BRAF and KRAS mutations in ovarian serous borderline tumours (OSBTs) and ovarian low-grade serous carcinomas (LGSCs) have been previously described. However, whether those OSBTs would progress to LGSCs or whether those LGSCs were developed from OSBT precursors in previous studies is unknown. Therefore, we assessed KRAS and BRAF mutations in tumour samples from 23 recurrent LGSC patients with a known initial diagnosis of OSBT. Paraffin blocks from both OSBT and LGSC samples were available for five patients, and either OSBTs or LGSCs were available for another 18 patients. Tumour cells from paraffin-embedded tissues were dissected out for mutation analysis by conventional polymerase chain reaction (PCR) and Sanger sequencing. Tumours that appeared to have wild-type KRAS by conventional PCR-Sanger sequencing were further analysed by full COLD (co-amplification at lower denaturation temperature)-PCR and deep sequencing. Full COLD-PCR was able to enrich the amplification of mutated alleles. Deep sequencing was performed with the Ion Torrent personal genome machine (PGM). By conventional PCR-Sanger sequencing, BRAF mutation was detected only in one patient and KRAS mutations were detected in ten patients. Full COLD-PCR deep sequencing detected low-abundance KRAS mutations in eight additional patients. Three of the five patients with both OSBT and LGSC samples available had the same KRAS mutations detected in both OSBT and LGSC samples. The remaining two patients had only KRAS mutations detected in their LGSC samples. For patients with either OSBT or LGSC samples available, KRAS mutations were detected in seven OSBT samples and six LGSC samples. Surprisingly, patients with the KRAS G12V mutation have shorter survival times. In summary, KRAS mutations are very common in recurrent LGSC, while BRAF mutations are rare. The findings indicate that recurrent LGSC can arise from proliferation of OSBT tumour cells with or without detectable KRAS mutations.",
+            "gene_name": [
+                "BRAF",
+                "KRAS"
+            ]
+        },
+        {
+            "nlm_unique_id": "100886622",
+            "mutation_normalizedValue": [
+                "G12V"
+            ],
+            "mesh_terms": "Adult, Aged, Aged, 80 and over, Animals, Antibodies, Monoclonal, Antibodies, Monoclonal, Humanized, Antibody-Dependent Cell Cytotoxicity, Antineoplastic Agents, Base Sequence, CCAAT-Enhancer-Binding Protein-beta, Cell Proliferation, Cell Survival, Cetuximab, Colorectal Neoplasms, Epidermal Growth Factor, Female, Gene Expression, Gene Expression Regulation, Neoplastic, Humans, Male, Mice, Middle Aged, Mitogen-Activated Protein Kinases, Models, Biological, Molecular Sequence Data, Mutation, Promoter Regions, Genetic, Receptor, Epidermal Growth Factor, Signal Transduction, Transcription, Genetic, ras Proteins",
+            "pubdate": 2012,
+            "title": "Oncogenic KRAS impairs EGFR antibodies' efficiency by C/EBP\u03b2-dependent suppression of EGFR expression.",
+            "journal": "Neoplasia (New York, N.Y.)",
+            "articleLink": "https://www.ncbi.nlm.nih.gov/pubmed/22496619",
+            "id": "5f652d41976a5661",
+            "source": "pubmed",
+            "cancerType": "colorectal cancer",
+            "score": 17.107334,
+            "confidence_which": 0.0,
+            "pmc": "PMC3323897",
+            "_version_": 1570202947088809985,
+            "pmid": "22496619",
+            "confidence_is": 0.9999998,
+            "abstract": "Oncogenic KRAS mutations in colorectal cancer (CRC) are associated with lack of benefit from epidermal growth factor receptor (EGFR)-directed antibody (Ab) therapy. However, the mechanisms by which constitutively activated KRAS (KRAS(G12V)) impairs effector mechanisms of EGFR-Abs are incompletely understood. Here, we established isogenic cell line models to systematically investigate the impact of KRAS(G12V) on tumor growth in mouse A431 xenograft models as well as on various modes of action triggered by EGFR-Abs in vitro. KRAS(G12V) impaired EGFR-Ab-mediated growth inhibition by stimulating receptor-independent downstream signaling. KRAS(G12V) also rendered tumor cells less responsive to Fc-mediated effector mechanisms of EGFR-Abs-such as complement-dependent cytotoxicity (CDC) and Ab-dependent cell-mediated cytotoxicity (ADCC). Impaired CDC and ADCC activities could be linked to reduced EGFR expression in KRAS-mutated versus wild-type (wt) cells, which was restored by small interfering RNA (siRNA)-mediated knockdown of KRAS4b. Immunohistochemistry experiments also revealed lower EGFR expression in KRAS-mutated versus KRAS-wt harboring CRC samples. Analyses of potential mechanisms by which KRAS(G12V) downregulated EGFR expression demonstrated significantly decreased activity of six distinct transcription factors. Additional experiments suggested the CCAAT/enhancer-binding protein (C/EBP) family to be implicated in the regulation of EGFR promoter activity in KRAS-mutated tumor cells by suppressing EGFR transcription through up-regulation of the inhibitory family member C/EBP\u03b2-LIP. Thus, siRNA-mediated knockdown of C/EBP\u03b2 led to enhanced EGFR expression and Ab-mediated cytotoxicity against KRAS-mutated cells. Together, these results demonstrate that KRAS(G12V) signaling induced C/EBP\u03b2-dependent suppression of EGFR expression, thereby impairing Fc-mediated effector mechanisms of EGFR-Abs and rendering KRAS-mutated tumor cells less sensitive to these therapeutic agents.",
+            "gene_name": [
+                "Cebpa",
+                "EGFR",
+                "C/EBPb",
+                "Egfr",
+                "KRAS(G12V)",
+                "KRAS(G12V",
+                "epidermal growth factor receptor",
+                "KRAS",
+                "Kras"
+            ]
+        },
+        {
+            "nlm_unique_id": "8409922",
+            "mutation_normalizedValue": [
+                "G12V",
+                "G12A"
+            ],
+            "mesh_terms": "Adult, Aged, Aged, 80 and over, Alleles, Bevacizumab, Codon, Colorectal Neoplasms, Combined Modality Therapy, Female, Humans, Kaplan-Meier Estimate, Male, Middle Aged, Mutation, Neoplasm Metastasis, Prognosis, Proportional Hazards Models, Retreatment, Treatment Outcome, ras Proteins",
+            "pubdate": 2016,
+            "title": "G12V and G12A KRAS mutations are associated with poor outcome in patients with metastatic colorectal cancer treated with bevacizumab.",
+            "journal": "Tumour biology : the journal of the International Society for Oncodevelopmental Biology and Medicine",
+            "articleLink": "https://www.ncbi.nlm.nih.gov/pubmed/26662311",
+            "id": "f9faeb8ae093e7ed",
+            "source": "pubmed",
+            "cancerType": "colorectal cancer",
+            "score": 17.057007,
+            "confidence_which": 0.0,
+            "pmc": "",
+            "_version_": 1570202457168936967,
+            "pmid": "26662311",
+            "confidence_is": 1.0,
+            "abstract": "The v-Ki-ras2 Kirsten rat sarcoma viral oncogene homolog (KRAS) mutations are found in 35-45\u00a0% of colorectal cancer (CRC) cases. Although the association between the RAS signaling and angiogenesis is well known, the negative predictive value of KRAS mutation has not been established in patients treated with bevacizumab. The aim of this study was to evaluate the association between specific KRAS mutation types and outcome of patients with metastatic CRC treated with bevacizumab. The study included 404 patients with metastatic CRC (mCRC) treated with bevacizumab. Clinical data obtained from the clinical registry CORECT were retrospectively analyzed. The shortest survival was observed in patients with tumors harboring G12V or G12A KRAS mutation (G12V/A). The median progression-free survival (PFS) and overall survival (OS) for patients with tumors harboring G12V/A KRAS mutation was 6.6 and 16.8 compared to 11.6 and 26.3\u00a0months for patients with tumors harboring other KRAS mutation type (p\u2009<\u20090.001 and p\u2009<\u20090.001), while the survival of patients harboring other KRAS mutation types was comparable to those with tumors harboring wild-type KRAS gene. In the Cox multivariable analysis, KRAS G12V/A mutation type remains a significant factor predicting both PFS (HR\u2009=\u20092.18, p\u2009<\u20090.001) and OS (HR\u2009=\u20092.58, p\u2009<\u20090.001). In conclusion, the results of the present study indicate that there is a significant difference in biological behavior between tumors harboring G12V/A and other KRAS mutations. Moreover, comparison of the survival of patients with tumors harboring G12V/A KRAS mutations with those harboring wild-type KRAS gene revealed that G12V/A KRAS mutations are prognostic biomarker for inferior PFS and OS in patients with mCRC treated with bevacizumab in univariate as well as multivariable analyses.",
+            "gene_name": [
+                "KRAS"
+            ]
+        },
+        {
+            "mesh_terms": "",
+            "mutation_normalizedValue": [
+                "G12V",
+                "G12C"
+            ],
+            "title": "Impact of KRAS codon subtypes from a randomised phase II trial of selumetinib plus docetaxel in  KRAS  mutant advanced non-small-cell lung cancer",
+            "abstract": "Background: Selumetinib (AZD6244, ARRY-142886)+docetaxel increases median overall survival (OS) and significantly improves progression-free survival (PFS) and objective response rate (ORR) compared with docetaxel alone in patients with KRAS mutant, stage IIIB/IV non-small-cell lung cancer (NSCLC; NCT00890825). Methods: Retrospective analysis of OS, PFS, ORR and change in tumour size at week 6 for different sub-populations of KRAS codon mutations. Results: In patients receiving selumetinib+docetaxel and harbouring KRAS G12C or G12V mutations there were trends towards greater improvement in OS, PFS and ORR compared with other KRAS mutations. Conclusion: Different KRAS mutations in NSCLC may influence selumetinib/docetaxel sensitivity.",
+            "pmc": "4506393",
+            "articleLink": "https://www.ncbi.nlm.nih.gov/pubmed/26125448",
+            "id": "c7ac8e61cd0d9527",
+            "source": "pmc",
+            "cancerType": "disease",
+            "score": 17.057007,
+            "confidence_which": 0.0,
+            "authors": "D R Hodgson,A T Shaw,P A J\u00e4nne,H Mann,B Dougherty,G McWalter,I Smith,C H Barrios,F A Franke,G Jeannin,J Vansteenkiste,J Walker,M C M Orr,L Crin\u00f2,P Smith,J R Pereira",
+            "_version_": 1570235119768174592,
+            "pmid": "26125448",
+            "confidence_is": 0.9999972,
+            "pubdate": 2015,
+            "journal": "British journal of cancer",
+            "gene_name": [
+                "KRAS"
+            ]
+        }
+    ],
+    "alreadyEvaluated": null
+}

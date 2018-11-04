@@ -1,7 +1,7 @@
 <div class="loading-shade" *ngIf="isLoading">
   <mat-spinner></mat-spinner>
 </div>
-<table vistExpandable mat-table [dataSource]="dataSource" multiTemplateDataRows>
+<table vistExpandable mat-table [dataSource]="data" multiTemplateDataRows>
   <ng-container matColumnDef="score">
     <th mat-header-cell *matHeaderCellDef> Score </th>
     <td mat-cell *matCellDef="let doc"> {{ (doc.score * doc.classification_score) | number:'1.0-2'}} </td>
@@ -35,11 +35,8 @@
               </vist-entry>
             </vist-key-value-table>
           </vist-tab>
-          <vist-tab title="Evaluation" *ngIf="showEval">
-            ...
-          </vist-tab>
         </vist-tabs>
-        <div class="article-footer" *ngIf="showRating && !showEval">
+        <div class="article-footer" *ngIf="showRating">
           <app-rating [docId]="doc.id" [docType]="'medline'"></app-rating>
         </div>
       </div>
@@ -50,5 +47,5 @@
   <tr mat-row *matRowDef="let doc; columns: displayedColumns;" [class.selected]="doc.id == expandedDoc" (click)="expandedDoc = doc.id"></tr>
   <tr mat-row *matRowDef="let doc; columns: ['expanded']"></tr>
 </table>
-<mat-paginator [length]="resultsLength | async" [pageSizeOptions]="[25, 50, 100]" [pageIndex]="page" [pageSize]="50"
+<mat-paginator [length]="resultLength | async" [pageSizeOptions]="[25, 50, 100]" [pageSize]="50" [pageIndex]="page"
   showFirstLastButtons></mat-paginator>

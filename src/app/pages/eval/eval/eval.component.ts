@@ -1,44 +1,45 @@
-import { Component, ViewChild } from '@angular/core';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { MatSidenav } from '@angular/material';
-import { Observable, combineLatest } from 'rxjs';
-import { map, distinctUntilChanged } from 'rxjs/operators';
-import { EvalService, TitleService, VIST_SLIDE_IN_ANIMATION } from '@app/core';
-import { IEvalQuery, IEvalResponse } from '@app/shared';
+import { Component } from '@angular/core';
+import { EvalService, VIST_EXPAND_ANIMATION } from '@app/core';
+import { IEvalQuery, IMedlineDoc } from '@app/shared';
 
 @Component({
   selector: 'app-eval',
   templateUrl: './eval.component.html',
   styleUrls: ['./eval.component.css'],
-  animations: [VIST_SLIDE_IN_ANIMATION]
+  animations: [VIST_EXPAND_ANIMATION]
 })
 export class EvalComponent {
-  isSmall: boolean;
   isLoading: boolean;
+  data: IMedlineDoc[];
+  resultLength: number;
   hasData: boolean;
-  data: IEvalResponse;
+  current: IEvalQuery;
 
-  @ViewChild(MatSidenav) sidenav: MatSidenav;
+  readonly displayedColumns = ['score', 'title', 'year'];
 
-  constructor(private evalService: EvalService, breakpointObserver: BreakpointObserver, private titleService: TitleService) {
-    titleService.title = "Evaluation";
-    breakpointObserver.observe([Breakpoints.Small, Breakpoints.Medium]).subscribe(state => this.isSmall = state.matches);
+  private _expandedDoc: string;
+
+  constructor(private evalService: EvalService) {
+    this.isLoading = true;
+    this.evalService.data$.subscribe(response => {
+      this.data = response ? response.docs : [];
+      this.resultLength = this.data.length
+      this.hasData = this.data.length > 0;
+      this.isLoading = false;
+    });
+    this.evalService.query$.subscribe(query => this.current = query);
   }
 
-  get isSidenavEnabled(): boolean {
-    return this.isSmall && !this.isLoading && this.hasData;
+  get expandedDoc(): string {
+    return this._expandedDoc;
   }
 
-  getTitle(): string {
-    return this.titleService.title;
+  set expandedDoc(value: string) {
+    this._expandedDoc = (value != this._expandedDoc) ? value : undefined;
   }
 
   onQuery(q: IEvalQuery) {
     this.isLoading = true;
-    this.evalService.send(null).then(response => {
-      this.data = response;
-      this.hasData = response.docs && response.docs.length > 0;
-      this.isLoading = false;
-    });
+    this.evalService.sendQuery(q);
   }
 }

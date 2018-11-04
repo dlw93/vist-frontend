@@ -1,31 +1,83 @@
-<mat-sidenav-container>
-  <mat-sidenav *ngIf="isSidenavEnabled">
-    <app-query-select></app-query-select>
-  </mat-sidenav>
-  <mat-sidenav-content>
-    <vist-header [title]="getTitle()" [showToggle]="isSidenavEnabled" (toggle)="sidenav.toggle()"></vist-header>
-    <!-- If a query is executing, we show a loading indicator -->
-    <div class="control-wrap" *ngIf="!isLoading; else loadingIndicator">
-      <!-- If there are no results to be displayed yet, we instead show the welcome wizard. -->
-      <ng-container *ngIf="hasData; else welcome">
-        <div *ngIf="!isSidenavEnabled" class="sidebar-wrap">
-          <app-query-select @vistSlideIn></app-query-select>
-        </div>
-        <mat-card @vistSlideIn>
-          <app-medline-results [showEval]="true" [data]="data"></app-medline-results>
-        </mat-card>
-      </ng-container>
-      <ng-template #welcome>
-        <div class="welcome-wrapper">
-          <app-wizard></app-wizard>
-        </div>
-      </ng-template>
-    </div>
-    <ng-template #loadingIndicator>
-      <div class="loading-indicator">
-        <mat-spinner></mat-spinner>
-        <h4 class="mat-subheading-1">Evaluating your query...</h4>
-      </div>
-    </ng-template>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+<vist-page title="Evaluation" [loading]="isLoading" [error]="!hasData">
+
+  <vist-page-sidebar>
+    <mat-card *ngIf="current" class="box">
+      <mat-tab-group mat-stretch-tabs dynamicHeight>
+        <mat-tab label="Current Query">
+          <div class="tab-content-wrap">
+            <div>
+              <h4 id="current-query-intro" class="mat-body">Go through the results and rate their relevance regarding your selected query:</h4>
+              <vist-key-value-table id="current-query" class="mat-body">
+                <vist-entry key="Genes">{{ current.evaluationQueries_genes }}</vist-entry>
+                <vist-entry key="Mutations">{{ current.evaluationQueries_mutations }}</vist-entry>
+                <vist-entry key="Cancer Type">{{ current.evaluationQueries_cancerType }}</vist-entry>
+              </vist-key-value-table>
+            </div>
+            <div class="footer">
+              <button mat-raised-button color="primary">
+                <mat-icon>send</mat-icon>
+                Submit Feedback
+              </button>
+            </div>
+          </div>
+        </mat-tab>
+        <mat-tab label="Queries">
+          <app-query-select (terms)="onQuery($event)"></app-query-select>
+        </mat-tab>
+      </mat-tab-group>
+    </mat-card>
+  </vist-page-sidebar>
+
+  <vist-page-content>
+    <mat-card class="box">
+      <table vistExpandable mat-table [dataSource]="data" multiTemplateDataRows>
+
+        <ng-container matColumnDef="score">
+          <th mat-header-cell *matHeaderCellDef>Score</th>
+          <td mat-cell *matCellDef="let doc">{{ doc.score | number:'1.0-2' }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="title">
+          <th mat-header-cell *matHeaderCellDef>Title</th>
+          <td mat-cell *matCellDef="let doc">{{ doc.title }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="year">
+          <th mat-header-cell *matHeaderCellDef>Year</th>
+          <td mat-cell *matCellDef="let doc">{{ doc.pubdate }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="expanded">
+          <td mat-cell *matCellDef="let doc" [attr.colspan]="displayedColumns.length">
+            <div vistExpansionDetail *ngIf="doc.id == expandedDoc" @vistExpand>
+              <vist-tabs>
+                <vist-tab title="Abstract">
+                  <pre vistAnnotated>{{ doc.abstract }}</pre>
+                </vist-tab>
+                <vist-tab title="Statistics">
+                  <vist-key-value-table>
+                    <vist-entry key="Cancer Type">{{ doc.cancerType }} ({{ doc.confidence_is }})</vist-entry>
+                    <vist-entry key="Article Source"><a href="{{ doc.articleLink }}">{{ doc.articleLink }}</a></vist-entry>
+                    <vist-entry key="Journal">{{ doc.journal }}</vist-entry>
+                    <vist-entry key="Mutations">{{ doc.mutation_normalizedValue.join(', ') }}</vist-entry>
+                    <vist-entry key="Genes">{{ doc.gene_name.join(', ') }}</vist-entry>
+                    <vist-entry key="MeSH Terms">{{ doc.mesh_terms }}</vist-entry>
+                  </vist-key-value-table>
+                </vist-tab>
+                <vist-tab title="Evaluation">
+                  ...
+                </vist-tab>
+              </vist-tabs>
+            </div>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let doc; columns: displayedColumns;" [class.selected]="doc.id == expandedDoc" (click)="expandedDoc = doc.id"></tr>
+        <tr mat-row *matRowDef="let doc; columns: ['expanded']"></tr>
+
+      </table>
+    </mat-card>
+  </vist-page-content>
+
+</vist-page>

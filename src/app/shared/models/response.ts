@@ -81,3 +81,18 @@ export interface IGeneCandidate {
     id: string;
     other_designations: string[];
 }
+
+export interface ICivic {
+    countValue: number;
+    name: string;
+    titleName: string;
+}
+
+export type TFeedbackResponse = [
+    {
+        feedbackStored: boolean;
+    },
+    {
+        finishedStored: boolean;
+    }
+]

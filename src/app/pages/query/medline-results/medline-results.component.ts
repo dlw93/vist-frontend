@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Input, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, ViewChild, EventEmitter, Output } from '@angular/core';
 import { MatPaginator } from '@angular/material';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -23,27 +23,24 @@ interface IEntry {
   animations: [VIST_EXPAND_ANIMATION]
 })
 export class MedlineResultsComponent implements OnInit {
-  @Input() data: IMedlineDoc[];
-  @Input() showEval: boolean;
   @Output() navigate = new EventEmitter<void>();
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  private _expandedDoc: string;
-
   readonly displayedColumns = ['score', 'title', 'year'];
-  dataSource: Observable<IMedlineDoc[]>;
-  resultsLength: Observable<number>;
+
+  data: Observable<IMedlineDoc[]>;
+  resultLength: Observable<number>;
   page: number;
   highlighting: IHighlighting;
   isLoading: boolean;
 
+  private _expandedDoc: string;
+
   constructor(private queryService: QueryService, private highlightingService: HighlightingService, private authService: AuthService) {
-    this.dataSource = this.queryService.data$.pipe(map(data => data ? data.docs : []));
-    this.resultsLength = this.queryService.data$.pipe(map(data => data ? data.numFound : 0));
+    this.data = this.queryService.data$.pipe(map(data => data ? data.docs : []));
+    this.resultLength = this.queryService.data$.pipe(map(data => data ? data.numFound : 0));
     this.page = this.queryService.page.currentPage;
     this.highlighting = this.highlightingService.highlighting;
-
-    this.dataSource.subscribe(() => this.isLoading = false);
   }
 
   ngOnInit() {
