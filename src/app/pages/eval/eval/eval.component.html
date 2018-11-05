@@ -5,18 +5,17 @@
       <mat-tab-group mat-stretch-tabs dynamicHeight>
         <mat-tab label="Current Query">
           <div class="tab-content-wrap">
-            <div>
-              <h4 id="current-query-intro" class="mat-body">Go through the results and rate their relevance regarding your selected query:</h4>
-              <vist-key-value-table id="current-query" class="mat-body">
-                <vist-entry key="Genes">{{ current.evaluationQueries_genes }}</vist-entry>
-                <vist-entry key="Mutations">{{ current.evaluationQueries_mutations }}</vist-entry>
-                <vist-entry key="Cancer Type">{{ current.evaluationQueries_cancerType }}</vist-entry>
-              </vist-key-value-table>
-            </div>
+            <span class="mat-body">Go through the results and rate their relevance regarding your selected query:</span>
+            <vist-key-value-table id="current-query" class="mat-body">
+              <vist-entry key="Genes">{{ current.evaluationQueries_genes }}</vist-entry>
+              <vist-entry key="Mutations">{{ current.evaluationQueries_mutations }}</vist-entry>
+              <vist-entry key="Cancer Type">{{ current.evaluationQueries_cancerType }}</vist-entry>
+            </vist-key-value-table>
+            <span class="mat-body">You've rated {{ _feedback.length }}/{{ data.length }} queries from the result set.</span>
             <div class="footer">
-              <button mat-raised-button color="primary">
+              <button mat-raised-button color="primary" [disabled]="feedbackCount == 0" (click)="onSubmit()">
                 <mat-icon>send</mat-icon>
-                Submit Feedback
+                {{ feedbackComplete ? 'Submit Feedback' : 'Store Progress'}}
               </button>
             </div>
           </div>
@@ -64,10 +63,25 @@
                     <vist-entry key="MeSH Terms">{{ doc.mesh_terms }}</vist-entry>
                   </vist-key-value-table>
                 </vist-tab>
-                <vist-tab title="Evaluation">
-                  ...
-                </vist-tab>
               </vist-tabs>
+              <div class="rate-wrap">
+                <div class="rate-group">
+                  <span class="mat-body">Is the article relevant regarding the selected query?</span>
+                  <mat-radio-group class="rate" [(ngModel)]="useful[doc.pmid]">
+                    <mat-radio-button color="primary" class="rank" *ngFor="let rank of relevanceScale" [value]="rank.value">
+                      {{ rank.caption }}
+                    </mat-radio-button>
+                  </mat-radio-group>
+                </div>
+                <div class="rate-group">
+                  <span class="mat-body">Does the article match the query's cancer type?</span>
+                  <mat-radio-group class="rate" [(ngModel)]="classification[doc.pmid]">
+                    <mat-radio-button color="primary" class="rank" *ngFor="let rank of classificationScale" [value]="rank.value">
+                      {{ rank.caption }}
+                    </mat-radio-button>
+                  </mat-radio-group>
+                </div>
+              </div>
             </div>
           </td>
         </ng-container>

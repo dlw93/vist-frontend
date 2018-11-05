@@ -1,11 +1,7 @@
 import { Injectable, isDevMode } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { IEvalQuery, IEvalResponse, ICivic, TFeedbackResponse, IFeedback } from '@app/shared';
+import { IEvalQuery, IEvalResponse, ICivic, TFeedbackResponse, IFeedback, IFeedbackResponse } from '@app/shared';
 import { BehaviorSubject, Observable } from 'rxjs';
-
-type TStrVal<T, V> = {
-  [P in keyof T]: V;
-}
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +10,7 @@ export class EvalService {
   private _queries: Promise<IEvalQuery[]>;
   private _journals: Promise<ICivic[]>;
   private _query$ = new BehaviorSubject<IEvalQuery>(null);
+  private _feedback$ = new BehaviorSubject<IFeedback[]>(null);
   private _data$ = new BehaviorSubject<IEvalResponse>(null);
 
   constructor(private http: HttpClient) { }
@@ -27,17 +24,24 @@ export class EvalService {
   }
 
   /**
-   * The most recently received query response.
-   */
-  public get data$(): Observable<IEvalResponse> {
-    return this._data$.asObservable();
-  }
-
-  /**
    * The most recently submitted query.
    */
   public get query$(): Observable<IEvalQuery> {
     return this._query$.asObservable();
+  }
+
+  /**
+   * The most recently received (partial) feedback response.
+   */
+  public get feedback$(): Observable<IFeedback[]> {
+    return this._feedback$.asObservable();
+  }
+
+  /**
+   * The most recently received query response.
+   */
+  public get data$(): Observable<IEvalResponse> {
+    return this._data$.asObservable();
   }
 
   /**
@@ -63,6 +67,7 @@ export class EvalService {
       }
     }).toPromise().then(response => {
       this._query$.next(q);
+      this._feedback$.next(response ? response.alreadyEvaluated || [] : []);
       this._data$.next(response);
     });
   }
@@ -71,8 +76,9 @@ export class EvalService {
    * Submits user feedback to the server.
    * @param feedback The array of feedback entries
    * @param partial Whether the query's entire result was only partially evaluated or not
+   * @returns Whether the feedback data was successfully stored on the server
    */
-  public async sendFeedback(feedback: IFeedback[], partial: boolean): Promise<TFeedbackResponse> {
+  public async sendFeedback(feedback: IFeedback[], partial: boolean): Promise<boolean> {
     const url: string = isDevMode() ? '/assets/feedbackEval.json' : '/feedbackEval';
     return this.http.get<TFeedbackResponse>(url, {
       headers: { 'Content-Type': 'application/json' },
@@ -80,19 +86,18 @@ export class EvalService {
         feedbackData: feedback.map(item => JSON.stringify(item)),
         feedbackType: partial ? "1" : "0"
       }
-    }).toPromise();
+    }).toPromise().then(response => {
+      let r: IFeedbackResponse = Object.assign({}, ...response);  // we convert the somewhat strange response from the server to a single object
+      let success = ('finishedStored' in r && r.finishedStored) || ('feedbackStored' in r && r.feedbackStored); // whether the feedback data was successfully stored on the server
+      if (success) {
+        this._feedback$.next(feedback); // store the feedback locally to preserve it on navigation
+      }
+      return success;
+    });
   }
 
   private get journals(): Promise<ICivic[]> {
     const url: string = isDevMode() ? '/assets/civicEval.json' : '/getCivicEval';
     return this._journals || (this._journals = this.http.get<ICivic[]>(url).toPromise());
-  }
-
-  /**
-   * Converts a given object's values to string.
-   * @param obj The object to convert
-   */
-  private _stringifyValues<T>(obj: T): TStrVal<T, string> {
-    return Object.assign({}, ...Object.entries(obj).map(kv => ({ [kv[0]]: kv[1].toString() })));
   }
 }

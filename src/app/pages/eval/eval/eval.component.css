@@ -47,12 +47,8 @@ pre {
   padding: 8px;
 }
 
-.tab-content-wrap > div {
+.tab-content-wrap > * {
   padding: 8px;
-}
-
-#current-query-intro {
-  margin-block-start: 0;
 }
 
 #current-query {
@@ -63,4 +59,35 @@ pre {
   display: flex;
   justify-content: flex-end;
   padding: 16px;
+}
+
+.rate-wrap {
+  display: flex;
+  margin: 0 -16px;
+  padding: 16px 0 16px 94px;
+  color: #265582;
+  background-color: rgba(38, 85, 130, 0.02);
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.rate-wrap > .rate-group {
+  display: flex;
+  flex-direction: column;
+  margin: 0 16px;
+}
+
+.rate-wrap > .rate-group > span {
+  font-weight: 500;
+  color: #265582;
+  margin-bottom: 8px;
+}
+
+.rate-wrap > .rate-group > .rate {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -8px -6px;
+}
+
+.rate-wrap > .rate-group > .rate > .rank {
+  margin: 8px;
 }

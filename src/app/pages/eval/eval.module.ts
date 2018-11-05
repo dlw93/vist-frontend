@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatButtonModule, MatIconModule, MatTabsModule, MatFormFieldModule, MatInputModule, MatTableModule, MatProgressSpinnerModule, MatCardModule, MatCheckboxModule } from '@angular/material';
+import { MatButtonModule, MatIconModule, MatTabsModule, MatFormFieldModule, MatInputModule, MatTableModule, MatProgressSpinnerModule, MatCardModule, MatCheckboxModule, MatSnackBarModule, MatRadioModule } from '@angular/material';
 import { VistTabsModule, VistKeyValueTableModule, VistPageModule } from '@app/core';
 import { EvalHomeComponent } from './home/home.component';
 import { EvalComponent } from './eval/eval.component';
@@ -29,13 +29,15 @@ import { QuerySelectComponent } from './query-select/query-select.component';
     MatTableModule,
     MatProgressSpinnerModule,
     MatCardModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatSnackBarModule,
+    MatRadioModule
   ],
   declarations: [
     EvalHomeComponent,
     EvalComponent,
     QuerySelectComponent,
-    
+
   ]
 })
 export class EvalModule { }

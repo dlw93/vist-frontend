@@ -6,7 +6,7 @@ import { AuthGuard } from './core';
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'results', component: QueryComponent },
-  { path: 'eval', component: EvalHomeComponent },
+  { path: 'eval', component: EvalHomeComponent, canActivate: [AuthGuard] },
   { path: 'eval/results', component: EvalComponent, canActivate: [AuthGuard] }
 ];
 

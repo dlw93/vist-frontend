@@ -84,7 +84,7 @@ export class QueryService {
     const indicator$ = isRefinement ? this._fetching$ : this._loading$;
 
     // stringify IGeneCandidates
-    Object.assign(q, { genes: q.genes.map(gene => `"${gene.text}"`).join(" ") });
+    Object.assign(q, { genes: q.genes.map(gene => gene.extended_annotations.reduce((p, v) => p + ` ${v}`, gene.text)).join(" ") }); // ==> "gene.text ext1 ext2 ..."
 
     indicator$.next(true);
     if (!isRefinement) {

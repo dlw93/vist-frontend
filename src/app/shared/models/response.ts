@@ -62,15 +62,15 @@ export interface IResponse {
     queryID: number;
 }
 
-export interface IEvalHistory {
+export interface IFeedback {
+    pmid: string;
     useful: string;
     classification: string;
     queryId: number;
-    pmid: string;
 }
 
 export interface IEvalResponse {
-    alreadyEvaluated: IEvalHistory[] | null;
+    alreadyEvaluated: IFeedback[] | null;
     docs: IMedlineDoc[];
 }
 
@@ -88,11 +88,9 @@ export interface ICivic {
     titleName: string;
 }
 
-export type TFeedbackResponse = [
-    {
-        feedbackStored: boolean;
-    },
-    {
-        finishedStored: boolean;
-    }
-]
+export interface IFeedbackResponse {
+    feedbackStored?: boolean;
+    finishedStored?: boolean;
+};
+
+export type TFeedbackResponse = IFeedbackResponse[];
