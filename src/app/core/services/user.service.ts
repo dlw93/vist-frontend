@@ -41,6 +41,7 @@ export class UserService {
       if (!!response.token) {
         this.authService.token = response.token;
         this.getUserData().then(user => this._user$.next(user));
+        this._initRefresh();
       }
       return !response.error;
     })).toPromise();
@@ -64,5 +65,22 @@ export class UserService {
   private getUserData(): Promise<IUser> {
     const url: string = isDevMode() ? '/assets/user.json' : '/users/current';
     return this.http.get<IUser>(url).toPromise();
+  }
+
+  /**
+   * Sets a timer to refresh the token 'timespan' seconds before its expiration.
+   * @param timespan The timespan before expiration. Defaults to 30s.
+   */
+  private _initRefresh(timespan: number = 30000) {
+    let ms = this.authService.expires().valueOf() - new Date().valueOf();  // milliseconds till expiration
+    setTimeout(() => {
+      const url: string = isDevMode() ? '/assets/token.json' : '/auth';
+      this.http.get<IAuthToken & IAuthResponse>(url).toPromise().then(response => {
+        if (!!response.token) {
+          this.authService.token = response.token;
+          this._initRefresh(timespan);
+        }
+      });
+    }, ms - timespan);
   }
 }

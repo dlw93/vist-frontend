@@ -6,8 +6,8 @@ import { IAuthData } from '@app/shared';
 })
 export class AuthService {
   private static readonly _KEY = "currentUser";
-  private __token: string;  // this variable should never be used directly, except in the respective getter/setter
-  private _callbacks: ((auto: boolean) => void)[] = [];
+  private _token: string;
+  private _callbacks: (() => void)[] = [];
 
   constructor() {
     this._token = localStorage[AuthService._KEY];
@@ -29,34 +29,18 @@ export class AuthService {
   }
 
   public set token(value: string) {
+    if (!value) {  // provided an invalid token, i.e. either null, undefined or ""
+      this._callbacks.forEach(cb => cb());
+    }
     this._token = localStorage[AuthService._KEY] = value || "";
   }
 
   /**
    * Register an action to be performed before the user's token expires or is invalidated.
-   * @param callback The action to perform. The parameter indicates whether the token has expired automatically.
+   * @param callback The action to perform.
    */
-  public onExpiration(callback: (auto: boolean) => void) {
+  public onInvalidation(callback: () => void) {
     this._callbacks.push(callback);
-  }
-
-  private get _token(): string {
-    return this.__token;
-  }
-
-  /**
-   * If provided a "valid" token, we set a timer to fire shortly before its expiration.
-   */
-  private set _token(value: string) {
-    if (!!value) {  // provided a "valid" token, i.e. neither null, undefined or ""
-      let ms = this.getAuthData(value).expires.valueOf() - new Date().valueOf();  // milliseconds till expiration
-      setTimeout(() => {
-        this._callbacks.forEach(cb => cb(true));  // execute all previously provided callbacks
-      }, ms - 10000); // fire 10s before expiration
-    } else {
-      this._callbacks.forEach(cb => cb(false));
-    }
-    this.__token = value;
   }
 
   /**

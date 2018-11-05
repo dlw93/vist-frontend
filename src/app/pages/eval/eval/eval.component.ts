@@ -60,10 +60,8 @@ export class EvalComponent implements OnDestroy {
 
     this._querySub = this.evalService.query$.subscribe(query => this.current = query);
 
-    authService.onExpiration(auto => {
-      let msgAuto = 'Your session has expired and you were automatically signed out.\nWe saved your feedback so you can continue at any time.';
-      let msgMan = 'Your feedback was saved so you can continue at any time.';
-      this._sendFeedback(() => this.router.navigate(['']), auto ? msgAuto : msgMan);   // before the session is invalidated, save the user's feedback state
+    authService.onInvalidation(() => {
+      this._sendFeedback(() => this.router.navigate(['']));
     });
   }
 
@@ -75,8 +73,9 @@ export class EvalComponent implements OnDestroy {
   }
 
   onSubmit() {
+    let complete = this.feedbackComplete;
     this._sendFeedback(() => {
-      if (this.feedbackComplete) {
+      if (complete) {
         this.router.navigate(['/eval']);
       }
     });
@@ -111,15 +110,13 @@ export class EvalComponent implements OnDestroy {
 
   /**
    * Passes the feedback data to the evaluation service.
-   * @param message The message to be shown on successful transmission to the backend.
    * @param action A function to be executed after successful transmission.
    */
-  private _sendFeedback(action?: () => void, message?: string) {
+  private _sendFeedback(action?: () => void) {
     if (this._feedback.length > 0) {
       this.evalService.sendFeedback(this._feedback, !this.feedbackComplete).then(success => {
         if (success) {
-          let msg = message || 'Your feedback was successfully saved.';
-          this.snackBar.open(msg, 'Dismiss', { duration: 4000, verticalPosition: 'top' });
+          this.snackBar.open('Your feedback was successfully saved.', 'Dismiss', { duration: 4000, verticalPosition: 'top' });
           if (!!action) action();
         }
       });
