@@ -12,6 +12,7 @@ export class EvalService {
   private _query$ = new BehaviorSubject<IEvalQuery>(null);
   private _feedback$ = new BehaviorSubject<IFeedback[]>(null);
   private _data$ = new BehaviorSubject<IEvalResponse>(null);
+  private _loading$ = new BehaviorSubject<boolean>(false);
 
   constructor(private http: HttpClient) { }
 
@@ -32,6 +33,7 @@ export class EvalService {
 
   /**
    * The most recently received (partial) feedback response.
+   * This observable is supposed to always be in sync with the server.
    */
   public get feedback$(): Observable<IFeedback[]> {
     return this._feedback$.asObservable();
@@ -45,11 +47,19 @@ export class EvalService {
   }
 
   /**
+   * Whether a query is currently processed on the server.
+   */
+  public get loading$(): Observable<boolean> {
+    return this._loading$.asObservable();
+  }
+
+  /**
    * Submits a query to the server.
    * @param q The query to submit
    */
   public async sendQuery(q: IEvalQuery): Promise<void> {
     const url: string = isDevMode() ? '/assets/evalResponse.json' : '/getQueryEval';
+    this._loading$.next(true);
     return this.http.get<IEvalResponse>(url, {
       headers: { 'Content-Type': 'application/json' },
       params: {
@@ -69,6 +79,7 @@ export class EvalService {
       this._query$.next(q);
       this._feedback$.next(response ? response.alreadyEvaluated || [] : []);
       this._data$.next(response);
+      this._loading$.next(false);
     });
   }
 

@@ -1,13 +1,16 @@
 import { Injectable } from '@angular/core';
 import { IAuthData } from '@app/shared';
 
+type TCallback = () => void;
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   private static readonly _KEY = "currentUser";
   private _token: string;
-  private _callbacks: (() => void)[] = [];
+  private _invalidationCallbacks: TCallback[] = [];
+  private _expirationCallbacks: [TCallback, number][] = [];
 
   constructor() {
     this._token = localStorage[AuthService._KEY];
@@ -29,18 +32,37 @@ export class AuthService {
   }
 
   public set token(value: string) {
-    if (!value) {  // provided an invalid token, i.e. either null, undefined or ""
-      this._callbacks.forEach(cb => cb());
+    if (!!value) {
+      // if we are provided a valid token, we reset the timers for calling the respective expiration callbacks
+      let span = this.getAuthData(value).expires.valueOf() - new Date().valueOf();  // milliseconds till expiration
+      this._expirationCallbacks.forEach(([cb, ms]) => setTimeout(() => cb(), span - ms));
+    }
+    else {
+      // otherwise, we call the appropriate invalidation callbacks
+      this._invalidationCallbacks.forEach(cb => cb());
     }
     this._token = localStorage[AuthService._KEY] = value || "";
   }
 
   /**
-   * Register an action to be performed before the user's token expires or is invalidated.
+   * Register an action to be performed before the user's token is invalidated.
    * @param callback The action to perform.
    */
   public onInvalidation(callback: () => void) {
-    this._callbacks.push(callback);
+    this._invalidationCallbacks.push(callback);
+  }
+
+  /**
+   * Register an action to be performed before the user's token expires.
+   * @param callback The action to perform.
+   * @param ms The number of milliseconds the action shall be performed before expiration.
+   */
+  public onExpiration(callback: () => void, ms: number = 10000) {
+    if (!!this._token) {
+      let timeout = Math.max(0, this.expires().valueOf() - new Date().valueOf() - ms);  // milliseconds till timeout
+      setTimeout(() => callback(), timeout);
+    }
+    this._expirationCallbacks.push([callback, ms]);
   }
 
   /**

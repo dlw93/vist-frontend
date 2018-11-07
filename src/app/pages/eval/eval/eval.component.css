@@ -23,13 +23,18 @@ table {
   width: 100%;
 }
 
+.mat-column-status {
+  width: 24px;
+  color: rgba(0, 0, 0, 0.54);
+}
+
 .mat-column-score, .mat-column-year {
   width: 40px;
 }
 
 vist-tabs {
   overflow: hidden;
-  padding: 8px 84px 8px 94px;
+  padding: 8px 84px 8px 148px;
 }
 
 pre, .doc-stats > * {
@@ -64,7 +69,7 @@ pre {
 .rate-wrap {
   display: flex;
   margin: 0 -16px;
-  padding: 16px 0 16px 94px;
+  padding: 16px 79px 16px 148px;
   color: #265582;
   background-color: rgba(38, 85, 130, 0.02);
   border-top: 1px solid rgba(0, 0, 0, 0.12);

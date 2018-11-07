@@ -13,6 +13,7 @@ export class UserService {
   private static readonly _HEADER = { headers: { 'Content-Type': 'application/json' } };
 
   constructor(private http: HttpClient, private authService: AuthService) {
+    authService.onExpiration(() => this._refresh(), 10000);   // 10s before token expiration, acquire a fresh token
     if (authService.isValid()) {
       this.getUserData().then(user => this._user$.next(user));
     }
@@ -41,7 +42,6 @@ export class UserService {
       if (!!response.token) {
         this.authService.token = response.token;
         this.getUserData().then(user => this._user$.next(user));
-        this._initRefresh();
       }
       return !response.error;
     })).toPromise();
@@ -68,19 +68,14 @@ export class UserService {
   }
 
   /**
-   * Sets a timer to refresh the token 'timespan' seconds before its expiration.
-   * @param timespan The timespan before expiration. Defaults to 30s.
+   * Acquire a new token as long as the user's current token is still valid.
    */
-  private _initRefresh(timespan: number = 30000) {
-    let ms = this.authService.expires().valueOf() - new Date().valueOf();  // milliseconds till expiration
-    setTimeout(() => {
-      const url: string = isDevMode() ? '/assets/token.json' : '/auth';
-      this.http.get<IAuthToken & IAuthResponse>(url).toPromise().then(response => {
-        if (!!response.token) {
-          this.authService.token = response.token;
-          this._initRefresh(timespan);
-        }
-      });
-    }, ms - timespan);
+  private _refresh() {
+    const url: string = isDevMode() ? '/assets/token.json' : '/auth';
+    this.http.get<IAuthToken & IAuthResponse>(url).toPromise().then(response => {
+      if (!!response.token) {
+        this.authService.token = response.token;
+      }
+    });
   }
 }
