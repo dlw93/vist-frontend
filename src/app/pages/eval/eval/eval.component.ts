@@ -132,7 +132,7 @@ export class EvalComponent implements OnDestroy {
     if (this.feedbackCount > 0) {
       this.evalService.sendFeedback(this._feedback, !this.isFeedbackComplete()).then(success => {
         if (success) {
-          this.snackBar.open('Your feedback was successfully saved.', 'Dismiss', { duration: 4000, verticalPosition: 'top' });
+          this.snackBar.open('Your feedback was successfully saved.', 'Dismiss');
           if (!!action) action();
         }
       });

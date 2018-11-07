@@ -33,8 +33,8 @@ export class QueryComponent {
     this.isSmall = breakpointObserver.observe([Breakpoints.Small, Breakpoints.Medium]).pipe(map(state => state.matches));
     this.isLoading = queryService.loading$;
     this.hasData = queryService.data$.pipe(
-      tap(data => this.hasMedlineData = data ? data.numFound > 0 : false),
-      tap(data => this.hasCTData = data ? data.numFoundCT > 0 : false),
+      tap(data => this.hasMedlineData = data ? data.docs.length > 0 : false),
+      tap(data => this.hasCTData = data ? data.ct.length > 0 : false),
       tap(data => this.selectedTabIndex = data ? 1 - Math.sign(data.numFound) : 0),  // if there are no Medline results, switch to second tab
       map(data => data ? (data.numFound > 0 || data.numFoundCT > 0) : false),
       distinctUntilChanged()
@@ -50,6 +50,8 @@ export class QueryComponent {
 
   onTabChange(event: MatTabChangeEvent) {
     this.highlightingService.enabled.sentences = event.index == 0;  // disable sentence highlighting toggle on clinical trials tabs
+    // this._page[1 - event.index] = this.queryService.page;
+    // this.queryService.page = this._page[event.index];
   }
 
   onResultNavigate() {

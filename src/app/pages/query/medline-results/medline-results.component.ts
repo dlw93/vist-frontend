@@ -44,7 +44,7 @@ export class MedlineResultsComponent implements OnInit {
 
   ngOnInit() {
     this.paginator.page.asObservable().subscribe(event => {
-      this.queryService.page = {
+      this.queryService.page = {    // instead: loadPage(sz, idx)
         nrDocuments: event.pageSize,
         currentPage: event.pageIndex
       };
