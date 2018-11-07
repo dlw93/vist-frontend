@@ -32,7 +32,7 @@ export class MedlineResultsComponent implements OnInit {
   resultLength: Observable<number>;
   page: number;
   highlighting: IHighlighting;
-  isLoading: boolean;
+  isLoading: Observable<boolean>;
 
   private _expandedDoc: string;
 
@@ -41,6 +41,7 @@ export class MedlineResultsComponent implements OnInit {
     this.resultLength = this.queryService.data$.pipe(map(data => data ? data.numFound : 0));
     this.page = this.queryService.page.currentPage;
     this.highlighting = this.highlightingService.highlighting;
+    this.isLoading = this.queryService.fetching$;
   }
 
   ngOnInit() {
@@ -50,7 +51,6 @@ export class MedlineResultsComponent implements OnInit {
         currentPage: event.pageIndex
       };
       this.page = event.pageIndex;
-      this.isLoading = true;
       this.navigate.emit();
     });
   }

@@ -37,13 +37,13 @@ export class AuthComponent {
     return Math.floor((this.authService.expires().getTime() - new Date().getTime()) / (1000 * 60)); // minutes till expiration
   }
 
-  login() {
+  signIn() {
     this.userService.signIn(this.loginForm.value.username, this.loginForm.value.password).then(resp => {
       console.log(resp);
     });
   }
 
-  register() {
+  signUp() {
     this.userService.signUp(this.registerForm.value, this.registerForm.value.password);
   }
 
