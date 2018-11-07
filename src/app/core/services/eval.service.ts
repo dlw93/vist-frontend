@@ -7,7 +7,6 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class EvalService {
-  private _queries: Promise<IEvalQuery[]>;
   private _journals: Promise<ICivic[]>;
   private _query$ = new BehaviorSubject<IEvalQuery>(null);
   private _feedback$ = new BehaviorSubject<IFeedback[]>(null);
@@ -21,7 +20,7 @@ export class EvalService {
    */
   public get queries(): Promise<IEvalQuery[]> {
     const url: string = isDevMode() ? '/assets/evaluationQueries.json' : '/getEvaluationQueries';
-    return this._queries || (this._queries = this.http.get<IEvalQuery[]>(url).toPromise());
+    return this.http.get<IEvalQuery[]>(url).toPromise();  // always fetch the most recent query set (changes on submission of complete feedback)
   }
 
   /**

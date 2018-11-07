@@ -58,7 +58,8 @@ export class AuthService {
    * @param ms The number of milliseconds the action shall be performed before expiration.
    */
   public onExpiration(callback: () => void, ms: number = 10000) {
-    if (!!this._token) {
+    // if there's no currently valid token, we only register the callback for later
+    if (this.isValid()) {
       let timeout = Math.max(0, this.expires().valueOf() - new Date().valueOf() - ms);  // milliseconds till timeout
       setTimeout(() => callback(), timeout);
     }

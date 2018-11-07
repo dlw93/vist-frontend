@@ -30,7 +30,6 @@ export class MedlineResultsComponent implements OnInit {
 
   data: Observable<IMedlineDoc[]>;
   resultLength: Observable<number>;
-  page: number;
   highlighting: IHighlighting;
   isLoading: Observable<boolean>;
 
@@ -39,7 +38,6 @@ export class MedlineResultsComponent implements OnInit {
   constructor(private queryService: QueryService, private highlightingService: HighlightingService, private authService: AuthService) {
     this.data = this.queryService.data$.pipe(map(data => data ? data.docs : []));
     this.resultLength = this.queryService.data$.pipe(map(data => data ? data.numFound : 0));
-    this.page = this.queryService.page.currentPage;
     this.highlighting = this.highlightingService.highlighting;
     this.isLoading = this.queryService.fetching$;
   }
@@ -50,9 +48,12 @@ export class MedlineResultsComponent implements OnInit {
         nrDocuments: event.pageSize,
         currentPage: event.pageIndex
       };
-      this.page = event.pageIndex;
       this.navigate.emit();
     });
+  }
+
+  get page(): number {
+    return this.queryService.page.currentPage;
   }
 
   get showRating(): boolean {
