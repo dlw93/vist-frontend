@@ -73,8 +73,8 @@
                     <vist-entry key="Cancer Type">{{ doc.cancerType }} ({{ doc.confidence_is }})</vist-entry>
                     <vist-entry key="Article Source"><a href="{{ doc.articleLink }}">{{ doc.articleLink }}</a></vist-entry>
                     <vist-entry key="Journal">{{ doc.journal }}</vist-entry>
-                    <vist-entry key="Mutations">{{ doc.mutation_normalizedValue.join(', ') }}</vist-entry>
-                    <vist-entry key="Genes">{{ doc.gene_name.join(', ') }}</vist-entry>
+                    <vist-entry key="Mutations">{{ doc.mutation_normalizedValue?.join(', ') }}</vist-entry>
+                    <vist-entry key="Genes">{{ doc.gene_name?.join(', ') }}</vist-entry>
                     <vist-entry key="MeSH Terms">{{ doc.mesh_terms }}</vist-entry>
                   </vist-key-value-table>
                 </vist-tab>
