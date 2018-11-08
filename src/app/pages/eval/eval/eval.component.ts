@@ -81,13 +81,13 @@ export class EvalComponent implements OnDestroy {
   }
 
   onQuery(q: IEvalQuery) {
-    this.current = null;    // set the current query to null, so the mat-card control is removed an re-inserted, making the contained mat-tab-group go to tab #0
     if (this.feedbackCount > 0) {
       this._sendFeedback(() => this.evalService.sendQuery(q));
     }
     else {
       this.evalService.sendQuery(q);
     }
+    this.current = null;    // set the current query to null, so the mat-card control is removed an re-inserted, making the contained mat-tab-group go to tab #0
   }
 
   get expandedDoc(): string {
