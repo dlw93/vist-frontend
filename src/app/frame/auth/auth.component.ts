@@ -38,13 +38,15 @@ export class AuthComponent {
   }
 
   signIn() {
-    this.userService.signIn(this.loginForm.value.username, this.loginForm.value.password).then(resp => {
-      console.log(resp);
-    });
+    this.userService.signIn(this.loginForm.value.username, this.loginForm.value.password);
   }
 
   signUp() {
-    this.userService.signUp(this.registerForm.value, this.registerForm.value.password);
+    let username = this.registerForm.value.username;
+    let password = this.registerForm.value.password;
+    this.userService.signUp(this.registerForm.value, password).then(() => {
+      this.userService.signIn(username, password);
+    });
   }
 
   signOut() {

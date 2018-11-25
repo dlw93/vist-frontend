@@ -27,7 +27,7 @@ export class UserService {
   public signUp(user: IUser, password: string): Promise<boolean> {
     const url: string = isDevMode() ? '/assets/user.json' : '/users';
     const data = Object.assign({}, user, { password: password });
-    return this.http.post<IAuthResponse>(url, data, UserService._HEADER).pipe(map(response => !response.error)).toPromise();
+    return this.http.post<IAuthResponse>(url, data, UserService._HEADER).pipe(map(response => !response)).toPromise();
   }
 
   /**
