@@ -44,8 +44,10 @@ export class AuthComponent {
   signUp() {
     let username = this.registerForm.value.username;
     let password = this.registerForm.value.password;
-    this.userService.signUp(this.registerForm.value, password).then(() => {
-      this.userService.signIn(username, password);
+    this.userService.signUp(this.registerForm.value, password).then(success => {
+      if (success) {
+        this.userService.signIn(username, password);
+      }
     });
   }
 
