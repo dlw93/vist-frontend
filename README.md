@@ -11,6 +11,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 ## Build
 
 * Change into the project directory with `cd vist-frontend`
+* Run `npm install` to download the project's requirements
 * Start the build process with `ng build --prod --deploy-url /vist-frontend/`
 
 ## Installation
