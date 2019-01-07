@@ -1,4 +1,4 @@
-# VistFrontend
+# VIST Frontend
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.1.4.
 
@@ -16,4 +16,4 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 ## Installation
 
 * Remove the old frontend with `rm -r /home/docClass/webApp<branch>/vist-frontend`
-* Still from within the project directory, put the new frontend in place with `mv ./dist/vist-frontent /home/docClass/webApp<branch>/`
+* Still from within the project directory, put the new frontend in place with `mv ./dist/vist-frontend /home/docClass/webApp<branch>/`
