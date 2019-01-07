@@ -17,7 +17,7 @@
                 </div>
                 <mat-card @vistSlideIn>
                     <mat-tab-group dynamicHeight (selectedTabChange)="onTabChange($event)" [(selectedIndex)]="selectedTabIndex">
-                        <mat-tab label="Medline" [disabled]="!hasMedlineData">
+                        <mat-tab label="PubMed" [disabled]="!hasMedlineData">
                             <app-medline-results (navigate)="onResultNavigate()"></app-medline-results>
                         </mat-tab>
                         <mat-tab label="Clinical Trials" [disabled]="!hasCTData">
