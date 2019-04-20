@@ -28,7 +28,7 @@
             <vist-key-value-table>
               <vist-entry key="Clinical Relevance">{{ doc.clinicalRelevance }} ({{ doc.clinical_relevance_scale }})</vist-entry>
               <vist-entry key="Cancer Type">{{ doc.cancerType }} ({{ doc.confidence_is }})</vist-entry>
-              <vist-entry key="Article Source"><a href="{{ doc.articleLink }}">{{ doc.articleLink }}</a></vist-entry>
+              <vist-entry key="Article Source"><a href="{{ doc.articleLink }}" target="_blank">{{ doc.articleLink }}</a></vist-entry>
               <vist-entry *ngFor="let row of rows(doc)" [key]="row.name">
                 <a *ngFor="let entry of row.entries" [class.disabled]="entry.key === undefined" [attr.href]="entry.key ? row.url + entry.key : null"
                   target="_blank">{{ entry.value }}</a>
