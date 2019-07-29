@@ -24,7 +24,7 @@ interface IEntry {
 })
 export class MedlineResultsComponent implements OnInit {
   @Output() navigate = new EventEmitter<void>();
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
   readonly displayedColumns = ['score', 'title', 'year'];
 

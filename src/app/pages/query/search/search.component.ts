@@ -12,10 +12,10 @@ import { IEvalQuery, ITerms, IGeneCandidate } from '@app/shared';
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
-  @ViewChild(MatTabGroup) tabs: MatTabGroup;
-  @ViewChild("geneInput") geneInput: ElementRef<HTMLInputElement>;
-  @ViewChild("geneInput", { read: MatAutocompleteTrigger }) geneAutocompleteTrigger: MatAutocompleteTrigger;
-  @ViewChild("auto") geneAutocomplete: MatAutocomplete;
+  @ViewChild(MatTabGroup, { static: true }) tabs: MatTabGroup;
+  @ViewChild("geneInput", { static: true }) geneInput: ElementRef<HTMLInputElement>;
+  @ViewChild("geneInput", { read: MatAutocompleteTrigger, static: true }) geneAutocompleteTrigger: MatAutocompleteTrigger;
+  @ViewChild("auto", { static: true }) geneAutocomplete: MatAutocomplete;
 
   @Input() reset: boolean = false;
   @Output() terms = new EventEmitter<void>();

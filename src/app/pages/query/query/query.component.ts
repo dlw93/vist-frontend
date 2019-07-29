@@ -20,8 +20,8 @@ export class QueryComponent {
   hasCTData: boolean;
   selectedTabIndex: number;
 
-  @ViewChild(VistHeader, { read: ElementRef }) header: ElementRef;
-  @ViewChild(MatSidenav) sidenav: MatSidenav;
+  @ViewChild(VistHeader, { read: ElementRef, static: true }) header: ElementRef;
+  @ViewChild(MatSidenav, { static: false }) sidenav: MatSidenav;
 
   constructor(
     queryService: QueryService,

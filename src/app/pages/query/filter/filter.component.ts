@@ -41,7 +41,7 @@ export class FilterComponent {
   ];
 
   @Output() filter = new EventEmitter<void>();
-  @ViewChild("journalInput") private journalInput: ElementRef<HTMLInputElement>;
+  @ViewChild("journalInput", { static: true }) private journalInput: ElementRef<HTMLInputElement>;
 
   constructor(highlightingService: HighlightingService, private queryService: QueryService) {
     this._highlight = highlightingService.highlighting;

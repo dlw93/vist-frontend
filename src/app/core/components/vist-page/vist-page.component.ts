@@ -10,7 +10,7 @@ import { MatSidenav } from '@angular/material';
   template: '<ng-template><ng-content></ng-content></ng-template>'
 })
 export class VistPageSidebar {
-  @ViewChild(TemplateRef) template: TemplateRef<any>;
+  @ViewChild(TemplateRef, { static: true }) template: TemplateRef<any>;
 }
 
 @Component({
@@ -18,7 +18,7 @@ export class VistPageSidebar {
   template: '<ng-template><ng-content></ng-content></ng-template>'
 })
 export class VistPageContent {
-  @ViewChild(TemplateRef) template: TemplateRef<any>;
+  @ViewChild(TemplateRef, { static: true }) template: TemplateRef<any>;
 }
 
 @Component({
@@ -26,7 +26,7 @@ export class VistPageContent {
   template: '<ng-template><ng-content></ng-content></ng-template>'
 })
 export class VistPageError {
-  @ViewChild(TemplateRef) template: TemplateRef<any>;
+  @ViewChild(TemplateRef, { static: true }) template: TemplateRef<any>;
 }
 
 @Component({
@@ -40,11 +40,11 @@ export class VistPage implements OnInit {
   @Input() loading: boolean;
   @Input() error: boolean;
 
-  @ViewChild(VistHeader, { read: ElementRef }) private _header: ElementRef;
-  @ViewChild(MatSidenav) _sidenav: MatSidenav;
-  @ContentChild(VistPageSidebar) _sidebar: VistPageSidebar;
-  @ContentChild(VistPageContent) _content: VistPageContent;
-  @ContentChild(VistPageError) _error: VistPageError;
+  @ViewChild(VistHeader, { read: ElementRef, static: true }) private _header: ElementRef;
+  @ViewChild(MatSidenav, { static: false }) _sidenav: MatSidenav;
+  @ContentChild(VistPageSidebar, /* TODO: add static flag */ { static: true }) _sidebar: VistPageSidebar;
+  @ContentChild(VistPageContent, /* TODO: add static flag */ { static: true}) _content: VistPageContent;
+  @ContentChild(VistPageError, /* TODO: add static flag */ { static: true}) _error: VistPageError;
 
   private _isSmall: boolean;
 

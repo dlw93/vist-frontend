@@ -10,7 +10,7 @@ import { VIST_SOFT_IN_OUT_ANIMATION } from '@app/core/animations';
 })
 export class VistOverlay {
   @Input() origin: CdkOverlayOrigin;
-  @ViewChild(TemplateRef) templateRef: TemplateRef<any>;
+  @ViewChild(TemplateRef, { static: true }) templateRef: TemplateRef<any>;
 
   private _isOpen: boolean;
 

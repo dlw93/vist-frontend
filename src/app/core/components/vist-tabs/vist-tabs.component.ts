@@ -7,7 +7,7 @@ import { Component, Input, ViewChild, TemplateRef, ContentChildren, QueryList, A
 export class VistTab {
   @Input() title: string;
   @Input() active: boolean = false;
-  @ViewChild(TemplateRef) template: TemplateRef<any>;
+  @ViewChild(TemplateRef, { static: true }) template: TemplateRef<any>;
 }
 
 @Component({
