@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, Output, EventEmitter, Input, ElementRef } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { MatAutocompleteSelectedEvent, MatTabGroup, MatAutocompleteTrigger, AUTOCOMPLETE_PANEL_HEIGHT, MatAutocomplete } from '@angular/material';
+import { MatAutocompleteSelectedEvent, MatAutocompleteTrigger, AUTOCOMPLETE_PANEL_HEIGHT, MatAutocomplete } from '@angular/material/autocomplete';
+import { MatTabGroup } from '@angular/material/tabs';
 import { Observable, merge } from 'rxjs';
 import { startWith, switchMap, filter } from 'rxjs/operators';
 import { QueryService } from '@app/core';

@@ -3,7 +3,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { TitleService } from '../../services';
 import { VIST_SLIDE_IN_ANIMATION } from '../../animations';
 import { VistHeader } from '../vist-header/vist-header.component';
-import { MatSidenav } from '@angular/material';
+import { MatSidenav } from '@angular/material/sidenav';
 
 @Component({
   selector: 'vist-page-sidebar, [vist-page-sidebar], [vistPageSidebar]',

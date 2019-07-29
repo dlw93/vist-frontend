@@ -1,6 +1,6 @@
 import { Component, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subscription, Observable } from 'rxjs';
 import { EvalService, VIST_EXPAND_ANIMATION, AuthService } from '@app/core';
 import { IEvalQuery, IMedlineDoc, IFeedback } from '@app/shared';
@@ -22,16 +22,16 @@ export class EvalComponent implements OnDestroy {
 
   readonly displayedColumns = ['status', 'score', 'title', 'year'];
   readonly relevanceScale = [
-    { caption: "Highly Relevant", value: "Highly Relevant" },
-    { caption: "Relevant", value: "Relevant" },
-    { caption: "Matches but Not Relevant", value: "Matches but not relevant" },
-    { caption: "Irrelevant", value: "Irrelevant" },
-    { caption: "Unknown", value: "Unknown" }
+    { caption: 'Highly Relevant', value: 'Highly Relevant' },
+    { caption: 'Relevant', value: 'Relevant' },
+    { caption: 'Matches but Not Relevant', value: 'Matches but not relevant' },
+    { caption: 'Irrelevant', value: 'Irrelevant' },
+    { caption: 'Unknown', value: 'Unknown' }
   ];
   readonly classificationScale = [
-    { caption: "Yes", value: "Yes" },
-    { caption: "No", value: "No" },
-    { caption: "Unknown", value: "Unknown" }
+    { caption: 'Yes', value: 'Yes' },
+    { caption: 'No', value: 'No' },
+    { caption: 'Unknown', value: 'Unknown' }
   ];
 
   private _expandedDoc: string;
@@ -44,7 +44,7 @@ export class EvalComponent implements OnDestroy {
 
     this._dataSub = this.evalService.data$.subscribe(response => {
       this.data = response ? response.docs : [];
-      this.resultLength = this.data.length
+      this.resultLength = this.data.length;
       this.hasData = this.data.length > 0;
     });
 
@@ -72,7 +72,7 @@ export class EvalComponent implements OnDestroy {
   }
 
   onSubmit() {
-    let complete = this.isFeedbackComplete();
+    const complete = this.isFeedbackComplete();
     this._sendFeedback(() => {
       if (complete) {
         this.router.navigate(['/eval']);
@@ -83,8 +83,7 @@ export class EvalComponent implements OnDestroy {
   onQuery(q: IEvalQuery) {
     if (this.feedbackCount > 0) {
       this._sendFeedback(() => this.evalService.sendQuery(q));
-    }
-    else {
+    } else {
       this.evalService.sendQuery(q);
     }
     this.current = null;    // set the current query to null, so the mat-card control is removed an re-inserted, making the contained mat-tab-group go to tab #0
@@ -101,16 +100,16 @@ export class EvalComponent implements OnDestroy {
   /**
    * Whether a document in the result set has been rated.
    * If no pmid is provided, we return whether all documents have been rated.
-   * @param pmid 
+   * @param pmid
    */
   isFeedbackComplete(pmid?: string): boolean {
     return !!pmid ? !!this.useful[pmid] && !!this.classification[pmid] : this.data.length == this.feedbackCount;
   }
 
   _headerIcon(): string {
-    if (this.isFeedbackComplete()) return 'check_box';
-    else if (this.feedbackCount == 0) return 'check_box_outline_blank';
-    else return 'indeterminate_check_box';
+    if (this.isFeedbackComplete()) { return 'check_box'; }
+    else if (this.feedbackCount == 0) { return 'check_box_outline_blank'; }
+    else { return 'indeterminate_check_box'; }
   }
 
   _rowIcon(pmid: string): string {
@@ -133,7 +132,7 @@ export class EvalComponent implements OnDestroy {
       this.evalService.sendFeedback(this._feedback, !this.isFeedbackComplete()).then(success => {
         if (success) {
           this.snackBar.open('Your feedback was successfully saved.', 'Dismiss');
-          if (!!action) action();
+          if (!!action) { action(); }
         }
       });
     }
@@ -144,7 +143,7 @@ export class EvalComponent implements OnDestroy {
    */
   private get _feedback(): IFeedback[] {
     return Object.entries(this.useful)
-      .filter(([pmid,]) => !!this.useful[pmid] && !!this.classification[pmid])    // remove incomplete feedback items, i.e. with 'useful' or 'classification' unset
+      .filter(([pmid, ]) => !!this.useful[pmid] && !!this.classification[pmid])    // remove incomplete feedback items, i.e. with 'useful' or 'classification' unset
       .map(([pmid, useful]) => ({
         pmid: pmid,
         queryId: this.current.evaluationQueries_id,

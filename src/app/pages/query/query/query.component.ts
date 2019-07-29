@@ -1,6 +1,7 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { MatSidenav, MatTabChangeEvent } from '@angular/material';
+import { MatSidenav } from '@angular/material/sidenav';
+import { MatTabChangeEvent } from '@angular/material/tabs';
 import { Observable, combineLatest } from 'rxjs';
 import { map, distinctUntilChanged, tap } from 'rxjs/operators';
 import { QueryService, VIST_SLIDE_IN_ANIMATION, HighlightingService, TitleService, VistHeader } from '@app/core';

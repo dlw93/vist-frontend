@@ -4,7 +4,7 @@ import { QueryService, HighlightingService } from '@app/core';
 import { Observable } from 'rxjs';
 import { IFilter, IResponse, IHighlighting } from '@app/shared';
 import { map, startWith, filter } from 'rxjs/operators';
-import { MatAutocompleteSelectedEvent } from '@angular/material';
+import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 
 interface ICancerType {
   disease: string;

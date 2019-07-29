@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatSidenavModule, MatProgressSpinnerModule } from '@angular/material';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSidenavModule } from '@angular/material/sidenav';
 import { VistPage, VistPageSidebar, VistPageContent, VistPageError } from './vist-page.component';
 import { VistHeaderModule } from '../vist-header/vist-header.module';
 
