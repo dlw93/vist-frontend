@@ -1,6 +1,5 @@
 # VIST Frontend
-
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.1.4.
+This is the frontend of [VIST](http://vist.informatik.hu-berlin.de/), further described by Jurica Ševa et al. in ["VIST - A Variant-Information Search Tool for precision oncology."](https://link.springer.com/content/pdf/10.1186%2Fs12859-019-2958-3.pdf)
 
 ## Setup
 
