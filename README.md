@@ -6,7 +6,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 * If not already done, download and install [Node.js](https://nodejs.org)
 * Download and install the Angular CLI with `npm install -g @angular/cli`
-* Check the project out from GitLab with `git clone https://gitlab.informatik.hu-berlin.de/wigandtd/vist-frontend.git`
+* Check the project out from GitLab with `git clone https://github.com/dlw93/vist-frontend.git`
 
 ## Build
 
