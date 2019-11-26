@@ -67,3 +67,6 @@ hr {
     color: $dark-primary-text;
     background: map-get($mat-grey, 50);
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

@@ -4,11 +4,13 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
 import { FrameModule, AppComponent } from './frame';
 import { AuthInterceptor, AuthService } from '@app/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   imports: [
     BrowserModule,
-    FrameModule
+    FrameModule,
+    BrowserAnimationsModule
   ],
   bootstrap: [AppComponent],
   providers: [
