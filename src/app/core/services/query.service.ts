@@ -83,8 +83,13 @@ export class QueryService {
     const q: TQuery = Object.assign({}, this._terms, this._page, this._filter, this._refinement);
     const indicator$ = isRefinement ? this._fetching$ : this._loading$;
 
-    // stringify IGeneCandidates
-    Object.assign(q, { genes: q.genes.map(gene => gene.extended_annotations.reduce((p, v) => p + ` ${v}`, gene.text)).join(" ") }); // ==> "gene.text ext1 ext2 ..."
+    // stringify IGeneCandidates, i.e. generate "gene.text ext1 ext2 ..." for each gene
+    Object.assign(q, {
+      genes: q.genes
+        .flatMap(gene => gene.extended_annotations.concat(gene.text))
+        .map(v => `"${v}"`)
+        .join(" ")
+    });
 
     indicator$.next(true);
     if (!isRefinement) {
