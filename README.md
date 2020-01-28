@@ -1,11 +1,12 @@
 # VIST Frontend
-This is the frontend of [VIST](http://vist.informatik.hu-berlin.de/), further described by Jurica Ševa et al. in ["VIST - A Variant-Information Search Tool for precision oncology."](https://link.springer.com/content/pdf/10.1186%2Fs12859-019-2958-3.pdf)
+
+This is the frontend of [VIST](https://vist.informatik.hu-berlin.de/), further described by Jurica Ševa et al. in ["VIST - A Variant-Information Search Tool for precision oncology."](https://link.springer.com/content/pdf/10.1186%2Fs12859-019-2958-3.pdf)
 
 ## Setup
 
-* If not already done, download and install [Node.js](https://nodejs.org)
-* Download and install the Angular CLI with `npm install -g @angular/cli`
-* Check the project out from GitLab with `git clone https://github.com/dlw93/vist-frontend.git`
+* Download and install [Node.js](https://nodejs.org)
+* Download and install the [Angular CLI](https://cli.angular.io/) with `npm i -g @angular/cli`
+* Clone the project with `git clone https://github.com/dlw93/vist-frontend.git`
 
 ## Build
 

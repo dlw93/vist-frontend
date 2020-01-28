@@ -107,6 +107,10 @@ export class QueryService {
 
       this._data$.next(data);
       indicator$.next(false);
+    }, (error) => {
+      console.log(error);
+      this._data$.next(null);
+      indicator$.next(false);
     });
   }
 }
