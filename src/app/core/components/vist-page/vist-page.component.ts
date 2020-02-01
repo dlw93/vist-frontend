@@ -41,7 +41,7 @@ export class VistPage implements OnInit {
   @Input() error: boolean;
 
   @ViewChild(VistHeader, { read: ElementRef, static: true }) private _header: ElementRef;
-  @ViewChild(MatSidenav, { static: false }) _sidenav: MatSidenav;
+  @ViewChild(MatSidenav) _sidenav: MatSidenav;
   @ContentChild(VistPageSidebar, /* TODO: add static flag */ { static: true }) _sidebar: VistPageSidebar;
   @ContentChild(VistPageContent, /* TODO: add static flag */ { static: true}) _content: VistPageContent;
   @ContentChild(VistPageError, /* TODO: add static flag */ { static: true}) _error: VistPageError;

@@ -22,7 +22,7 @@ export class QueryComponent {
   selectedTabIndex: number;
 
   @ViewChild(VistHeader, { read: ElementRef, static: true }) header: ElementRef;
-  @ViewChild(MatSidenav, { static: false }) sidenav: MatSidenav;
+  @ViewChild(MatSidenav) sidenav: MatSidenav;
 
   constructor(
     queryService: QueryService,
