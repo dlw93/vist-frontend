@@ -15,7 +15,7 @@ const routes: Routes = [
     HomeModule,
     ResultModule,
     EvalModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })
   ],
   exports: [RouterModule]
 })
