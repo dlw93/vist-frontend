@@ -9,12 +9,10 @@ import { FilterComponent } from './filter/filter.component';
 import { HighlightingComponent } from './highlighting/highlighting.component';
 import { MedlineResultsComponent } from './medline-results/medline-results.component';
 import { ClinicalTrialsResultsComponent } from './clinical-trials-results/clinical-trials-results.component';
-import {
-  VistTabsModule,
-  VistHeaderModule,
-  VistKeyValueTableModule,
-  PipesModule
-} from '@app/core';
+import { VistTabsModule, } from '@app/components';
+import { VistHeaderModule, } from '@app/components';
+import { VistKeyValueTableModule } from '@app/components';
+import { PipesModule } from '@app/pipes/pipes.module';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';

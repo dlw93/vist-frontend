@@ -4,7 +4,9 @@ import { MatSidenav } from '@angular/material/sidenav';
 import { MatTabChangeEvent } from '@angular/material/tabs';
 import { Observable, combineLatest } from 'rxjs';
 import { map, distinctUntilChanged, tap } from 'rxjs/operators';
-import { QueryService, VIST_SLIDE_IN_ANIMATION, HighlightingService, TitleService, VistHeader } from '@app/core';
+import { QueryService, HighlightingService, TitleService } from '@app/services';
+import { VIST_SLIDE_IN_ANIMATION } from '@app/animations';
+import { VistHeader } from '@app/components/vist-header/vist-header.component';
 
 @Component({
   selector: 'app-query',

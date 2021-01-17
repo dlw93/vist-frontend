@@ -3,8 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
 import { FrameModule, AppComponent } from './frame';
-import { AuthService } from '@app/core/services';
-import { AuthInterceptor } from './core/interceptors';
+import { AuthService } from '@app/services';
+import { AuthInterceptor } from './interceptors';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 

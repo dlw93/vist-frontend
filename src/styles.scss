@@ -1,13 +1,12 @@
 @import '~@angular/cdk/overlay-prebuilt.css';
 @import '~@angular/cdk/a11y-prebuilt.css';
 @import '~@angular/material/theming';
-@import 'app/core/components/vist-header/vist-header.component';
-@import 'app/core/components/vist-tabs/vist-tabs.component';
-@import 'app/core/components/vist-overlay/vist-overlay.component';
-@import 'app/core/styles';
+@import 'app/components/vist-header/vist-header.component';
+@import 'app/components/vist-tabs/vist-tabs.component';
+@import 'app/components/vist-overlay/vist-overlay.component';
+@import 'app/styles/annotated';
+@import 'app/styles/expandable-table';
 @import 'app/pages/home/home/home.component';
-
-@include mat-core();
 
 // generated from the HU corporate design
 $vist-dark-blue: (
@@ -76,9 +75,11 @@ $vist-light-blue: (
     )
 );
 
+@include mat-core();
+
 $theme-primary: mat-palette($vist-light-blue);
 $theme-accent: mat-palette($vist-dark-blue);
-$theme: mat-light-theme($theme-primary, $theme-accent);
+$theme: mat-dark-theme($theme-primary, $theme-accent);
 
 @include angular-material-theme($theme);
 @include header-theme($theme);
@@ -93,16 +94,6 @@ a {
     text-decoration: none;
 }
 
-hr {
-    border: 0;
-    border-bottom: 1px dashed mat-color($theme-primary, 100);
-}
-
-.snackbar-light {    
-    $is-dark-theme: map-get($theme, is-dark);
-    color: $dark-primary-text;
-    background: map-get($mat-grey, 50);
-}
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

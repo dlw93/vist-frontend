@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { HighlightingService } from '@app/core/services';
-import { IHighlighting } from '@app/shared/models';
+import { HighlightingService } from '@app/services';
+import { IHighlighting } from '@app/models';
 
 @Component({
   selector: 'app-highlighting',

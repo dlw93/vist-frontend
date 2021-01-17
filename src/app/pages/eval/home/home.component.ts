@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { EvalService } from '@app/core';
-import { IEvalQuery } from '@app/shared';
+import { EvalService } from '@app/services';
+import { IEvalQuery } from '@app/models';
 
 @Component({
   selector: 'app-eval-home',

@@ -13,7 +13,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { AppComponent } from './app/app.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { VistOverlayModule } from '@app/core';
+import { VistOverlayModule } from '@app/components';
 import { AppRoutingModule } from '../app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthComponent } from './auth/auth.component';

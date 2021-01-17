@@ -1,8 +1,8 @@
 import { Component, Output, EventEmitter, ElementRef, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { QueryService, HighlightingService } from '@app/core';
+import { QueryService, HighlightingService } from '@app/services';
 import { Observable } from 'rxjs';
-import { IFilter, IResponse, IHighlighting } from '@app/shared';
+import { IFilter, IResponse, IHighlighting } from '@app/models';
 import { map, startWith, filter } from 'rxjs/operators';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 

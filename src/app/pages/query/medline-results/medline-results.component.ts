@@ -2,8 +2,9 @@ import { Component, OnInit, ViewChild, EventEmitter, Output } from '@angular/cor
 import { MatPaginator } from '@angular/material/paginator';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { IMedlineDoc, IHighlighting } from '@app/shared';
-import { QueryService, VIST_EXPAND_ANIMATION, HighlightingService, AuthService } from '@app/core';
+import { IMedlineDoc, IHighlighting } from '@app/models';
+import { QueryService, HighlightingService, AuthService } from '@app/services';
+import { VIST_EXPAND_ANIMATION } from '@app/animations';
 
 interface IKeyValue {
   key: string;

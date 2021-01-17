@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { UserService } from '@app/core';
+import { UserService } from '@app/services';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({

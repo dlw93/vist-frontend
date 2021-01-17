@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UserService, AuthService } from '@app/core';
+import { UserService, AuthService } from '@app/services';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { filter, map } from 'rxjs/operators';

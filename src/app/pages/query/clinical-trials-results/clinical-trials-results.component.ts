@@ -2,8 +2,10 @@ import { Component, Output, EventEmitter } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { IHighlighting, IClinicalTrialDoc } from '@app/shared';
-import { QueryService, VIST_EXPAND_ANIMATION, HighlightingService, AnnotateRegexPipe } from '@app/core';
+import { IHighlighting, IClinicalTrialDoc } from '@app/models';
+import { QueryService, HighlightingService } from '@app/services';
+import { AnnotateRegexPipe } from '@app/pipes/annregex.pipe';
+import { VIST_EXPAND_ANIMATION } from '@app/animations';
 
 interface IEntry {
   url: string;

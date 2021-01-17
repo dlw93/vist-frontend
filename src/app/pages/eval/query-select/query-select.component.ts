@@ -1,6 +1,6 @@
 import { Component, Output, EventEmitter } from '@angular/core';
-import { IEvalQuery } from '@app/shared';
-import { EvalService } from '@app/core';
+import { IEvalQuery } from '@app/models';
+import { EvalService } from '@app/services';
 
 @Component({
   selector: 'app-query-select',

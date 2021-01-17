@@ -4,8 +4,8 @@ import { MatAutocompleteSelectedEvent, MatAutocompleteTrigger, AUTOCOMPLETE_PANE
 import { MatTabGroup } from '@angular/material/tabs';
 import { Observable, merge } from 'rxjs';
 import { startWith, switchMap, filter } from 'rxjs/operators';
-import { QueryService } from '@app/core';
-import { IEvalQuery, ITerms, IGeneCandidate } from '@app/shared';
+import { QueryService } from '@app/services';
+import { IEvalQuery, ITerms, IGeneCandidate } from '@app/models';
 
 @Component({
   selector: 'app-search',

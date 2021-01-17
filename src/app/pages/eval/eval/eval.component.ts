@@ -2,8 +2,9 @@ import { Component, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subscription, Observable } from 'rxjs';
-import { EvalService, VIST_EXPAND_ANIMATION, AuthService } from '@app/core';
-import { IEvalQuery, IMedlineDoc, IFeedback } from '@app/shared';
+import { VIST_EXPAND_ANIMATION } from '@app/animations';
+import { EvalService, AuthService } from '@app/services';
+import { IEvalQuery, IMedlineDoc, IFeedback } from '@app/models';
 
 @Component({
   selector: 'app-eval',

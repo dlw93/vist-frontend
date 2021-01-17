@@ -1,0 +1,51 @@
+<!-- shown iff no sidebar, error, and content view available -->
+<ng-template #contentViewDefault>
+  <ng-content></ng-content>
+</ng-template>
+
+<!-- shown iff input error variable is set to true -->
+<ng-template #errorView>
+  <div class="error fill">
+    <ng-container *ngIf="_error; else errorViewDefault">
+      <ng-container *ngTemplateOutlet="_error.template"></ng-container>
+    </ng-container>
+    <ng-template #errorViewDefault>
+      <span class="mat-title">Error</span>
+    </ng-template>
+  </div>
+</ng-template>
+
+<!-- shown iff input loading variable is set to true -->
+<ng-template #loadingView>
+  <div class="loading-indicator fill">
+    <mat-spinner></mat-spinner>
+    <h4 class="mat-subheading-1">Evaluating your query...</h4>
+  </div>
+</ng-template>
+
+<mat-sidenav-container>
+
+  <!-- If we are on a small screen and there is a sidebar available, we'll show the sidebar in an expandable sidenav. -->
+  <mat-sidenav *ngIf="isSmall && _sidebar">
+    <div class="sidenav">
+      <ng-container *ngTemplateOutlet="_sidebar.template"></ng-container>
+    </div>
+  </mat-sidenav>
+
+  <!-- The actually visible content of the page -->
+  <mat-sidenav-content>
+    <vist-header [title]="title" [showToggle]="isSmall && _sidebar" (toggle)="_sidenav.toggle()"></vist-header>
+    <div class="main" *ngIf="!loading; else loadingView">
+      <ng-container *ngIf="!error; else errorView">
+        <div class="sidebar" *ngIf="!isSmall && _sidebar" @vistSlideIn>
+          <ng-container *ngTemplateOutlet="_sidebar.template"></ng-container>
+        </div>
+        <main @vistSlideIn>
+          <ng-container *ngIf="_content; else contentViewDefault">
+            <ng-container *ngTemplateOutlet="_content.template"></ng-container>
+          </ng-container>
+        </main>
+      </ng-container>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

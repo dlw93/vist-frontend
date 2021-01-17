@@ -15,7 +15,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
-import { VistTabsModule, VistKeyValueTableModule, VistPageModule } from '@app/core';
+import { VistTabsModule, VistKeyValueTableModule, VistPageModule } from '@app/components';
 import { EvalHomeComponent } from './home/home.component';
 import { EvalComponent } from './eval/eval.component';
 import { QuerySelectComponent } from './query-select/query-select.component';
