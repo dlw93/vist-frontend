@@ -1,0 +1,8 @@
+@import '../../app-theme';
+
+$theme-primary: mat-palette($vist-light-blue);
+$theme-accent: mat-palette($vist-dark-blue);
+$theme: mat-light-theme($theme-primary, $theme-accent);
+
+@include angular-material-theme($theme);
+@include vist-app-theme($theme);

@@ -1,0 +1,27 @@
+@import '~@angular/material/theming';
+@import './app/components/vist-header/vist-header.component';
+@import './app/components/vist-tabs/vist-tabs.component';
+@import './app/components/vist-overlay/vist-overlay.component';
+@import './app/pages/home/home/home.component';
+@import './styles/general';
+@import './styles/palettes';
+@import './styles/annotated';
+@import './styles/expandable-table';
+
+@mixin vist-app-theme($theme) {
+    @include vist-header-theme($theme);
+    @include vist-tabs-theme($theme);
+    @include vist-expandable-table($theme);
+    @include vist-overlay-theme($theme);
+    @include vist-annotated();
+    @include home-component-theme($theme);
+
+    a {
+        color: mat-color($theme-primary);
+        text-decoration: none;
+    }
+}
+
+$theme-primary: mat-palette($vist-light-blue);
+$theme-accent: mat-palette($vist-dark-blue);
+$theme: mat-dark-theme($theme-primary, $theme-accent);

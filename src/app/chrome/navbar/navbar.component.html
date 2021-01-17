@@ -1,0 +1,24 @@
+<mat-toolbar color="primary" class="main-toolbar">
+  <div class="item-group">
+    <button mat-button [routerLink]="['']">
+      Search
+    </button>
+
+    <button mat-button [routerLink]="['/eval']">
+      Evaluation
+    </button>
+  </div>
+
+  <div class="item-group right">
+    <button mat-icon-button (click)="inc()">
+      <mat-icon>dark_mode</mat-icon>
+    </button>
+    <vist-overlay #authOverlay>
+      <app-auth></app-auth>
+    </vist-overlay>
+    <button mat-icon-button [matTooltip]="tooltip | async" matBadge="8" matBadgePosition="before" matBadgeColor="accent"
+      [vistOverlayTriggerFor]="authOverlay">
+      <mat-icon>account_circle</mat-icon>
+    </button>
+  </div>
+</mat-toolbar>

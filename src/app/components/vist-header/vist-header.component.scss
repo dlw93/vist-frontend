@@ -1,6 +1,6 @@
 @import '~@angular/material/theming';
 
-@mixin header-theme($theme) {
+@mixin vist-header-theme($theme) {
   $primary: map-get($theme, primary);
   $config: mat-typography-config();
 
