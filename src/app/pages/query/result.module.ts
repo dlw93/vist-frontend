@@ -6,6 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { QueryComponent } from './query/query.component';
 import { SearchComponent } from './search/search.component';
 import { FilterComponent } from './filter/filter.component';
+import { HighlightingComponent } from './highlighting/highlighting.component';
 import { MedlineResultsComponent } from './medline-results/medline-results.component';
 import { ClinicalTrialsResultsComponent } from './clinical-trials-results/clinical-trials-results.component';
 import {
@@ -64,6 +65,7 @@ import { RatingComponent } from './rating/rating.component';
     QueryComponent,
     SearchComponent,
     FilterComponent,
+    HighlightingComponent,
     MedlineResultsComponent,
     ClinicalTrialsResultsComponent,
     RatingComponent

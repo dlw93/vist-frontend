@@ -3,12 +3,14 @@
 }
 
 mat-card {
-  padding: 0;
   max-height: 450px;
 }
 
-mat-tab-group {
-  max-height: 450px;
+::ng-deep .mat-card-header-text {
+  margin: 0 !important;
+}
+::ng-deep mat-card {
+  border-radius: 2px !important;
 }
 
 mat-form-field {

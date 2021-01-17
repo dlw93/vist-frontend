@@ -29,7 +29,7 @@ export class QueryComponent {
     breakpointObserver: BreakpointObserver,
     private titleService: TitleService,
     private highlightingService: HighlightingService) {
-    titleService.title = "Query Results";
+    titleService.title = "Search Results";
 
     this.isSmall = breakpointObserver.observe([Breakpoints.Small, Breakpoints.Medium]).pipe(map(state => state.matches));
     this.isLoading = queryService.loading$;

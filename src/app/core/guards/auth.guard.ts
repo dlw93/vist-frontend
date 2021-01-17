@@ -11,7 +11,7 @@ export class AuthGuard implements CanActivate {
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         if (!this.authService.isValid()) {
-            this.snackBar.open("You need to sign in to access the evaluation.", "Sign In");
+            const ref = this.snackBar.open("You need to sign in to access the evaluation.");
         }
 
         return this.authService.isValid();

@@ -10,22 +10,19 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
-  public accountButtonTitle: Observable<string>;
   public authView: Observable<string>;
-
   public loginForm: FormGroup = new FormGroup({
     username: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', Validators.required),
   });
+  public tooltip: Observable<string>;
 
   constructor(private userService: UserService) {
-    this.accountButtonTitle = userService.user.pipe(map(user => user ? user.firstName : 'Sign In'));
+    this.tooltip = userService.user.pipe(map(user => user?.firstName ?? 'Sign In'));
     this.authView = userService.user.pipe(map(user => user ? 'account' : 'login'));
   }
 
   public login() {
-    this.userService.signIn(this.loginForm.value.username, this.loginForm.value.password).then(resp => {
-      console.log(resp);
-    });
+    this.userService.signIn(this.loginForm.value.username, this.loginForm.value.password);
   }
 }

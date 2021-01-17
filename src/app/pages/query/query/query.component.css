@@ -31,16 +31,13 @@ mat-sidenav-container {
   align-items: flex-start;
 }
 
-app-filter {
-  margin-top: 1vw;
-}
-
 .sidebar-wrap {
   flex: 1;
   position: sticky;
   top: 1vw;
   display: flex;
   flex-direction: column;
+  gap: 1vw;
   margin-right: 1vw;
   max-width: 400px;
 }
@@ -48,6 +45,7 @@ app-filter {
 mat-card {
   flex: 3;
   padding: 0;
+  border-radius: 2px;
 }
 
 .no-data-wrapper {

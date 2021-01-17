@@ -30,8 +30,12 @@
               <vist-entry key="Cancer Type">{{ doc.cancerType }} ({{ doc.confidence_is }})</vist-entry>
               <vist-entry key="Article Source"><a href="{{ doc.articleLink }}" target="_blank">{{ doc.articleLink }}</a></vist-entry>
               <vist-entry *ngFor="let row of rows(doc)" [key]="row.name">
-                <a *ngFor="let entry of row.entries" [class.disabled]="entry.key === undefined" [attr.href]="entry.key ? row.url + entry.key : null"
-                  target="_blank">{{ entry.value }}</a>
+                <span *ngFor="let entry of row.entries; let last = last">
+                
+                  <a *ngIf="entry.key; else raw" [attr.href]="row.url + entry.key" target="_blank">{{ entry.value }}</a>
+                  <ng-template #raw>{{ entry.value }}</ng-template>
+                  <ng-container *ngIf="!last">,&nbsp;</ng-container>
+                </span>
               </vist-entry>
             </vist-key-value-table>
           </vist-tab>

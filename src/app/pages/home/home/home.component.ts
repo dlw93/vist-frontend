@@ -5,11 +5,15 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
-  constructor(titleService: TitleService, private router: Router) {
+  constructor(private titleService: TitleService, private router: Router) {
     titleService.title = "Welcome";
+  }
+
+  getTitle(): string {
+    return this.titleService.title;
   }
 
   navigate() {

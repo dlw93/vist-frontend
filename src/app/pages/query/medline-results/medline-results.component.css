@@ -48,18 +48,3 @@ pre {
 pre:not(.sentences) ::ng-deep .sentence {
     background-color: transparent !important;   /* super ugly! */
 }
-
-vist-key-value-table a {
-    color: #00376c;
-    text-decoration: none;
-}
-
-vist-key-value-table a:not(:last-of-type)::after {
-    color: rgba(0, 0, 0, 0.87);
-    content: ', ';
-    white-space: pre;
-}
-
-vist-key-value-table a.disabled {
-    color: rgba(0, 0, 0, 0.87);
-}

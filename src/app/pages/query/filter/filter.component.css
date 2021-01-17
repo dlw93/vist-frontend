@@ -1,9 +1,5 @@
 mat-card {
-    padding: 0;
-}
-
-.tab-content-wrap {
-    padding: 16px !important;
+    border-radius: 2px;
 }
 
 .toggle-wrapper {

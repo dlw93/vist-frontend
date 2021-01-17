@@ -5,6 +5,7 @@
 .main-toolbar {
   display: flex;
   flex-direction: row;
+  padding: 0 8px;
 }
 
 .item-group {
@@ -33,19 +34,3 @@
   width: 2px;
   background-color: rgba(255, 255, 255, 0.7);
 }
-
-/*.auth-wrap {
-  width: 320px;
-  padding: 30px 20px;
-  box-sizing: border-box;
-}
-
-.fill {
-  width: 100%;
-}
-
-.footer {
-  margin-top: 8px;
-  display: flex;
-  flex-direction: row-reverse;
-}*/

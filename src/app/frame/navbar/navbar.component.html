@@ -1,12 +1,10 @@
 <mat-toolbar color="primary" class="main-toolbar">
   <div class="item-group">
     <button mat-button [routerLink]="['']">
-      <mat-icon>home</mat-icon>
-      VIST
+          Search
     </button>
 
     <button mat-button [routerLink]="['/eval']">
-      <mat-icon>grade</mat-icon>
       Evaluation
     </button>
   </div>
@@ -15,9 +13,9 @@
     <vist-overlay #authOverlay>
       <app-auth></app-auth>
     </vist-overlay>
-    <button mat-button [vistOverlayTriggerFor]="authOverlay">
+    <button mat-icon-button [matTooltip]="tooltip | async" matBadge="8" matBadgePosition="before" matBadgeColor="accent"
+      [vistOverlayTriggerFor]="authOverlay">
       <mat-icon>account_circle</mat-icon>
-      {{ accountButtonTitle | async }}
     </button>
   </div>
 </mat-toolbar>

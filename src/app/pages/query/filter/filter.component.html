@@ -1,65 +1,52 @@
 <mat-card>
-  <mat-tab-group mat-stretch-tabs dynamicHeight>
-    <mat-tab label="Filter Results">
-      <div class="tab-content-wrap">
-        <h4 class="mat-body" id="filter-header">Please note that, as of now, filters only apply to the Medline
-          results.</h4>
-        <form #filterForm="ngForm" class="filter-form">
+  <mat-card-header>
+    <mat-card-title>Filter</mat-card-title>
+    <mat-card-subtitle>Apply filters to the Medline results</mat-card-subtitle>
+  </mat-card-header>
+  
+  <mat-card-content>
+    <form #filterForm="ngForm" class="filter-form">
 
-          <mat-form-field appearance="standard" class="fill">
-            <mat-label>Journals</mat-label>
-            <mat-chip-list #chipList>
-              <mat-chip *ngFor="let journal of _filter.journals" selectable="false" removable="true" (removed)="remove(journal)">
-                {{ journal }}
-                <mat-icon matChipRemove>cancel</mat-icon>
-              </mat-chip>
-              <input [formControl]="journalControl" #journalInput name="journals" [matAutocomplete]="auto"
-                [matChipInputFor]="chipList">
-            </mat-chip-list>
-            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-              <mat-option *ngFor="let journalName of journalNamesFiltered | async" [value]="journalName">{{journalName}}</mat-option>
-            </mat-autocomplete>
-          </mat-form-field>
+      <mat-form-field appearance="standard" class="fill">
+        <mat-label>Journals</mat-label>
+        <mat-chip-list #chipList>
+          <mat-chip *ngFor="let journal of _filter.journals" selectable="false" removable="true" (removed)="remove(journal)">
+            {{ journal }}
+            <mat-icon matChipRemove>cancel</mat-icon>
+          </mat-chip>
+          <input [formControl]="journalControl" #journalInput name="journals" [matAutocomplete]="auto"
+            [matChipInputFor]="chipList">
+        </mat-chip-list>
+        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+          <mat-option *ngFor="let journalName of journalNamesFiltered | async" [value]="journalName">{{journalName}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
 
-          <mat-form-field appearance="standard" class="fill">
-            <mat-label>Cancer Type</mat-label>
-            <mat-select [(ngModel)]="_filter.cancerType" name="cancer">
-              <mat-option *ngFor="let cancer of cancers" [value]="cancer.disease">{{cancer.name}}</mat-option>
-            </mat-select>
-          </mat-form-field>
+      <mat-form-field appearance="standard" class="fill">
+        <mat-label>Cancer Type</mat-label>
+        <mat-select [(ngModel)]="_filter.cancerType" name="cancer">
+          <mat-option *ngFor="let cancer of cancers" [value]="cancer.disease">{{cancer.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
 
-          <mat-form-field appearance="standard" class="half">
-            <mat-label>Published From</mat-label>
-            <input matInput [(ngModel)]="_filter.minFiltered" name="start" maxlength="4">
-          </mat-form-field>
+      <mat-form-field appearance="standard" class="half">
+        <mat-label>Published From</mat-label>
+        <input matInput [(ngModel)]="_filter.minFiltered" name="start" maxlength="4">
+      </mat-form-field>
 
-          <mat-form-field appearance="standard" class="half">
-            <mat-label>Published Till</mat-label>
-            <input matInput [(ngModel)]="_filter.maxFiltered" name="end" maxlength="4">
-          </mat-form-field>
+      <mat-form-field appearance="standard" class="half">
+        <mat-label>Published Till</mat-label>
+        <input matInput [(ngModel)]="_filter.maxFiltered" name="end" maxlength="4">
+      </mat-form-field>
 
-        </form>
+    </form>
 
-        <div class="footer">
-          <button mat-raised-button (click)="applyFilter()" color="primary">
-            <mat-icon>filter_list</mat-icon>
-            Apply Filters
-          </button>
-        </div>
-      </div>
-    </mat-tab>
-    <mat-tab label="Annotations">
-      <div class="tab-content-wrap">
-        <h4 class="mat-subheading-1">Select which entities to highlight in the results</h4>
-        <div class="toggle-wrapper">
-          <mat-slide-toggle color="primary" [(ngModel)]="_highlight.sentences" [disabled]="!_enabled.sentences"
-            matTooltipPosition="above" matTooltip="Highlighting of relevant sentences is not available for clinical trials."
-            [matTooltipDisabled]="_enabled.sentences">Relevant Sentences</mat-slide-toggle>
-          <mat-slide-toggle color="primary" [(ngModel)]="_highlight.genes">Genes</mat-slide-toggle>
-          <mat-slide-toggle color="primary" [(ngModel)]="_highlight.mutations">Mutations</mat-slide-toggle>
-          <mat-slide-toggle color="primary" [(ngModel)]="_highlight.chemicals">Chemicals</mat-slide-toggle>
-        </div>
-      </div>
-    </mat-tab>
-  </mat-tab-group>
+    <div class="footer">
+      <button mat-raised-button (click)="applyFilter()" color="primary">
+        <mat-icon>filter_list</mat-icon>
+        Filter
+      </button>
+    </div>
+  </mat-card-content>
 </mat-card>

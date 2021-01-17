@@ -51,7 +51,7 @@ export class EvalComponent implements OnDestroy {
     this._feedbackSub = this.evalService.feedback$.subscribe(feedback => {
       this.useful = {};
       this.classification = {};
-      (feedback || []).forEach(item => {
+      feedback?.forEach(item => {
         this.useful[item.pmid] = item.useful;
         this.classification[item.pmid] = item.classification;
       });

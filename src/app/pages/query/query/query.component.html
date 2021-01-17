@@ -6,7 +6,8 @@
         </div>
     </mat-sidenav>
     <mat-sidenav-content>
-        <vist-header [title]="getTitle()" [showToggle]="isSidenavEnabled | async" (toggle)="sidenav.toggle()"></vist-header>
+        <vist-header [title]="getTitle()" [showToggle]="isSidenavEnabled | async" (toggle)="sidenav.toggle()">
+        </vist-header>
         <!-- If a query is executing, we show a loading indicator -->
         <div class="control-wrap" *ngIf="!(isLoading | async); else loadingIndicator">
             <!-- If the last query yields no results, we use the available space to display the search box. -->
@@ -14,6 +15,7 @@
                 <div *ngIf="!(isSidenavEnabled | async)" class="sidebar-wrap">
                     <app-search @vistSlideIn></app-search>
                     <app-filter @vistSlideIn></app-filter>
+                    <app-highlighting @vistSlideIn></app-highlighting>
                 </div>
                 <mat-card @vistSlideIn>
                     <mat-tab-group dynamicHeight (selectedTabChange)="onTabChange($event)" [(selectedIndex)]="selectedTabIndex">
