@@ -1,13 +1,13 @@
 @import '~@angular/material/theming';
 
 h1, h2, a {
-    font-family: Roboto, "Helvetica Neue", sans-serif;
     color: whitesmoke;
 }
 
 h1 {
-    font-size: 3rem;
-    font-weight: 500;
+    font-size: 4rem;
+    font-weight: 700;
+    margin: 0;
 }
 
 h2 {
@@ -26,48 +26,39 @@ a {
     overflow-y: auto;
 }
 
-.bg-wrap {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 0;
-}
+.bg-blue {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 33%;
+    gap: 42px;
 
-@mixin home-component-theme($theme) {
-    #desc {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        height: 100%;
-        justify-content: space-evenly;
-        background-color: map-get(map-get($theme, background), background);
-
-        & > div, img, app-search {
-            z-index: 2;
-        }
-    }
-
-    .bg-wrap > .bg-blue {
-        background-color: mat-color(map-get($theme, primary));
-        height: 61%;
+    div {
+        text-align: center;
     }
 }
 
-#desc > div {
-    text-align: center;
-}
-
-#desc img {
-    width: 14vh;
-    min-width: 140px;
-    margin: 3vh;
+#desc {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-grow: 1;
 }
 
 #desc app-search {
     width: 25vw;
     min-width: 400px;
     max-width: 500px;
-    margin: 3vh;
+}
+
+@mixin home-component-theme($theme) {
+    #desc {
+        background-color: map-get(map-get($theme, background), background);
+    }
+
+    .bg-blue {
+        background-color: mat-color(map-get($theme, primary));
+    }
 }

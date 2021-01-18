@@ -1,17 +1,8 @@
-<!-- <app-search (terms)="sidenav.close()"></app-search>
-            <app-filter (filter)="sidenav.close()"></app-filter> -->
-
-<vist-overlay #searchOverlay>
-    <app-search></app-search>
-</vist-overlay>
 <vist-overlay #filterOverlay>
     <app-filter></app-filter>
 </vist-overlay>
 
 <vist-header [title]="getTitle()" [showToggle]="isSidenavEnabled | async">
-    <button mat-icon-button [vistOverlayTriggerFor]="searchOverlay">
-        <mat-icon>search</mat-icon>
-    </button>
     <button mat-icon-button [vistOverlayTriggerFor]="filterOverlay">
         <mat-icon>filter_list</mat-icon>
     </button>

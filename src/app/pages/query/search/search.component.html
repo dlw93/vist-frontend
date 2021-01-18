@@ -1,10 +1,15 @@
 <mat-card>
   <mat-card-header>
     <mat-card-title>Search</mat-card-title>
-    <mat-card-subtitle>Compose a query or run one of the <a href="javascript:void(0)"
+    <mat-card-subtitle *ngIf="showCustom; else alt">Compose a query or run one of the <a href="javascript:void(0)"
         (click)="showCustom = !showCustom">sample
         queries</a> to get started.
     </mat-card-subtitle>
+    <ng-template #alt>
+      <mat-card-subtitle>Choose a sample query or <a href="javascript:void(0)" (click)="showCustom = !showCustom">compose
+          your own</a>.
+      </mat-card-subtitle>
+    </ng-template>
   </mat-card-header>
   <mat-card-content>    
     <ng-container *ngIf="showCustom; else sample">

@@ -92,3 +92,7 @@ mat-card {
   display: flex;
   flex-direction: column;
 }
+
+app-filter {
+  max-width: 400px;
+}

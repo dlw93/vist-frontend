@@ -11,21 +11,26 @@
     align-items: center;
     left: 0;
     right: 0;
+    padding: 0 32px;
+
+    & > h1 {
+      font-family: mat-font-family($config);
+      font-size: mat-font-size($config, title);
+      font-weight: 300;
+      padding: 28px 0;
+      margin: 0;
+    }
+
+    & > .spacer {
+      flex-grow: 1;
+    }
   }
 
-  .vist-header > h1 {
-    font-family: mat-font-family($config);
-    font-size: mat-font-size($config, title);
-    font-weight: 300;
-    padding: 28px 0;
-    margin: 0;
-  }
+  .vist-header.mobile {
+    padding: 0 16px;
 
-  .vist-header > h1:first-child {
-    margin-left: 32px;
-  }
-
-  .vist-header > .spacer {
-    flex-grow: 1;
+    & > h1 {
+      margin: 0 16px;
+    }
   }
 }

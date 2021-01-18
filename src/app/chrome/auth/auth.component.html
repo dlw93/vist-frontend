@@ -3,8 +3,10 @@
 
   <!-- the user is already (and still) authenticated, so we show him some info -->
   <ng-template #account>
-    <mat-card-title>My Account</mat-card-title>
-    <mat-card-subtitle>You are signed in as &quot;{{ userEmail | async }}&quot;.</mat-card-subtitle>
+    <mat-card-header>
+      <mat-card-title>My Account</mat-card-title>
+      <mat-card-subtitle>You are signed in as &quot;{{ userEmail | async }}&quot;.</mat-card-subtitle>
+    </mat-card-header>
     <mat-card-content>
       <h4 class="mat-body">You can access the <a [routerLink]="['/eval']">evaluation</a> from the top-left menu.</h4>
       <h4 class="mat-body">Session expires in {{ expires }} minutes</h4>
@@ -20,8 +22,11 @@
 
     <!-- authenticate using an existing account -->
     <ng-template #login>
-      <mat-card-title>Sign In</mat-card-title>
-      <mat-card-subtitle>Not yet registered? <a href="javascript:void(0)" (click)="showLogin = false">Sign up</a>.</mat-card-subtitle>
+      <mat-card-header>
+        <mat-card-title>Sign In</mat-card-title>
+        <mat-card-subtitle>Not yet registered? <a href="javascript:void(0)" (click)="showLogin = false">Sign up</a>.
+        </mat-card-subtitle>
+        </mat-card-header>
       <form [formGroup]="loginForm">
         <mat-form-field class="fill" color="accent">
           <mat-label>Username</mat-label>
@@ -45,8 +50,11 @@
 
     <!-- authenticate by creating a new account -->
     <ng-template #register>
-      <mat-card-title>Sign Up</mat-card-title>
-      <mat-card-subtitle>Already have an account? <a href="javascript:void(0)" (click)="showLogin = true">Sign in</a>.</mat-card-subtitle>
+      <mat-card-header>
+        <mat-card-title>Sign Up</mat-card-title>
+        <mat-card-subtitle>Already have an account? <a href="javascript:void(0)" (click)="showLogin = true">Sign in</a>.
+        </mat-card-subtitle>
+        </mat-card-header>
       <form [formGroup]="registerForm">
         <mat-form-field class="half" color="accent">
           <input matInput formControlName="firstName" placeholder="First Name">
