@@ -1,23 +1,24 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule, Title } from '@angular/platform-browser';
-import { OverlayModule } from '@angular/cdk/overlay';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { NavbarComponent } from './navbar/navbar.component';
 import { VistOverlayModule } from '@app/components';
 import { AppRoutingModule } from '@app/app-routing.module';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthComponent } from './auth/auth.component';
-import { StyleManagerService } from '@app/services/style-manager.service';
+import { SettingsComponent } from './settings/settings.component';
 
 @NgModule({
   declarations: [
     NavbarComponent,
-    AuthComponent
+    AuthComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,
@@ -26,16 +27,16 @@ import { StyleManagerService } from '@app/services/style-manager.service';
     MatToolbarModule,
     MatInputModule,
     MatCardModule,
+    FormsModule,
     ReactiveFormsModule,
     MatTooltipModule,
     VistOverlayModule,
     AppRoutingModule,
-    OverlayModule
+    MatSlideToggleModule
   ],
   exports: [
     NavbarComponent,
-    AuthComponent
   ],
-  providers: [Title, StyleManagerService],
+  providers: [Title],
 })
 export class ChromeModule { }

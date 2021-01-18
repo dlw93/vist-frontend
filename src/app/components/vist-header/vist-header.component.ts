@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'vist-header',
@@ -6,12 +6,8 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./vist-header.component.scss']
 })
 export class VistHeader implements OnInit {
-  constructor() {
-  }
-
   @Input() title: string;
   @Input() showToggle: boolean;
-  @Output() toggle = new EventEmitter<void>();
 
   ngOnInit() {
   }

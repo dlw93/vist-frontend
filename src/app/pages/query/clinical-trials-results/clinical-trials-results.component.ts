@@ -3,7 +3,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { IHighlighting, IClinicalTrialDoc } from '@app/models';
-import { QueryService, HighlightingService } from '@app/services';
+import { QueryService, SettingsService } from '@app/services';
 import { AnnotateRegexPipe } from '@app/pipes/annregex.pipe';
 import { VIST_EXPAND_ANIMATION } from '@app/animations';
 
@@ -33,10 +33,10 @@ export class ClinicalTrialsResultsComponent {
   resultsLength: Observable<number>;
   highlighting: IHighlighting;
 
-  constructor(private queryService: QueryService, private highlightingService: HighlightingService, private sanitizer: DomSanitizer) {
+  constructor(private queryService: QueryService, private settingsService: SettingsService, private sanitizer: DomSanitizer) {
     this.dataSource = this.queryService.data$.pipe(map(data => data ? data.ct : []));
     this.resultsLength = this.queryService.data$.pipe(map(data => data ? data.numFoundCT : 0));
-    this.highlighting = this.highlightingService.highlighting;
+    this.highlighting = this.settingsService.highlighting;
   }
 
   get expandedDoc(): string {

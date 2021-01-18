@@ -1,51 +1,57 @@
-<mat-sidenav-container>
-    <mat-sidenav *ngIf="isSidenavEnabled | async">
-        <div class="sidenav-wrap">
-            <app-search (terms)="sidenav.close()"></app-search>
-            <app-filter (filter)="sidenav.close()"></app-filter>
+<!-- <app-search (terms)="sidenav.close()"></app-search>
+            <app-filter (filter)="sidenav.close()"></app-filter> -->
+
+<vist-overlay #searchOverlay>
+    <app-search></app-search>
+</vist-overlay>
+<vist-overlay #filterOverlay>
+    <app-filter></app-filter>
+</vist-overlay>
+
+<vist-header [title]="getTitle()" [showToggle]="isSidenavEnabled | async">
+    <button mat-icon-button [vistOverlayTriggerFor]="searchOverlay">
+        <mat-icon>search</mat-icon>
+    </button>
+    <button mat-icon-button [vistOverlayTriggerFor]="filterOverlay">
+        <mat-icon>filter_list</mat-icon>
+    </button>
+</vist-header>
+
+<!-- If a query is executing, we show a loading indicator -->
+<div class="control-wrap mat-app-background" *ngIf="!(isLoading | async); else loadingIndicator">
+    <!-- If the last query yields no results, we use the available space to display the search box. -->
+    <ng-container *ngIf="(hasData | async); else noData">
+        <div *ngIf="!(isSidenavEnabled | async)" class="sidebar-wrap">
+            <app-search @vistSlideIn></app-search>
+            <app-filter @vistSlideIn></app-filter>
         </div>
-    </mat-sidenav>
-    <mat-sidenav-content>
-        <vist-header [title]="getTitle()" [showToggle]="isSidenavEnabled | async" (toggle)="sidenav.toggle()">
-        </vist-header>
-        <!-- If a query is executing, we show a loading indicator -->
-        <div class="control-wrap" *ngIf="!(isLoading | async); else loadingIndicator">
-            <!-- If the last query yields no results, we use the available space to display the search box. -->
-            <ng-container *ngIf="(hasData | async); else noData">
-                <div *ngIf="!(isSidenavEnabled | async)" class="sidebar-wrap">
-                    <app-search @vistSlideIn></app-search>
-                    <app-filter @vistSlideIn></app-filter>
-                    <app-highlighting @vistSlideIn></app-highlighting>
-                </div>
-                <mat-card @vistSlideIn>
-                    <mat-tab-group dynamicHeight (selectedTabChange)="onTabChange($event)" [(selectedIndex)]="selectedTabIndex">
-                        <mat-tab label="PubMed" [disabled]="!hasMedlineData">
-                            <app-medline-results (navigate)="onResultNavigate()"></app-medline-results>
-                        </mat-tab>
-                        <mat-tab label="Clinical Trials" [disabled]="!hasCTData">
-                            <app-clinical-trials-results (navigate)="onResultNavigate()"></app-clinical-trials-results>
-                        </mat-tab>
-                    </mat-tab-group>
-                </mat-card>
-            </ng-container>
-            <ng-template #noData>
-                <div class="no-data-wrapper">
-                    <div class="message-wrap">
-                        <mat-icon>sentiment_dissatisfied</mat-icon>
-                        <h4 class="mat-title">Your last query did not yield any results.</h4>
-                        <h4 class="mat-subheading-1">Refine your query or try one of the sample queries.</h4>
-                    </div>
-                    <app-search @vistSlideIn></app-search>
-                    <!-- since we use the "space-between" strategy, an empty div suffices to adjust the space distribution -->
-                    <div></div>
-                </div>
-            </ng-template>
-        </div>
-        <ng-template #loadingIndicator>
-            <div class="loading-indicator">
-                <mat-spinner></mat-spinner>
-                <h4 class="mat-subheading-1">Evaluating your query...</h4>
+        <mat-card @vistSlideIn>
+            <mat-tab-group dynamicHeight [(selectedIndex)]="selectedTabIndex">
+                <mat-tab label="PubMed" [disabled]="!hasMedlineData">
+                    <app-medline-results (navigate)="onResultNavigate()"></app-medline-results>
+                </mat-tab>
+                <mat-tab label="Clinical Trials" [disabled]="!hasCTData">
+                    <app-clinical-trials-results (navigate)="onResultNavigate()"></app-clinical-trials-results>
+                </mat-tab>
+            </mat-tab-group>
+        </mat-card>
+    </ng-container>
+    <ng-template #noData>
+        <div class="no-data-wrapper">
+            <div class="message-wrap">
+                <mat-icon>sentiment_dissatisfied</mat-icon>
+                <h4 class="mat-title">Your last query did not yield any results.</h4>
+                <h4 class="mat-subheading-1">Refine your query or try one of the sample queries.</h4>
             </div>
-        </ng-template>
-    </mat-sidenav-content>
-</mat-sidenav-container>
+            <app-search @vistSlideIn></app-search>
+            <!-- since we use the "space-between" strategy, an empty div suffices to adjust the space distribution -->
+            <div></div>
+        </div>
+    </ng-template>
+</div>
+<ng-template #loadingIndicator>
+    <div class="loading-indicator mat-app-background">
+        <mat-spinner></mat-spinner>
+        <h4 class="mat-subheading-1">Evaluating your query...</h4>
+    </div>
+</ng-template>

@@ -10,14 +10,17 @@
   </div>
 
   <div class="item-group right">
-    <button mat-icon-button (click)="inc()">
-      <mat-icon>dark_mode</mat-icon>
+    <vist-overlay #settingsOverlay>
+      <app-settings></app-settings>
+    </vist-overlay>
+    <button mat-icon-button matTooltip="Settings" [vistOverlayTriggerFor]="settingsOverlay">
+      <mat-icon>settings</mat-icon>
     </button>
+
     <vist-overlay #authOverlay>
       <app-auth></app-auth>
     </vist-overlay>
-    <button mat-icon-button [matTooltip]="tooltip | async" matBadge="8" matBadgePosition="before" matBadgeColor="accent"
-      [vistOverlayTriggerFor]="authOverlay">
+    <button mat-icon-button [matTooltip]="tooltip | async" [vistOverlayTriggerFor]="authOverlay">
       <mat-icon>account_circle</mat-icon>
     </button>
   </div>

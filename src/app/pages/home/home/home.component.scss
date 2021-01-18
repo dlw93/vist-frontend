@@ -35,11 +35,6 @@ a {
     z-index: 0;
 }
 
-.bg-wrap > .bg-blue {
-    background-color: #00376c;
-    height: 61%;
-}
-
 @mixin home-component-theme($theme) {
     #desc {
         display: flex;
@@ -52,6 +47,11 @@ a {
         & > div, img, app-search {
             z-index: 2;
         }
+    }
+
+    .bg-wrap > .bg-blue {
+        background-color: mat-color(map-get($theme, primary));
+        height: 61%;
     }
 }
 

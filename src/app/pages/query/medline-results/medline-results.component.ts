@@ -3,7 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { IMedlineDoc, IHighlighting } from '@app/models';
-import { QueryService, HighlightingService, AuthService } from '@app/services';
+import { QueryService, SettingsService, AuthService } from '@app/services';
 import { VIST_EXPAND_ANIMATION } from '@app/animations';
 
 interface IKeyValue {
@@ -36,10 +36,10 @@ export class MedlineResultsComponent implements OnInit {
 
   private _expandedDoc: string;
 
-  constructor(private queryService: QueryService, private highlightingService: HighlightingService, private authService: AuthService) {
+  constructor(private queryService: QueryService, private settingsService: SettingsService, private authService: AuthService) {
     this.data = this.queryService.data$.pipe(map(data => data ? data.docs : []));
     this.resultLength = this.queryService.data$.pipe(map(data => data ? data.numFound : 0));
-    this.highlighting = this.highlightingService.highlighting;
+    this.highlighting = this.settingsService.highlighting;
     this.isLoading = this.queryService.fetching$;
   }
 

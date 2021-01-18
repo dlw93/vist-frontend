@@ -4,6 +4,10 @@
 @import './app-theme';
 @import './styles/general';
 
+$theme-primary: mat-palette($vist-light-blue);
+$theme-accent: mat-palette($vist-dark-blue);
+$theme: mat-light-theme($theme-primary, $theme-accent);
+
 @include mat-core();
 @include angular-material-theme($theme);
 @include vist-app-theme($theme);

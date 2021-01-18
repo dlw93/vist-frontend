@@ -1,6 +1,6 @@
 import { Component, Output, EventEmitter, ElementRef, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { QueryService, HighlightingService } from '@app/services';
+import { QueryService } from '@app/services';
 import { Observable } from 'rxjs';
 import { IFilter, IResponse, IHighlighting } from '@app/models';
 import { map, startWith, filter } from 'rxjs/operators';
@@ -17,8 +17,6 @@ interface ICancerType {
   styleUrls: ['./filter.component.css']
 })
 export class FilterComponent {
-  _highlight: IHighlighting;
-  _enabled: IHighlighting;
   _filter: IFilter = {
     cancerType: "any",
     journals: [],
@@ -43,10 +41,7 @@ export class FilterComponent {
   @Output() filter = new EventEmitter<void>();
   @ViewChild("journalInput", { static: true }) private journalInput: ElementRef<HTMLInputElement>;
 
-  constructor(highlightingService: HighlightingService, private queryService: QueryService) {
-    this._highlight = highlightingService.highlighting;
-    this._enabled = highlightingService.enabled;
-
+  constructor(private queryService: QueryService) {
     // only consider valid responses
     const data$: Observable<IResponse> = this.queryService.data$.pipe(filter(data => !!data));
 

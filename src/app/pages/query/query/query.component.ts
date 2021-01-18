@@ -1,10 +1,8 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { MatSidenav } from '@angular/material/sidenav';
-import { MatTabChangeEvent } from '@angular/material/tabs';
 import { Observable, combineLatest } from 'rxjs';
 import { map, distinctUntilChanged, tap } from 'rxjs/operators';
-import { QueryService, HighlightingService, TitleService } from '@app/services';
+import { QueryService, TitleService } from '@app/services';
 import { VIST_SLIDE_IN_ANIMATION } from '@app/animations';
 import { VistHeader } from '@app/components/vist-header/vist-header.component';
 
@@ -24,13 +22,11 @@ export class QueryComponent {
   selectedTabIndex: number;
 
   @ViewChild(VistHeader, { read: ElementRef, static: true }) header: ElementRef;
-  @ViewChild(MatSidenav) sidenav: MatSidenav;
 
   constructor(
     queryService: QueryService,
     breakpointObserver: BreakpointObserver,
-    private titleService: TitleService,
-    private highlightingService: HighlightingService) {
+    private titleService: TitleService) {
     titleService.title = "Search Results";
 
     this.isSmall = breakpointObserver.observe([Breakpoints.Small, Breakpoints.Medium]).pipe(map(state => state.matches));
@@ -42,19 +38,13 @@ export class QueryComponent {
       map(data => data ? (data.numFound > 0 || data.numFoundCT > 0) : false),
       distinctUntilChanged()
     );
-    this.isSidenavEnabled = combineLatest(this.isSmall, this.isLoading, this.hasData).pipe(
+    this.isSidenavEnabled = combineLatest([this.isSmall, this.isLoading, this.hasData]).pipe(
       map(([isSmall, isLoading, hasData]: boolean[]) => isSmall && !isLoading && hasData)
     );
   }
 
   getTitle(): string {
     return this.titleService.title;
-  }
-
-  onTabChange(event: MatTabChangeEvent) {
-    this.highlightingService.enabled.sentences = event.index == 0;  // disable sentence highlighting toggle on clinical trials tabs
-    // this._page[1 - event.index] = this.queryService.page;
-    // this.queryService.page = this._page[event.index];
   }
 
   onResultNavigate() {

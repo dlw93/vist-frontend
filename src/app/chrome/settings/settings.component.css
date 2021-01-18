@@ -1,5 +1,10 @@
 mat-card {
     border-radius: 2px;
+    max-width: 370px;
+}
+
+h4 {
+    margin: 20px 0 8px 0;
 }
 
 .toggle-wrapper {
@@ -7,20 +12,10 @@ mat-card {
     flex-wrap: wrap;
     align-content: space-between;
     max-height: 120px;
-    padding-left: 8px;
-    padding-top: 0.75em;
-    font-size: 14px;
-    font-weight: 400;
 }
 
 .toggle-wrapper mat-slide-toggle {
     flex: 1;
     flex-basis: 180px;
     margin-bottom: 8px;
-}
-
-.footer {
-    display: flex;
-    flex-direction: row-reverse;
-    margin-top: 8px;
 }

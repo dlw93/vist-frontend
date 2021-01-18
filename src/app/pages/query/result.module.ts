@@ -6,10 +6,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { QueryComponent } from './query/query.component';
 import { SearchComponent } from './search/search.component';
 import { FilterComponent } from './filter/filter.component';
-import { HighlightingComponent } from './highlighting/highlighting.component';
 import { MedlineResultsComponent } from './medline-results/medline-results.component';
 import { ClinicalTrialsResultsComponent } from './clinical-trials-results/clinical-trials-results.component';
-import { VistTabsModule, } from '@app/components';
+import { VistOverlayModule, VistTabsModule, } from '@app/components';
 import { VistHeaderModule, } from '@app/components';
 import { VistKeyValueTableModule } from '@app/components';
 import { PipesModule } from '@app/pipes/pipes.module';
@@ -24,8 +23,6 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -48,22 +45,20 @@ import { RatingComponent } from './rating/rating.component';
     MatFormFieldModule,
     MatInputModule,
     MatPaginatorModule,
-    MatSlideToggleModule,
     MatTableModule,
     MatProgressSpinnerModule,
     MatAutocompleteModule,
     MatCardModule,
-    MatSidenavModule,
     MatSelectModule,
     MatChipsModule,
     MatTooltipModule,
-    MatRadioModule
+    MatRadioModule,
+    VistOverlayModule
   ],
   declarations: [
     QueryComponent,
     SearchComponent,
     FilterComponent,
-    HighlightingComponent,
     MedlineResultsComponent,
     ClinicalTrialsResultsComponent,
     RatingComponent

@@ -28,6 +28,8 @@ export class SearchComponent implements OnInit {
   geneControl = new FormControl();
   geneCandidates: Observable<IGeneCandidate[]>;
 
+  showCustom = true;
+
   constructor(private queryService: QueryService) {
     this.geneCandidates = this.geneControl.valueChanges.pipe(
       startWith(""),
@@ -57,7 +59,7 @@ export class SearchComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.geneAutocompleteTrigger['_scrollToOption'] = this._scrollToOption(75);
+    //this.geneAutocompleteTrigger['_scrollToOption'] = this._scrollToOption(75);
     this.evalQueries = this.queryService.getEvalQueries();
 
     // remember and show the parameters of the most recent query if exists and not explicitly told not to do so
@@ -86,14 +88,14 @@ export class SearchComponent implements OnInit {
       ...q.evaluationQueries_genes    // "a, b, c"
         .split(",")
         .map(gene => gene.trim())     // ["a", "b", "c"]
-        .map(gene => this.queryService.getGeneCandidates(gene.trim(), []))  // Observable per gene
+        .map(gene => this.queryService.getGeneCandidates(gene, []))  // Observable per gene
     ).subscribe(res => {              // subscribe to merged Observable (==> only one subscription)
       this.query.genes.push(res[0])
     });
 
     this.query.keywords = "";
     this.query.mutations = q.evaluationQueries_mutations;
-    this.tabs.selectedIndex = 0;
+    this.showCustom = true;
   }
 
   public send() {

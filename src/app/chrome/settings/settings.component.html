@@ -1,0 +1,17 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Settings</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <h4 class="mat-h4">User Interface</h4>
+    <mat-slide-toggle color="primary" [(ngModel)]="isDark">Dark Mode</mat-slide-toggle>
+
+    <h4 class="mat-h4">Select which entities to highlight in documents</h4>
+    <div class="toggle-wrapper">
+      <mat-slide-toggle color="primary" [(ngModel)]="_highlight.sentences">Relevant Sentences</mat-slide-toggle>
+      <mat-slide-toggle color="primary" [(ngModel)]="_highlight.genes">Genes</mat-slide-toggle>
+      <mat-slide-toggle color="primary" [(ngModel)]="_highlight.mutations">Mutations</mat-slide-toggle>
+      <mat-slide-toggle color="primary" [(ngModel)]="_highlight.chemicals">Chemicals</mat-slide-toggle>
+    </div>
+  </mat-card-content>
+</mat-card>
