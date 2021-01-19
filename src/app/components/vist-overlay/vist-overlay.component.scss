@@ -4,9 +4,7 @@
   $primary: map-get($theme, primary);
 
   .main-wrap {
-    border-radius: 2px;
     @include mat-overridable-elevation(2);
-    background-color: mat-color($primary, default-contrast);
     max-height: inherit;
   }
 }
