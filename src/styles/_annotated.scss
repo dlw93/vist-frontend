@@ -21,6 +21,10 @@
             margin: 0 -1px;
         }
     }
+
+    [vistAnnotated].sentences .sentence {
+        padding: 1pt;
+    }
     
     [vistAnnotated].genes .gene {
         background-color: rgba(79,158,255,.2);

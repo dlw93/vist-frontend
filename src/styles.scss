@@ -4,6 +4,8 @@
 @import './app-theme';
 @import './styles/general';
 
+@import url('https://fonts.googleapis.com/css2?family=Merriweather&display=swap');
+
 $theme-primary: mat-palette($vist-light-blue);
 $theme-accent: mat-palette($vist-dark-blue);
 $theme: mat-light-theme($theme-primary, $theme-accent);

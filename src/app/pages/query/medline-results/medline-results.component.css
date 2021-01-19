@@ -43,6 +43,8 @@ pre, .doc-stats > * {
 pre {
     white-space: pre-wrap;
     word-wrap: break-word;
+    font: 9pt "Merriweather", serif;
+    line-height: 14pt;
 }
 
 pre:not(.sentences) ::ng-deep .sentence {
