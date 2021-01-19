@@ -82,7 +82,7 @@
               "vendorChunk": false,
               "buildOptimizer": true,
               "assets": [
-                "src/favicon.ico"
+                "src/assets/favicon.ico"
               ]
             }
           }
