@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, Output, EventEmitter, Input, ElementRef } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { MatAutocompleteSelectedEvent, MatAutocompleteTrigger, AUTOCOMPLETE_PANEL_HEIGHT, MatAutocomplete } from '@angular/material/autocomplete';
+import { MatAutocompleteSelectedEvent, MatAutocomplete } from '@angular/material/autocomplete';
 import { MatTabGroup } from '@angular/material/tabs';
 import { Observable, merge } from 'rxjs';
 import { startWith, switchMap, filter } from 'rxjs/operators';
@@ -14,8 +14,7 @@ import { IEvalQuery, ITerms, IGeneCandidate } from '@app/models';
 })
 export class SearchComponent implements OnInit {
   @ViewChild(MatTabGroup, { static: true }) tabs: MatTabGroup;
-  @ViewChild("geneInput", { static: true }) geneInput: ElementRef<HTMLInputElement>;
-  @ViewChild("geneInput", { read: MatAutocompleteTrigger, static: true }) geneAutocompleteTrigger: MatAutocompleteTrigger;
+  @ViewChild("geneInput") geneInput: ElementRef<HTMLInputElement>;
   @ViewChild("auto", { static: true }) geneAutocomplete: MatAutocomplete;
 
   @Input() reset: boolean = false;
@@ -38,28 +37,7 @@ export class SearchComponent implements OnInit {
     );
   }
 
-  /**
-   * Returns a function that can be used to override the MatAutocomplete's hardcoded item height.
-   * @param optionHeight The height of a single mat-option
-   */
-  private _scrollToOption(optionHeight: number): () => void {
-    return () => {
-      const index = this.geneAutocomplete._keyManager.activeItemIndex || 0;
-      const offset = index * optionHeight;
-
-      let pos = this.geneAutocomplete._getScrollTop();
-      if (offset < pos) {
-        pos = offset;
-      } else if (offset + optionHeight > pos + AUTOCOMPLETE_PANEL_HEIGHT) {
-        pos = Math.max(0, offset - AUTOCOMPLETE_PANEL_HEIGHT + optionHeight);
-      }
-
-      this.geneAutocomplete._setScrollTop(pos);
-    }
-  }
-
   ngOnInit() {
-    //this.geneAutocompleteTrigger['_scrollToOption'] = this._scrollToOption(75);
     this.evalQueries = this.queryService.samples$;
 
     // remember and show the parameters of the most recent query if exists and not explicitly told not to do so

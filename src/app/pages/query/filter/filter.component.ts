@@ -2,7 +2,7 @@ import { Component, Output, EventEmitter, ElementRef, ViewChild } from '@angular
 import { FormControl } from '@angular/forms';
 import { QueryService } from '@app/services';
 import { Observable } from 'rxjs';
-import { IFilter, IResponse, IHighlighting } from '@app/models';
+import { IFilter, IResponse } from '@app/models';
 import { map, startWith, filter } from 'rxjs/operators';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 
@@ -39,7 +39,7 @@ export class FilterComponent {
   ];
 
   @Output() filter = new EventEmitter<void>();
-  @ViewChild("journalInput", { static: true }) private journalInput: ElementRef<HTMLInputElement>;
+  @ViewChild("journalInput") private journalInput: ElementRef<HTMLInputElement>;
 
   constructor(private queryService: QueryService) {
     // only consider valid responses
