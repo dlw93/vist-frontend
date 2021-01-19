@@ -13,10 +13,15 @@ export class QueryService {
   private _refinement: IRefinement;
 
   private _data$ = new BehaviorSubject<IResponse>(null);
+  private _samples$ = new BehaviorSubject<IEvalQuery[]>(null);
   private _loading$ = new BehaviorSubject<boolean>(false);
   private _fetching$ = new BehaviorSubject<boolean>(false);
 
   constructor(private http: HttpClient) {
+    const url: string = isDevMode() ? '/assets/examples.json' : '/getQueriesExamples';
+    this.http.get<IEvalQuery[]>(url).subscribe(value => {
+      this._samples$.next(value);
+    });
   }
 
   public get terms(): ITerms {
@@ -52,6 +57,10 @@ export class QueryService {
 
   public get data$(): Observable<IResponse> {
     return this._data$.asObservable();
+  }
+
+  public get samples$(): Observable<IEvalQuery[]> {
+    return this._samples$.asObservable();
   }
 
   public get loading$(): Observable<boolean> {

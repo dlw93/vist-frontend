@@ -60,7 +60,7 @@ export class SearchComponent implements OnInit {
 
   ngOnInit() {
     //this.geneAutocompleteTrigger['_scrollToOption'] = this._scrollToOption(75);
-    this.evalQueries = this.queryService.getEvalQueries();
+    this.evalQueries = this.queryService.samples$;
 
     // remember and show the parameters of the most recent query if exists and not explicitly told not to do so
     if (!this.reset && !!this.queryService.terms) {
