@@ -88,6 +88,6 @@ export class FilterComponent {
   }
 
   private _filterInput(value: string): string[] {
-    return this.journalNames.filter(name => name.toLowerCase().indexOf(value.toLowerCase()) >= 0);
+    return this.journalNames?.filter(name => name.toLowerCase().indexOf(value.toLowerCase()) >= 0);
   }
 }
