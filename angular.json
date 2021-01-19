@@ -80,7 +80,10 @@
               "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
-              "buildOptimizer": true
+              "buildOptimizer": true,
+              "assets": [
+                "src/favicon.ico"
+              ]
             }
           }
         },

@@ -23,6 +23,16 @@ pre, .doc-stats > * {
     margin: 0;
 }
 
+div[vistAnnotated] {
+    font: 9pt "Merriweather", serif;
+    line-height: 14pt;
+}
+
+div[vistAnnotated] b {
+    font: bold 10pt "Roboto", sans-serif;
+    line-height: 14pt;
+}
+
 vist-key-value-table a {
     color: #00376c;
     text-decoration: none;

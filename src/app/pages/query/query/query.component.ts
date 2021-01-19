@@ -1,7 +1,7 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable, combineLatest } from 'rxjs';
-import { map, distinctUntilChanged, tap } from 'rxjs/operators';
+import { map, distinctUntilChanged, tap, mapTo } from 'rxjs/operators';
 import { QueryService, TitleService } from '@app/services';
 import { VIST_SLIDE_IN_ANIMATION } from '@app/animations';
 import { VistHeader } from '@app/components/vist-header/vist-header.component';
@@ -16,6 +16,7 @@ export class QueryComponent {
   isSmall: Observable<boolean>;
   isLoading: Observable<boolean>;
   hasData: Observable<boolean>;
+  hasError: Observable<boolean>;
   isSidenavEnabled: Observable<boolean>;
   hasMedlineData: boolean;
   hasCTData: boolean;
@@ -31,6 +32,8 @@ export class QueryComponent {
 
     this.isSmall = breakpointObserver.observe([Breakpoints.Small, Breakpoints.Medium]).pipe(map(state => state.matches));
     this.isLoading = queryService.loading$;
+
+    this.hasError = queryService.error$.pipe(mapTo(true));
     this.hasData = queryService.data$.pipe(
       tap(data => this.hasMedlineData = data ? data.docs.length > 0 : false),
       tap(data => this.hasCTData = data ? data.ct.length > 0 : false),

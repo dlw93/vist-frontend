@@ -94,3 +94,14 @@ export interface IFeedbackResponse {
 };
 
 export type TFeedbackResponse = IFeedbackResponse[];
+
+export enum ErrorCode {
+    RESULT_SIZE_EXCEEDS_LIMIT
+}
+
+interface IResultSizeExceedsLimitError {
+    code: ErrorCode.RESULT_SIZE_EXCEEDS_LIMIT;
+    numFound: number;
+}
+
+export type IErrorResponse = IResultSizeExceedsLimitError;

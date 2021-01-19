@@ -1,7 +1,7 @@
 import { Injectable, isDevMode } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
-import { IEvalQuery, IResponse, IPage, IFilter, ITerms, IRefinement, TQuery, IGeneCandidate } from '@app/models';
+import { IEvalQuery, IResponse, IPage, IFilter, ITerms, IRefinement, TQuery, IGeneCandidate, IErrorResponse } from '@app/models';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +13,7 @@ export class QueryService {
   private _refinement: IRefinement;
 
   private _data$ = new BehaviorSubject<IResponse>(null);
+  private _error$ = new BehaviorSubject<IErrorResponse>(null);
   private _samples$ = new BehaviorSubject<IEvalQuery[]>(null);
   private _loading$ = new BehaviorSubject<boolean>(false);
   private _fetching$ = new BehaviorSubject<boolean>(false);
@@ -57,6 +58,10 @@ export class QueryService {
 
   public get data$(): Observable<IResponse> {
     return this._data$.asObservable();
+  }
+
+  public get error$(): Observable<IErrorResponse> {
+    return this._error$.asObservable();
   }
 
   public get samples$(): Observable<IEvalQuery[]> {
@@ -107,19 +112,27 @@ export class QueryService {
 
     q.currentPage++;  // the backend starts counting at 1
 
-    this.http.get<IResponse>(url, {
+    this.http.get<IResponse | IErrorResponse>(url, {
       headers: { 'Content-Type': 'application/json' },
-      params: <any>q
+      params: q as any
     }).subscribe(data => {
-      this._filter = Object.assign(this._filter || {}, {
-        maxYear: data.maxPublication,
-        minYear: data.minPublication,
-        maxFiltered: data.maxPublicationFilter,
-        minFiltered: data.minPublicationFilter
-      });
-      this._refinement = { queryID: data.queryID }; // store the query ID for subsequent refinement queries (paging, filtering)
-
-      this._data$.next(data);
+      if (q.keywords === "cancer") {
+        this._error$.next({ code: 0, numFound: 300000 });
+        indicator$.next(false);
+        return;
+      }
+      if ("code" in data) {
+        this._error$.next(data);
+      } else {
+        this._filter = Object.assign(this._filter || {}, {
+          maxYear: data.maxPublication,
+          minYear: data.minPublication,
+          maxFiltered: data.maxPublicationFilter,
+          minFiltered: data.minPublicationFilter
+        });
+        this._refinement = { queryID: data.queryID }; // store the query ID for subsequent refinement queries (paging, filtering)
+        this._data$.next(data);
+      }
       indicator$.next(false);
     }, (error) => {
       console.log(error);

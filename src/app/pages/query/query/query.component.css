@@ -84,15 +84,3 @@ mat-card {
 .no-data-wrapper > .message-wrap h4 {
 	margin: 0;
 }
-
-.sidenav-wrap {
-  width: 400px;
-  padding: 16px;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-}
-
-app-filter {
-  max-width: 400px;
-}
