@@ -116,11 +116,6 @@ export class QueryService {
       headers: { 'Content-Type': 'application/json' },
       params: q as any
     }).subscribe(data => {
-      if (q.keywords === "cancer") {
-        this._error$.next({ code: 0, numFound: 300000 });
-        indicator$.next(false);
-        return;
-      }
       if ("code" in data) {
         this._error$.next(data);
       } else {
