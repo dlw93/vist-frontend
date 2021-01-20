@@ -67,18 +67,18 @@ mat-card {
 
 .no-data-wrapper > .message-wrap {
   display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
+  flex-direction: row;
   height: 90px;
-  justify-content: space-evenly;
-  width: 460px;
+  justify-content: center;
+  width: 100%;
+  align-items: center;
+  gap: 12px;
 }
 
 .no-data-wrapper > .message-wrap > mat-icon {
 	font-size: 80px;
   width: 80px;
   height: 80px;
-  padding: 5px;
 }
 
 .no-data-wrapper > .message-wrap h4 {

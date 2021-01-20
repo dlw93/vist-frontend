@@ -10,7 +10,7 @@
 
 <!-- If a query is executing, we show a loading indicator -->
 <div class="control-wrap mat-app-background" *ngIf="!(isLoading | async); else loading">
-    <!-- If the last query yields no results, we use the available space to display the search box. -->
+    <!-- If the last query yields no results, we show a message instead -->
     <ng-container *ngIf="(hasData | async); else message">
         <div *ngIf="!(isSidenavEnabled | async)" class="sidebar-wrap">
             <app-search @vistSlideIn></app-search>
@@ -38,26 +38,25 @@
 <ng-template #message>
     <div class="no-data-wrapper">
         <div class="message-wrap">
-            <ng-container *ngIf="hasError; then error; else empty"></ng-container>
-        </div>
-        <app-search @vistSlideIn></app-search>
-        <!-- since we use the "space-between" strategy, an empty div suffices to adjust the space distribution -->
-        <div></div>
-    </div>
-</ng-template>
-<ng-template #empty>
-    <mat-icon>sentiment_dissatisfied</mat-icon>
-    <div>
-        <h4 class="mat-title">Your last query did not yield any results.</h4>
-        <h4 class="mat-subheading-1">Refine your query or try one of the sample queries.</h4>
-    </div>
-</ng-template>
-<ng-template #error>
-    <mat-icon>error</mat-icon>
-    <div>
-        <h4 class="mat-title">An error occurred</h4>
-        <h4 class="mat-subheading-1">This usually happends for very large results. <br> Try to narrow down your query
-            and try
-            again.</h4>
+            <ng-container [ngSwitch]="showMessage | async">
+                <ng-container *ngSwitchCase="'empty'">
+                    <mat-icon>sentiment_dissatisfied</mat-icon>
+                    <div>
+                        <h4 class="mat-title">Your last query did not yield any results.</h4>
+                        <h4 class="mat-subheading-1">Refine your query or try one of the sample queries.</h4>
+                    </div>
+                </ng-container>
+                <ng-container *ngSwitchCase="'error'">
+                    <mat-icon>error</mat-icon>
+                    <div>
+                        <h4 class="mat-title">The result size exceeds the server's capacity.</h4>
+                        <h4 class="mat-subheading-1">Try to narrow your query and try again.</h4>
+                        </div>
+                        </ng-container>
+                        </ng-container>
+                        </div>
+                        <app-search @vistSlideIn></app-search>
+                        <!-- since we use the "space-between" strategy, an empty div suffices to adjust the space distribution -->
+                        <div></div>
     </div>
 </ng-template>
