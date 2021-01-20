@@ -1,10 +1,16 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable, combineLatest, merge } from 'rxjs';
-import { map, distinctUntilChanged, tap, mapTo, filter } from 'rxjs/operators';
+import { map, tap, mapTo, filter } from 'rxjs/operators';
 import { QueryService, TitleService } from '@app/services';
 import { VIST_SLIDE_IN_ANIMATION } from '@app/animations';
 import { VistHeader } from '@app/components/vist-header/vist-header.component';
+
+interface IMessage {
+  icon: string;
+  title: string;
+  subtitle: string;
+}
 
 @Component({
   selector: 'app-query',
@@ -26,14 +32,23 @@ export class QueryComponent {
   hasCTData: boolean;
   selectedTabIndex: number;
 
-  showMessage: Observable<"empty" | "error">;
+  message$: Observable<IMessage>;
 
   @ViewChild(VistHeader, { read: ElementRef, static: true }) header: ElementRef;
 
-  constructor(
-    queryService: QueryService,
-    breakpointObserver: BreakpointObserver,
-    private titleService: TitleService) {
+  private static readonly EMPTY_MESSAGE: IMessage = {
+    icon: "sentiment_dissatisfied",
+    title: "Your last query did not yield any results.",
+    subtitle: "Refine your query or try one of the sample queries."
+  };
+
+  private static readonly ERROR_MESSAGE: IMessage = {
+    icon: "error",
+    title: "The result size exceeds the server's capacity.",
+    subtitle: "Try to narrow your query and try again."
+  };
+
+  constructor(queryService: QueryService, breakpointObserver: BreakpointObserver, private titleService: TitleService) {
     titleService.title = "Search Results";
 
     this.isLoading = queryService.loading$;
@@ -46,12 +61,10 @@ export class QueryComponent {
       //distinctUntilChanged()
     );
 
-    this.showMessage = merge(
-      this.hasData.pipe(filter(x => x === false), mapTo("empty")),
-      this.hasError.pipe(filter(x => x === true), mapTo<boolean, "error">("error"))
+    this.message$ = merge(
+      this.hasData.pipe(filter(x => x === false), mapTo(QueryComponent.EMPTY_MESSAGE)),
+      queryService.error$.pipe(mapTo(QueryComponent.ERROR_MESSAGE)),
     );
-
-    this.showMessage.pipe(tap(x => console.log(x)));
 
     const isSmall = breakpointObserver.observe([Breakpoints.Small, Breakpoints.Medium]).pipe(map(state => state.matches));
     this.isSidenavEnabled = combineLatest([isSmall, this.isLoading, this.hasData]).pipe(

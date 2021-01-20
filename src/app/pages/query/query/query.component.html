@@ -38,25 +38,16 @@
 <ng-template #message>
     <div class="no-data-wrapper">
         <div class="message-wrap">
-            <ng-container [ngSwitch]="showMessage | async">
-                <ng-container *ngSwitchCase="'empty'">
-                    <mat-icon>sentiment_dissatisfied</mat-icon>
-                    <div>
-                        <h4 class="mat-title">Your last query did not yield any results.</h4>
-                        <h4 class="mat-subheading-1">Refine your query or try one of the sample queries.</h4>
-                    </div>
-                </ng-container>
-                <ng-container *ngSwitchCase="'error'">
-                    <mat-icon>error</mat-icon>
-                    <div>
-                        <h4 class="mat-title">The result size exceeds the server's capacity.</h4>
-                        <h4 class="mat-subheading-1">Try to narrow your query and try again.</h4>
-                        </div>
-                        </ng-container>
-                        </ng-container>
-                        </div>
-                        <app-search @vistSlideIn></app-search>
-                        <!-- since we use the "space-between" strategy, an empty div suffices to adjust the space distribution -->
-                        <div></div>
+            <ng-container *ngIf="message$ | async">
+                <mat-icon>{{ (message$ | async).icon }}</mat-icon>
+                <div>
+                    <h4 class="mat-title">{{ (message$ | async).title }}</h4>
+                    <h4 class="mat-subheading-1">{{ (message$ | async).subtitle }}</h4>
+                </div>
+            </ng-container>
+        </div>
+        <app-search @vistSlideIn></app-search>
+        <!-- since we use the "space-between" strategy, an empty div suffices to adjust the space distribution -->
+        <div></div>
     </div>
 </ng-template>
