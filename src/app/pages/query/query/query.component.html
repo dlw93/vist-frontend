@@ -38,13 +38,11 @@
 <ng-template #message>
     <div class="no-data-wrapper">
         <div class="message-wrap">
-            <ng-container *ngIf="message$ | async">
-                <mat-icon>{{ (message$ | async).icon }}</mat-icon>
-                <div>
-                    <h4 class="mat-title">{{ (message$ | async).title }}</h4>
-                    <h4 class="mat-subheading-1">{{ (message$ | async).subtitle }}</h4>
-                </div>
-            </ng-container>
+            <mat-icon>{{ (message$ | async).icon }}</mat-icon>
+            <div>
+                <h4 class="mat-title">{{ (message$ | async).title }}</h4>
+                <h4 class="mat-subheading-1">{{ (message$ | async).subtitle }}</h4>
+            </div>
         </div>
         <app-search @vistSlideIn></app-search>
         <!-- since we use the "space-between" strategy, an empty div suffices to adjust the space distribution -->
