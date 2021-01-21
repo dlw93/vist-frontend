@@ -60,9 +60,9 @@ export class QueryComponent {
       map(data => data ? (data.numFound > 0 || data.numFoundCT > 0) : false),
     );
 
-    const empty$ = this.hasData.pipe(distinctUntilChanged(), filter(x => x === false), mapTo(QueryComponent.EMPTY_MESSAGE));
+    const empty$ = this.hasData.pipe(filter(x => x === false), mapTo(QueryComponent.EMPTY_MESSAGE));
     const error$ = queryService.error$.pipe(filter(x => x !== null), mapTo(QueryComponent.ERROR_MESSAGE));
-    this.messageSub = merge(empty$, error$).subscribe(msg => this.msg = msg);
+    this.messageSub = merge(empty$, error$).pipe(distinctUntilKeyChanged("icon")).subscribe(msg => this.msg = msg);
 
     const isSmall = breakpointObserver.observe([Breakpoints.Small, Breakpoints.Medium]).pipe(map(state => state.matches));
     this.isSidenavEnabled = combineLatest([isSmall, this.isLoading, this.hasData]).pipe(
