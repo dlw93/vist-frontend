@@ -54,8 +54,8 @@ export class QueryComponent {
 
     this.isLoading = queryService.loading$;
     this.hasData = queryService.data$.pipe(
-      tap(data => this.hasMedlineData = data ? data.docs.length > 0 : false),
-      tap(data => this.hasCTData = data ? data.ct.length > 0 : false),
+      tap(data => this.hasMedlineData = data?.docs?.length > 0),
+      tap(data => this.hasCTData = data?.ct?.length > 0),
       tap(data => this.selectedTabIndex = data ? 1 - Math.sign(data.numFound) : 0),  // if there are no Medline results, switch to second tab
       map(data => data ? (data.numFound > 0 || data.numFoundCT > 0) : false),
     );
