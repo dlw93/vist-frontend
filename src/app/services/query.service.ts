@@ -116,6 +116,22 @@ export class QueryService {
       headers: { 'Content-Type': 'application/json' },
       params: q as any
     }).subscribe(data => {
+      // this._cnt++;
+      // console.log(this._cnt % 3);
+
+      // if (this._cnt % 3 == 0) {
+      //   this._error$.next({ code: 0, numFound: 300000 });
+      //   indicator$.next(false);
+      //   return;
+      // } else if (this._cnt % 3 == 2 && !("code" in data)) {
+      //   const _data = data;
+      //   _data.numFound = 0;
+      //   _data.numFoundCT = 0;
+      //   this._data$.next(_data);
+      //   indicator$.next(false);
+      //   return;
+      // }
+
       if ("code" in data) {
         this._error$.next(data);
       } else {
@@ -135,4 +151,6 @@ export class QueryService {
       indicator$.next(false);
     });
   }
+
+  // private _cnt = 0;
 }

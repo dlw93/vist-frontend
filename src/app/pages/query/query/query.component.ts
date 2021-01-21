@@ -1,7 +1,7 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Observable, combineLatest, merge } from 'rxjs';
-import { map, tap, mapTo, filter } from 'rxjs/operators';
+import { Observable, combineLatest, merge, Subscription } from 'rxjs';
+import { map, tap, mapTo, filter, distinctUntilChanged, distinctUntilKeyChanged } from 'rxjs/operators';
 import { QueryService, TitleService } from '@app/services';
 import { VIST_SLIDE_IN_ANIMATION } from '@app/animations';
 import { VistHeader } from '@app/components/vist-header/vist-header.component';
@@ -22,7 +22,6 @@ export class QueryComponent {
   // ui state
   isLoading: Observable<boolean>;
   hasData: Observable<boolean>;
-  hasError: Observable<boolean>;
 
   // ui config
   isSidenavEnabled: Observable<boolean>;
@@ -32,7 +31,9 @@ export class QueryComponent {
   hasCTData: boolean;
   selectedTabIndex: number;
 
-  message$: Observable<IMessage>;
+  msg: IMessage;
+
+  private messageSub: Subscription;
 
   @ViewChild(VistHeader, { read: ElementRef, static: true }) header: ElementRef;
 
@@ -52,24 +53,25 @@ export class QueryComponent {
     titleService.title = "Search Results";
 
     this.isLoading = queryService.loading$;
-    this.hasError = queryService.error$.pipe(mapTo(true));
     this.hasData = queryService.data$.pipe(
       tap(data => this.hasMedlineData = data ? data.docs.length > 0 : false),
       tap(data => this.hasCTData = data ? data.ct.length > 0 : false),
       tap(data => this.selectedTabIndex = data ? 1 - Math.sign(data.numFound) : 0),  // if there are no Medline results, switch to second tab
       map(data => data ? (data.numFound > 0 || data.numFoundCT > 0) : false),
-      //distinctUntilChanged()
     );
 
-    this.message$ = merge(
-      this.hasData.pipe(filter(x => x === false), mapTo(QueryComponent.EMPTY_MESSAGE)),
-      queryService.error$.pipe(mapTo(QueryComponent.ERROR_MESSAGE)),
-    );
+    const empty$ = this.hasData.pipe(distinctUntilChanged(), filter(x => x === false), mapTo(QueryComponent.EMPTY_MESSAGE));
+    const error$ = queryService.error$.pipe(filter(x => x !== null), mapTo(QueryComponent.ERROR_MESSAGE));
+    this.messageSub = merge(empty$, error$).subscribe(msg => this.msg = msg);
 
     const isSmall = breakpointObserver.observe([Breakpoints.Small, Breakpoints.Medium]).pipe(map(state => state.matches));
     this.isSidenavEnabled = combineLatest([isSmall, this.isLoading, this.hasData]).pipe(
       map(([isSmall, isLoading, hasData]: boolean[]) => isSmall && !isLoading && hasData)
     );
+  }
+
+  ngOnDestroy() {
+    this.messageSub.unsubscribe();
   }
 
   getTitle(): string {

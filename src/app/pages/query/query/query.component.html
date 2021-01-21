@@ -38,10 +38,10 @@
 <ng-template #message>
     <div class="no-data-wrapper">
         <div class="message-wrap">
-            <mat-icon>{{ (message$ | async).icon }}</mat-icon>
+            <mat-icon>{{ msg.icon }}</mat-icon>
             <div>
-                <h4 class="mat-title">{{ (message$ | async).title }}</h4>
-                <h4 class="mat-subheading-1">{{ (message$ | async).subtitle }}</h4>
+                <h4 class="mat-title">{{ msg.title }}</h4>
+                <h4 class="mat-subheading-1">{{ msg.subtitle }}</h4>
             </div>
         </div>
         <app-search @vistSlideIn></app-search>
