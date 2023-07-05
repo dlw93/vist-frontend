@@ -131,7 +131,6 @@
       }
     }
   },
-  "defaultProject": "vist-frontend",
   "cli": {
     "analytics": "e15b2a0c-eb31-4f48-9f95-4f141a684915"
   }
