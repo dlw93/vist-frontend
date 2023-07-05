@@ -1,6 +1,8 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
     "baseUrl": "src",
     "downlevelIteration": true,
     "importHelpers": true,
@@ -25,5 +27,8 @@
       "es2017",
       "dom"
     ]
+  },
+  "angularCompilerOptions": {
+    "strictTemplates": true
   }
 }
