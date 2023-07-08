@@ -1,15 +1,20 @@
+@use '@angular/material' as mat;
+@import './app-theme';
 @import '@angular/cdk/overlay-prebuilt.css';
 @import '@angular/cdk/a11y-prebuilt.css';
-@import '@angular/material/theming';
-@import './app-theme';
 @import './styles/general';
 
 @import url('https://fonts.googleapis.com/css2?family=Merriweather&display=swap');
 
-$theme-primary: mat-palette($vist-light-blue);
-$theme-accent: mat-palette($vist-dark-blue);
-$theme: mat-light-theme($theme-primary, $theme-accent);
+@include mat.core();
 
-@include mat-core();
-@include angular-material-theme($theme);
+$theme-primary: mat.define-palette($vist-light-blue);
+$theme-accent: mat.define-palette($vist-dark-blue);
+
+$theme: mat.define-light-theme((color: (primary: $theme-primary, accent: $theme-accent),
+            typography: mat.define-typography-config(),
+            density: -1,
+        ));
+
+@include mat.all-component-themes($theme);
 @include vist-app-theme($theme);

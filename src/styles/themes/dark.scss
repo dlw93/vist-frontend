@@ -1,8 +1,16 @@
+@use '@angular/material' as mat;
 @import '../../app-theme';
 
-$theme-primary: mat-palette($vist-light-blue);
-$theme-accent: mat-palette($vist-dark-blue);
-$theme: mat-dark-theme($theme-primary, $theme-accent);
+@include mat.core();
 
-@include angular-material-theme($theme);
+$theme-primary: mat.define-palette($vist-light-blue);
+$theme-accent: mat.define-palette($vist-dark-blue);
+
+$theme: mat.define-dark-theme((color: (primary: $theme-primary,
+                accent: $theme-accent,
+            ),
+            density: -1,
+        ));
+
+@include mat.all-component-themes($theme);
 @include vist-app-theme($theme);

@@ -19,13 +19,17 @@ table {
     width: 100%;
 }
 
-.mat-column-score, .mat-column-year {
-    width: 40px;
+.mat-column-score {
+    width: 60px;
+}
+
+.mat-column-year {
+    width: 80px;
 }
 
 vist-tabs {
     overflow: hidden;
-    padding: 8px 84px 8px 94px;
+    padding: 8px 84px 8px 82px;
 }
 
 .article-footer {

@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 
-type TRating = 1 | 2 | 3 | 4 | 5;
+export const ratings = [1, 2, 3, 4, 5] as const;
+type TRating = typeof ratings[number];
 
 @Component({
   selector: 'app-rating',
@@ -10,6 +11,8 @@ type TRating = 1 | 2 | 3 | 4 | 5;
 export class RatingComponent {
   @Input() docId: string;
   @Input() docType: "medline" | "ct";
+
+  readonly ratings = ratings;
 
   private _rating: TRating;
 

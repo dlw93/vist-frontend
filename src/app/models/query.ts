@@ -34,4 +34,4 @@ export interface IRefinement {
   queryID: number;
 }
 
-export type TQuery = ITerms & Partial<IPage> & Partial<IFilter> & Partial<IRefinement>;
+export type TQuery = ITerms & Partial<IPage & IFilter & IRefinement>;

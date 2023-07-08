@@ -1,10 +1,13 @@
+import { CommonModule } from '@angular/common';
 import { Component, Input, ViewChild, TemplateRef, ContentChildren, QueryList, AfterContentInit } from '@angular/core';
+import { MatRippleModule } from '@angular/material/core';
 
 @Component({
   selector: 'vist-tab',
+  standalone: true,
   template: '<ng-template><ng-content></ng-content></ng-template>'
 })
-export class VistTab {
+export class VistTabComponent {
   @Input() title: string;
   @Input() active: boolean = false;
   @ViewChild(TemplateRef, { static: true }) template: TemplateRef<any>;
@@ -13,13 +16,18 @@ export class VistTab {
 @Component({
   selector: 'vist-tabs',
   templateUrl: './vist-tabs.component.html',
-  styleUrls: ['./vist-tabs.component.scss']
+  styleUrls: ['./vist-tabs.component.scss'],
+  standalone: true,
+  imports: [
+    CommonModule,
+    MatRippleModule
+  ],
 })
-export class VistTabs implements AfterContentInit {
-  @ContentChildren(VistTab) tabs: QueryList<VistTab>;
+export class VistTabsComponent implements AfterContentInit {
+  @ContentChildren(VistTabComponent) tabs: QueryList<VistTabComponent>;
   activeTemplate: TemplateRef<any>;
 
-  selectTab(tab: VistTab) {
+  selectTab(tab: VistTabComponent) {
     this.tabs.forEach(tab => tab.active = false);
     tab.active = true;
   }

@@ -1,7 +1,7 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable, combineLatest, merge, Subscription } from 'rxjs';
-import { map, tap, mapTo, filter, distinctUntilChanged, distinctUntilKeyChanged } from 'rxjs/operators';
+import { map, tap, filter, distinctUntilKeyChanged } from 'rxjs/operators';
 import { QueryService, TitleService } from '@app/services';
 import { VIST_SLIDE_IN_ANIMATION } from '@app/animations';
 import { VistHeader } from '@app/components/vist-header/vist-header.component';
@@ -60,8 +60,8 @@ export class QueryComponent {
       map(data => data ? (data.numFound > 0 || data.numFoundCT > 0) : false),
     );
 
-    const empty$ = this.hasData.pipe(filter(x => x === false), mapTo(QueryComponent.EMPTY_MESSAGE));
-    const error$ = queryService.error$.pipe(filter(x => x !== null), mapTo(QueryComponent.ERROR_MESSAGE));
+    const empty$ = this.hasData.pipe(filter(x => x === false), map(() => QueryComponent.EMPTY_MESSAGE));
+    const error$ = queryService.error$.pipe(filter(x => x !== null), map(() => QueryComponent.ERROR_MESSAGE));
     this.messageSub = merge(empty$, error$).pipe(distinctUntilKeyChanged("icon")).subscribe(msg => this.msg = msg);
 
     const isSmall = breakpointObserver.observe([Breakpoints.Small, Breakpoints.Medium]).pipe(map(state => state.matches));

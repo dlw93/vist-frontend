@@ -1,4 +1,4 @@
 <span class="mat-body-2">Relevance</span>
 <div>
-  <mat-icon *ngFor="let r of [1,2,3,4,5]" (click)="rating = r">{{ rating >= r ? 'star' : 'star_border' }}</mat-icon>
+  <mat-icon *ngFor="let r of ratings" (click)="rating = r">{{ rating >= r ? 'star' : 'star_border' }}</mat-icon>
 </div>

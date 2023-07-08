@@ -8,7 +8,7 @@ import { SearchComponent } from './search/search.component';
 import { FilterComponent } from './filter/filter.component';
 import { MedlineResultsComponent } from './medline-results/medline-results.component';
 import { ClinicalTrialsResultsComponent } from './clinical-trials-results/clinical-trials-results.component';
-import { VistOverlayModule, VistTabsModule, } from '@app/components';
+import { VistOverlayModule, VistTabsComponent, VistTabComponent } from '@app/components';
 import { VistHeaderModule, } from '@app/components';
 import { VistKeyValueTableModule } from '@app/components';
 import { PipesModule } from '@app/pipes/pipes.module';
@@ -27,6 +27,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { RatingComponent } from './rating/rating.component';
+import { MatSliderModule } from "@angular/material/slider";
+import { MatRippleModule } from '@angular/material/core';
 
 @NgModule({
   imports: [
@@ -35,7 +37,6 @@ import { RatingComponent } from './rating/rating.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    VistTabsModule,
     VistHeaderModule,
     VistKeyValueTableModule,
     PipesModule,
@@ -53,7 +54,11 @@ import { RatingComponent } from './rating/rating.component';
     MatChipsModule,
     MatTooltipModule,
     MatRadioModule,
-    VistOverlayModule
+    MatSliderModule,
+    MatRippleModule,
+    VistOverlayModule,
+    VistTabComponent,
+    VistTabsComponent,
   ],
   declarations: [
     QueryComponent,

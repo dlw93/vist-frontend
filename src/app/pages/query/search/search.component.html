@@ -6,28 +6,31 @@
         queries</a> to get started.
     </mat-card-subtitle>
     <ng-template #alt>
-      <mat-card-subtitle>Choose a sample query or <a href="javascript:void(0)" (click)="showCustom = !showCustom">compose
+      <mat-card-subtitle>Choose a sample query or <a href="javascript:void(0)"
+          (click)="showCustom = !showCustom">compose
           your own</a>.
       </mat-card-subtitle>
     </ng-template>
   </mat-card-header>
-  <mat-card-content>    
+  <mat-card-content>
     <ng-container *ngIf="showCustom; else sample">
       <form #queryForm="ngForm">
-        <mat-form-field appearance="standard">
+        <mat-form-field appearance="fill">
           <mat-label>Keywords</mat-label>
           <input matInput [(ngModel)]="query.keywords" name="keywords">
         </mat-form-field>
 
-        <mat-form-field appearance="standard">
+        <mat-form-field appearance="fill" class="fill">
           <mat-label>Genes</mat-label>
-          <mat-chip-list #chipList>
-            <mat-chip *ngFor="let gene of query.genes" selectable="false" removable="true" (removed)="onRemoved(gene)">
-              {{ gene.text }}
-              <mat-icon matChipRemove>cancel</mat-icon>
-            </mat-chip>
-            <input #geneInput [formControl]="geneControl" name="genes" [matAutocomplete]="auto" [matChipInputFor]="chipList">
-          </mat-chip-list>
+          <mat-chip-grid #chipGrid>
+            <mat-chip-row *ngFor="let gene of query.genes" selectable="false" removable="true" (removed)="onRemoved(gene)">
+              {{gene.text}}
+              <button matChipRemove>
+                <mat-icon>cancel</mat-icon>
+              </button>
+            </mat-chip-row>
+          </mat-chip-grid>
+          <input #geneInput [formControl]="geneControl" name="genes" [matAutocomplete]="auto" [matChipInputFor]="chipGrid">
           <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onSelected($event)">
             <mat-option *ngFor="let geneCandidate of geneCandidates | async" [value]="geneCandidate">
               <div class="option-wrap">
@@ -45,7 +48,7 @@
           </mat-autocomplete>
         </mat-form-field>
 
-        <mat-form-field appearance="standard">
+        <mat-form-field appearance="fill">
           <mat-label>Mutations</mat-label>
           <input matInput [(ngModel)]="query.mutations" name="mutations">
         </mat-form-field>
@@ -58,7 +61,7 @@
         </button>
       </div>
     </ng-container>
-    
+
     <ng-template #sample>
       <div class="table-wrap">
         <table mat-table [dataSource]="evalQueries">

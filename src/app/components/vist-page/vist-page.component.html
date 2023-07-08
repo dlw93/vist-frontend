@@ -34,7 +34,7 @@
 
   <!-- The actually visible content of the page -->
   <mat-sidenav-content>
-    <vist-header [title]="title" [showToggle]="isSmall && _sidebar" (toggle)="_sidenav.toggle()"></vist-header>
+    <vist-header [title]="title" [showToggle]="isSmall && !!_sidebar" (toggle)="_sidenav.toggle()"></vist-header>
     <div class="main" *ngIf="!loading; else loadingView">
       <ng-container *ngIf="!error; else errorView">
         <div class="sidebar" *ngIf="!isSmall && _sidebar" @vistSlideIn>

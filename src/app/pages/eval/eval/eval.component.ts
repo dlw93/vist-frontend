@@ -142,7 +142,7 @@ export class EvalComponent implements OnDestroy {
   /**
    * Represents the current feedback data as an array of IFeedback objects
    */
-  private get _feedback(): IFeedback[] {
+  get _feedback(): IFeedback[] {
     return Object.entries(this.useful)
       .filter(([pmid, ]) => !!this.useful[pmid] && !!this.classification[pmid])    // remove incomplete feedback items, i.e. with 'useful' or 'classification' unset
       .map(([pmid, useful]) => ({

@@ -47,12 +47,12 @@
               {
                 "inject": false,
                 "input": "src/styles/themes/light.scss",
-                "bundleName": "assets/light"
+                "bundleName": "assets-light"
               },
               {
                 "inject": false,
                 "input": "src/styles/themes/dark.scss",
-                "bundleName": "assets/dark"
+                "bundleName": "assets-dark"
               }
             ],
             "scripts": [],

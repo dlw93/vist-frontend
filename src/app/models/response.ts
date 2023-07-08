@@ -95,7 +95,7 @@ export interface IFeedbackResponse {
 
 export type TFeedbackResponse = IFeedbackResponse[];
 
-export enum ErrorCode {
+export const enum ErrorCode {
     RESULT_SIZE_EXCEEDS_LIMIT
 }
 
