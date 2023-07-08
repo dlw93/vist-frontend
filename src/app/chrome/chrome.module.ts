@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule, Title } from '@angular/platform-browser';
+import { Title } from '@angular/platform-browser';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
@@ -9,10 +9,11 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { NavbarComponent } from './navbar/navbar.component';
 import { VistOverlayModule } from '@app/components';
-import { AppRoutingModule } from '@app/app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthComponent } from './auth/auth.component';
 import { SettingsComponent } from './settings/settings.component';
+import { RouterLinkWithHref, RouterOutlet } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,7 @@ import { SettingsComponent } from './settings/settings.component';
     SettingsComponent
   ],
   imports: [
-    BrowserModule,
+    CommonModule,
     MatButtonModule,
     MatIconModule,
     MatToolbarModule,
@@ -31,7 +32,8 @@ import { SettingsComponent } from './settings/settings.component';
     ReactiveFormsModule,
     MatTooltipModule,
     VistOverlayModule,
-    AppRoutingModule,
+    RouterOutlet,
+    RouterLinkWithHref,
     MatSlideToggleModule
   ],
   exports: [

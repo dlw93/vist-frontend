@@ -27,6 +27,6 @@ export class SettingsService {
 
   set theme(value) {
     this._theme = value;
-    this.styleManagerService.setStyle("theme", `assets/${this._theme}.css`);
+    this.styleManagerService.setStyle("theme", `assets-${this._theme}.css`);
   }
 }

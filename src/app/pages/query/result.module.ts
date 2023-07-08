@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { QueryComponent } from './query/query.component';
 import { SearchComponent } from './search/search.component';
@@ -33,7 +32,6 @@ import { MatRippleModule } from '@angular/material/core';
 @NgModule({
   imports: [
     CommonModule,
-    BrowserAnimationsModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,

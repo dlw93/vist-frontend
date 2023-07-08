@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -23,9 +21,7 @@ import { QuerySelectComponent } from './query-select/query-select.component';
 @NgModule({
   imports: [
     CommonModule,
-    BrowserModule,
     RouterModule,
-    BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
     VistTabComponent,
