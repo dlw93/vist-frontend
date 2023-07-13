@@ -6,7 +6,7 @@
 $theme-primary: mat.define-palette($vist-light-blue);
 $theme-accent: mat.define-palette($vist-dark-blue);
 
-$theme: mat.define-light-theme((color: (primary: $theme-primary, accent: $theme-accent), density: -1));
+$theme: mat.define-light-theme((color: (primary: $theme-primary, accent: $theme-accent)));
 
 @include mat.all-component-themes($theme);
 @include vist-app-theme($theme);

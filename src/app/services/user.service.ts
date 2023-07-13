@@ -2,7 +2,7 @@ import { Injectable, isDevMode } from '@angular/core';
 import { IUser, IAuthResponse, IAuthToken } from '@app/models';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, firstValueFrom } from 'rxjs';
 import { AuthService } from './auth.service';
 
 @Injectable({
@@ -13,7 +13,7 @@ export class UserService {
   private static readonly _HEADER = { headers: { 'Content-Type': 'application/json' } };
 
   constructor(private http: HttpClient, private authService: AuthService) {
-    authService.onExpiration(() => this._refresh(), 10000);   // 10s before token expiration, acquire a fresh token
+    authService.onExpiration(() => this._refresh(), 10_000);   // 10s before token expiration, acquire a fresh token
     if (authService.isValid()) {
       this.getUserData().then(user => this._user$.next(user));
     }
@@ -25,9 +25,8 @@ export class UserService {
    * @param password The new user's password
    */
   public signUp(user: IUser, password: string): Promise<boolean> {
-    const url: string = isDevMode() ? '/assets/user.json' : '/users';
-    const data = Object.assign({}, user, { password: password });
-    return this.http.post<IAuthResponse>(url, data, UserService._HEADER).pipe(map(response => !response)).toPromise();
+    const data = { ...user, password }
+    return firstValueFrom(this.http.post<IAuthResponse>("/users", data, UserService._HEADER).pipe(map(response => !response)))
   }
 
   /**
@@ -36,15 +35,16 @@ export class UserService {
    * @param password The user's password
    */
   public signIn(username: string, password: string): Promise<boolean> {
-    const url: string = isDevMode() ? '/assets/token.json' : '/auth';
-    const data = { username: username, password: password };
-    return this.http.post<IAuthToken & IAuthResponse>(url, data, UserService._HEADER).pipe(map(response => {
-      if (!!response.token) {
-        this.authService.token = response.token;
-        this.getUserData().then(user => this._user$.next(user));
-      }
-      return !response.error;
-    })).toPromise();
+    return firstValueFrom(this.http.post<IAuthToken & IAuthResponse>("/auth", { username, password }, UserService._HEADER)
+      .pipe(
+        map(response => {
+          if (!!response.token) {
+            this.authService.token = response.token;
+            this.getUserData().then(user => this._user$.next(user));
+          }
+          return !response.error;
+        })
+      ));
   }
 
   /**
@@ -63,16 +63,14 @@ export class UserService {
   }
 
   private getUserData(): Promise<IUser> {
-    const url: string = isDevMode() ? '/assets/user.json' : '/users/current';
-    return this.http.get<IUser>(url).toPromise();
+    return firstValueFrom(this.http.get<IUser>("/users/current"));
   }
 
   /**
    * Acquire a new token as long as the user's current token is still valid.
    */
   private _refresh() {
-    const url: string = isDevMode() ? '/assets/token.json' : '/auth';
-    this.http.get<IAuthToken & IAuthResponse>(url).toPromise().then(response => {
+    this.http.get<IAuthToken & IAuthResponse>("/auth").toPromise().then(response => {
       if (!!response.token) {
         this.authService.token = response.token;
       }

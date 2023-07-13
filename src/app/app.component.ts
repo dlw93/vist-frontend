@@ -2,21 +2,23 @@ import { Component } from '@angular/core';
 import { transition, trigger, query, style, animate, group } from '@angular/animations';
 import { RouterOutlet } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { ChromeModule } from './chrome';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatSelectModule } from '@angular/material/select';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { NavbarComponent } from './chrome';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
-    ChromeModule,
     FontAwesomeModule,
     RouterOutlet,
     MatAutocompleteModule,
     MatChipsModule,
-    MatSelectModule
+    MatSelectModule,
+    MatSnackBarModule,
+    NavbarComponent
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],

@@ -6,14 +6,14 @@ import { AuthService } from '../services';
 @Injectable({
     providedIn: 'root'
 })
-export class AuthGuard  {
+export class AuthGuard {
     constructor(private authService: AuthService, private snackBar: MatSnackBar) { }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-        if (!this.authService.isValid()) {
-            const ref = this.snackBar.open("You need to sign in to access the evaluation.");
+        const isValid = this.authService.isValid();
+        if (!isValid) {
+            this.snackBar.open("You need to sign in to access the evaluation.");
         }
-
-        return this.authService.isValid();
+        return isValid;
     }
 }

@@ -23,14 +23,16 @@
         <mat-form-field appearance="fill" class="fill">
           <mat-label>Genes</mat-label>
           <mat-chip-grid #chipGrid>
-            <mat-chip-row *ngFor="let gene of query.genes" selectable="false" removable="true" (removed)="onRemoved(gene)">
+            <mat-chip-row *ngFor="let gene of query.genes" selectable="false" removable="true"
+              (removed)="onRemoved(gene)">
               {{gene.text}}
               <button matChipRemove>
                 <mat-icon>cancel</mat-icon>
               </button>
             </mat-chip-row>
           </mat-chip-grid>
-          <input #geneInput [formControl]="geneControl" name="genes" [matAutocomplete]="auto" [matChipInputFor]="chipGrid">
+          <input #geneInput [formControl]="geneControl" name="genes" [matAutocomplete]="auto"
+            [matChipInputFor]="chipGrid">
           <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onSelected($event)">
             <mat-option *ngFor="let geneCandidate of geneCandidates | async" [value]="geneCandidate">
               <div class="option-wrap">

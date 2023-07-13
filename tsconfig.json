@@ -7,10 +7,10 @@
         "./src/app/*"
       ]
     },
+    // "strict": true,
     "forceConsistentCasingInFileNames": true,
     "downlevelIteration": true,
     "importHelpers": true,
-    // "strict": true,
     "noImplicitOverride": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,

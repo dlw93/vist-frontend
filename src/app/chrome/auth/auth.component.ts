@@ -1,11 +1,26 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { UserService, AuthService } from '@app/services';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { RouterLinkWithHref, RouterOutlet } from '@angular/router';
+import { AuthService, UserService } from '@app/services';
 import { Observable } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-auth',
+  standalone: true,
+  imports: [
+    CommonModule,
+    MatIconModule,
+    MatInputModule,
+    MatCardModule,
+    ReactiveFormsModule,
+    RouterOutlet,
+    RouterLinkWithHref,
+  ],
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.css']
 })
