@@ -1,4 +1,4 @@
-import { ApplicationConfig } from '@angular/core';
+import { ApplicationConfig, InjectionToken } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideRouter } from '@angular/router';
 
@@ -7,6 +7,7 @@ import { HTTP_INTERCEPTORS, provideHttpClient } from '@angular/common/http';
 import { MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
 import { AuthInterceptor } from './interceptors';
 import { AuthService } from './services';
+import { BACKEND_URL } from './token';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -26,5 +27,9 @@ export const appConfig: ApplicationConfig = {
         verticalPosition: 'top'
       }
     },
+    {
+      provide: BACKEND_URL,
+      useValue: 'http://localhost:8080'
+    }
   ]
 };

@@ -15,13 +15,13 @@ export class VistTabComponent {
 
 @Component({
   selector: 'vist-tabs',
-  templateUrl: './vist-tabs.component.html',
-  styleUrls: ['./vist-tabs.component.scss'],
   standalone: true,
   imports: [
     CommonModule,
     MatRippleModule
   ],
+  templateUrl: './vist-tabs.component.html',
+  styleUrls: ['./vist-tabs.component.scss'],
 })
 export class VistTabsComponent implements AfterContentInit {
   @ContentChildren(VistTabComponent) tabs: QueryList<VistTabComponent>;

@@ -7,10 +7,6 @@ import { SearchComponent } from './search/search.component';
 import { FilterComponent } from './filter/filter.component';
 import { MedlineResultsComponent } from './medline-results/medline-results.component';
 import { ClinicalTrialsResultsComponent } from './clinical-trials-results/clinical-trials-results.component';
-import { VistOverlayModule, VistTabsComponent, VistTabComponent } from '@app/components';
-import { VistHeaderModule, } from '@app/components';
-import { VistKeyValueTableModule } from '@app/components';
-import { PipesModule } from '@app/pipes/pipes.module';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -29,14 +25,22 @@ import { RatingComponent } from './rating/rating.component';
 import { MatSliderModule } from "@angular/material/slider";
 import { MatRippleModule } from '@angular/material/core';
 
+import { VistOverlay, VistOverlayTrigger } from '@app/components/vist-overlay';
+import { VistTabsComponent, VistTabComponent } from '@app/components/vist-tabs';
+import { VistKeyValueTable, VistEntry } from '@app/components/vist-key-value-table';
+import { VistHeader } from '@app/components/vist-header';
+
+import { PipesModule } from '@app/pipes/pipes.module';
+
 @NgModule({
   imports: [
     CommonModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    VistHeaderModule,
-    VistKeyValueTableModule,
+    VistHeader,
+    VistKeyValueTable,
+    VistEntry,
     PipesModule,
     MatButtonModule,
     MatIconModule,
@@ -54,7 +58,8 @@ import { MatRippleModule } from '@angular/material/core';
     MatRadioModule,
     MatSliderModule,
     MatRippleModule,
-    VistOverlayModule,
+    VistOverlay,
+    VistOverlayTrigger,
     VistTabComponent,
     VistTabsComponent,
   ],

@@ -4,7 +4,8 @@ import { Overlay, OverlayRef, ConnectedPosition } from '@angular/cdk/overlay';
 import { TemplatePortal } from '@angular/cdk/portal';
 
 @Directive({
-  selector: '[vistOverlayTriggerFor]'
+  selector: '[vistOverlayTriggerFor]',
+  standalone: true
 })
 export class VistOverlayTrigger {
   @Input('vistOverlayTriggerFor') vistOverlay: VistOverlay;

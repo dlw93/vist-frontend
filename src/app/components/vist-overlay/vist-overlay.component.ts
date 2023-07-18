@@ -1,9 +1,17 @@
 import { Component, Input, TemplateRef, ViewChild } from '@angular/core';
-import { CdkOverlayOrigin } from '@angular/cdk/overlay';
+import { CdkOverlayOrigin, OverlayModule } from '@angular/cdk/overlay';
 import { VIST_SOFT_IN_OUT_ANIMATION } from '@app/animations';
+import { A11yModule } from '@angular/cdk/a11y';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'vist-overlay',
+  standalone: true,
+  imports: [
+    CommonModule,
+    A11yModule,
+    OverlayModule
+  ],
   templateUrl: './vist-overlay.component.html',
   styleUrls: ['./vist-overlay.component.scss'],
   animations: [VIST_SOFT_IN_OUT_ANIMATION]

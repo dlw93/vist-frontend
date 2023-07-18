@@ -1,10 +1,10 @@
 :host {
-  max-height: 450px;
+  max-height: 500px;
 }
 
 mat-card {
   min-height: 300px;
-  max-height: 450px;
+  max-height: 500px;
 }
 
 mat-card-content {

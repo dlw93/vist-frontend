@@ -13,10 +13,15 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
-import { VistTabComponent, VistTabsComponent, VistKeyValueTableModule, VistPageModule } from '@app/components';
 import { EvalHomeComponent } from './home/home.component';
 import { EvalComponent } from './eval/eval.component';
 import { QuerySelectComponent } from './query-select/query-select.component';
+
+import { VistOverlay, VistOverlayTrigger } from '@app/components/vist-overlay';
+import { VistTabsComponent, VistTabComponent } from '@app/components/vist-tabs';
+import { VistKeyValueTable, VistEntry } from '@app/components/vist-key-value-table';
+import { VistHeader } from '@app/components/vist-header';
+import { VistPageModule } from '@app/components/vist-page/vist-page.module';
 
 @NgModule({
   imports: [
@@ -26,8 +31,9 @@ import { QuerySelectComponent } from './query-select/query-select.component';
     ReactiveFormsModule,
     VistTabComponent,
     VistTabsComponent,
-    VistKeyValueTableModule,
+    VistKeyValueTable,
     VistPageModule,
+    VistEntry,
     MatButtonModule,
     MatIconModule,
     MatTabsModule,

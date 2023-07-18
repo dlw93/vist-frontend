@@ -1,7 +1,8 @@
-import { Injectable, isDevMode } from '@angular/core';
+import { Inject, Injectable, isDevMode } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { IEvalQuery, IResponse, IPage, IFilter, ITerms, IRefinement, TQuery, IGeneCandidate, IErrorResponse } from '@app/models';
+import { BACKEND_URL } from '@app/token';
 
 @Injectable({
   providedIn: 'root'
@@ -18,8 +19,8 @@ export class QueryService {
   private _loading$ = new BehaviorSubject<boolean>(false);
   private _fetching$ = new BehaviorSubject<boolean>(false);
 
-  constructor(private http: HttpClient) {
-    const url: string = isDevMode() ? '/assets/examples.json' : '/getQueriesExamples';
+  constructor(private http: HttpClient, @Inject(BACKEND_URL) private backendUrl: string) {
+    const url: string = isDevMode() ? '/assets/examples.json' : `${this.backendUrl}/getQueriesExamples`;
     this.http.get<IEvalQuery[]>(url).subscribe(value => {
       this._samples$.next(value);
     });
@@ -77,12 +78,12 @@ export class QueryService {
   }
 
   public getEvalQueries(): Observable<IEvalQuery[]> {
-    const url: string = isDevMode() ? '/assets/examples.json' : '/getQueriesExamples';
+    const url: string = isDevMode() ? '/assets/examples.json' : `${this.backendUrl}/getQueriesExamples`;
     return this.http.get<IEvalQuery[]>(url);
   }
 
   public getGeneCandidates(partial: string, selected: IGeneCandidate[]): Observable<IGeneCandidate[]> {
-    const url: string = isDevMode() ? '/assets/geneCandidates.json' : '/getGeneCandidates';
+    const url: string = isDevMode() ? '/assets/geneCandidates.json' : `${this.backendUrl}/getGeneCandidates`;
     return this.http.get<IGeneCandidate[]>(url, {
       headers: { 'Content-Type': 'application/json' },
       params: {
@@ -93,7 +94,7 @@ export class QueryService {
   }
 
   private send(isRefinement: boolean = false) {
-    const url: string = isDevMode() ? '/assets/response.json' : '/getQuery';
+    const url: string = isDevMode() ? '/assets/response.json' : `${this.backendUrl}/getQuery`;
     const q: TQuery = Object.assign({}, this._terms, this._page, this._filter, this._refinement);
     const indicator$ = isRefinement ? this._fetching$ : this._loading$;
 

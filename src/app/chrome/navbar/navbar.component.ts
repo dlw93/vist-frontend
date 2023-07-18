@@ -9,7 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { RouterOutlet, RouterLinkWithHref } from '@angular/router';
-import { VistOverlayModule } from '@app/components';
+import { VistOverlay, VistOverlayTrigger } from '@app/components';
 import { AuthComponent } from '../auth/auth.component';
 import { SettingsComponent } from '../settings/settings.component';
 
@@ -22,7 +22,8 @@ import { SettingsComponent } from '../settings/settings.component';
     MatIconModule,
     MatToolbarModule,
     MatTooltipModule,
-    VistOverlayModule,
+    VistOverlay,
+    VistOverlayTrigger,
     RouterOutlet,
     RouterLinkWithHref,
     AuthComponent,
