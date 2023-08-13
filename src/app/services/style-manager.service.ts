@@ -8,11 +8,16 @@ import { Injectable } from "@angular/core";
     providedIn: 'root'
 })
 export class StyleManagerService {
+    constructor() {
+        this.setStyle("theme", localStorage.getItem("theme") || "assets-light.css");
+    }
+
     /**
      * Set the stylesheet with the specified key.
      */
     setStyle(key: string, href: string) {
         getLinkElementForKey(key).setAttribute("href", href);
+        localStorage.setItem("theme", href);
     }
 
     /**

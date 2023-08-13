@@ -5,7 +5,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatSelectModule } from '@angular/material/select';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { NavbarComponent } from './chrome';
 
 @Component({
@@ -17,7 +16,6 @@ import { NavbarComponent } from './chrome';
     MatAutocompleteModule,
     MatChipsModule,
     MatSelectModule,
-    MatSnackBarModule,
     NavbarComponent
   ],
   templateUrl: './app.component.html',

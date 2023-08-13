@@ -1,10 +1,10 @@
-import { ApplicationConfig, InjectionToken } from '@angular/core';
+import { ApplicationConfig } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
 import { HTTP_INTERCEPTORS, provideHttpClient } from '@angular/common/http';
-import { MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
+import { MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBar } from '@angular/material/snack-bar';
 import { AuthInterceptor } from './interceptors';
 import { AuthService } from './services';
 import { BACKEND_URL } from './token';
@@ -30,6 +30,7 @@ export const appConfig: ApplicationConfig = {
     {
       provide: BACKEND_URL,
       useValue: 'http://localhost:8080'
-    }
+    },
+    MatSnackBar,
   ]
 };
