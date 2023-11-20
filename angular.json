@@ -94,18 +94,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "vist-frontend:build"
+            "buildTarget": "vist-frontend:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "vist-frontend:build:production"
+              "buildTarget": "vist-frontend:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "vist-frontend:build"
+            "buildTarget": "vist-frontend:build"
           }
         },
         "test": {
