@@ -1,6 +1,8 @@
 <div class="vist-tabs-header">
   @for (tab of tabs; track tab.title) {
-    <span matRipple matRippleColor="primary" class="item" [class.active]="tab.active" (click)="selectTab(tab)">{{tab.title}}</span>
+    <span matRipple matRippleColor="primary" class="item" [class.active]="tab.active" (click)="selectTab(tab)">
+      {{tab.title}}
+    </span>
   }
 </div>
 <div class="content">

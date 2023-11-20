@@ -8,14 +8,19 @@
     </button>
 </vist-header>
 
-<!-- If a query is executing, we show a loading indicator -->
-<div class="control-wrap mat-app-background" *ngIf="!(isLoading | async); else loading">
-    <!-- If the last query yields no results, we show a message instead -->
-    <ng-container *ngIf="(hasData | async); else message">
-        <div *ngIf="!(isSidenavEnabled | async)" class="sidebar-wrap">
-            <app-search @vistSlideIn></app-search>
-            <app-filter @vistSlideIn></app-filter>
+<div class="control-wrap mat-app-background">
+    @if (isLoading | async) {
+        <!-- If a query is executing, we show a loading indicator -->
+        <div class="loading-indicator mat-app-background">
+            <mat-spinner></mat-spinner>
         </div>
+    } @else if (hasData | async) {
+        @if (!(isSidenavEnabled | async)) {
+            <div class="sidebar-wrap">
+                <app-search @vistSlideIn></app-search>
+                <app-filter @vistSlideIn></app-filter>
+            </div>
+        }
         <mat-card @vistSlideIn>
             <mat-tab-group dynamicHeight [(selectedIndex)]="selectedTabIndex">
                 <mat-tab label="PubMed" [disabled]="!hasMedlineData">
@@ -26,26 +31,19 @@
                 </mat-tab>
             </mat-tab-group>
         </mat-card>
-    </ng-container>
-</div>
-
-<ng-template #loading>
-    <div class="loading-indicator mat-app-background">
-        <mat-spinner></mat-spinner>
-    </div>
-</ng-template>
-
-<ng-template #message>
-    <div class="no-data-wrapper">
-        <div class="message-wrap">
-            <mat-icon>{{ msg.icon }}</mat-icon>
-            <div>
-                <h4 class="mat-title">{{ msg.title }}</h4>
-                <h4 class="mat-subheading-1">{{ msg.subtitle }}</h4>
+    } @else {
+        <!-- If the last query yields no results, we show a message instead -->
+        <div class="no-data-wrapper">
+            <div class="message-wrap">
+                <mat-icon>{{ msg.icon }}</mat-icon>
+                <div>
+                    <h4 class="mat-title">{{ msg.title }}</h4>
+                    <h4 class="mat-subheading-1">{{ msg.subtitle }}</h4>
+                </div>
             </div>
+            <app-search @vistSlideIn></app-search>
+            <!-- since we use the "space-between" strategy, an empty div suffices to adjust the space distribution -->
+            <div></div>
         </div>
-        <app-search @vistSlideIn></app-search>
-        <!-- since we use the "space-between" strategy, an empty div suffices to adjust the space distribution -->
-        <div></div>
-    </div>
-</ng-template>
+    }
+</div>

@@ -54,10 +54,6 @@ a {
 }
 
 @mixin home-component-theme($theme) {
-    #desc {
-        // background-color: mat.get-theme-color($theme, primary, background);
-    }
-
     .bg-blue {
         background-color: mat.get-theme-color($theme, primary);
     }
