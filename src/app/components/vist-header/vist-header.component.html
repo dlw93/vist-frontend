@@ -1,5 +1,7 @@
 <div class="vist-header" [class.mobile]="showToggle">
-  <ng-content *ngIf="showToggle"></ng-content>
+  @if (showToggle) {
+    <ng-content></ng-content>
+  }
   <h1>{{title}}</h1>
   <div class="spacer"></div>
 </div>

@@ -1,4 +1,4 @@
-@import '@angular/material/theming';
+@use '@angular/material' as mat;
 
 :host {
     display: flex;
@@ -6,25 +6,21 @@
 }
 
 @mixin vist-tabs-theme($theme) {
-    $primary: map-get($theme, primary);
-    $foreground: map-get($theme, foreground);
-    $config: mat-typography-config();
-
     .vist-tabs-header {
         display: flex;
         text-transform: uppercase;
         margin-bottom: 8px;
-        font-family: mat-font-family($config);
+        font-family: mat.get-theme-typography($theme, body-1, font-family);
         font-size: 10pt;
 
         > .item {
             cursor: pointer;
             margin-right: 16px;
-            color: mat-color($foreground, disabled-text);
+            color: mat.get-theme-color($theme, foreground, disabled-text);
             transition: color 0.2s ease-out;
 
             &.active {
-                color: mat-color($primary);
+                color: mat.get-theme-color($theme, primary);
             }
         }
     }

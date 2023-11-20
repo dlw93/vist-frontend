@@ -1,11 +1,12 @@
 <div class="vist-tabs-header">
-  <span matRipple matRippleColor="primary" *ngFor="let tab of tabs" class="item" [class.active]="tab.active"
-    (click)="selectTab(tab)">{{tab.title}}</span>
+  @for (tab of tabs; track tab.title) {
+    <span matRipple matRippleColor="primary" class="item" [class.active]="tab.active" (click)="selectTab(tab)">{{tab.title}}</span>
+  }
 </div>
 <div class="content">
-  <ng-container *ngFor="let tab of tabs">
-    <ng-container *ngIf="tab.active">
+  @for (tab of tabs; track tab.title) {
+    @if (tab.active) {
       <ng-container *ngTemplateOutlet="tab.template"></ng-container>
-    </ng-container>
-  </ng-container>
+    }
+  }
 </div>

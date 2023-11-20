@@ -1,10 +1,8 @@
-@import '@angular/material/theming';
+@use '@angular/material' as mat;
 
 @mixin vist-overlay-theme($theme) {
-  $primary: map-get($theme, primary);
-
   .main-wrap {
-    @include mat-overridable-elevation(2);
+    @include mat.elevation(2);
     max-height: inherit;
   }
 }

@@ -1,11 +1,12 @@
-@import './app/components/vist-header/vist-header.component';
-@import './app/components/vist-tabs/vist-tabs.component';
-@import './app/components/vist-overlay/vist-overlay.component';
-@import './app/pages/home/home/home.component';
-@import './styles/palettes';
-@import './styles/annotated';
-@import './styles/expandable-table';
-@import './styles/general';
+@use "@angular/material" as mat;
+@import "./app/components/vist-header/vist-header.component";
+@import "./app/components/vist-tabs/vist-tabs.component";
+@import "./app/components/vist-overlay/vist-overlay.component";
+@import "./app/pages/home/home/home.component";
+@import "./styles/palettes";
+@import "./styles/annotated";
+@import "./styles/expandable-table";
+@import "./styles/general";
 
 @mixin vist-app-theme($theme) {
     @include vist-header-theme($theme);
@@ -14,8 +15,8 @@
     @include home-component-theme($theme);
     @include vist-expandable-table($theme);
     @include vist-annotated();
-    
+
     a {
-        color: mat-color($theme-primary);
+        color: mat.get-theme-color($theme, primary);
     }
 }

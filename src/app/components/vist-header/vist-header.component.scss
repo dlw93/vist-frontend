@@ -1,36 +1,33 @@
-@import '@angular/material/theming';
+@use "@angular/material" as mat;
 
 @mixin vist-header-theme($theme) {
-  $primary: map-get($theme, primary);
-  $config: mat-typography-config();
+    .vist-header {
+        background-color: mat.get-theme-color($theme, primary);
+        color: mat.get-theme-color($theme, primary, default-contrast);
+        display: flex;
+        align-items: center;
+        left: 0;
+        right: 0;
+        padding: 0 32px;
 
-  .vist-header {
-    background-color: mat-color($primary);
-    color: mat-color($primary, default-contrast);
-    display: flex;
-    align-items: center;
-    left: 0;
-    right: 0;
-    padding: 0 32px;
+        & > h1 {
+            font-family: mat.get-theme-typography($theme, headline-5, font-family);
+            font-size: mat.get-theme-typography($theme, headline-5, font-size);
+            font-weight: 300;
+            padding: 28px 0;
+            margin: 0;
+        }
 
-    & > h1 {
-      font-family: mat-font-family($config);
-      font-size: mat-font-size($config, title);
-      font-weight: 300;
-      padding: 28px 0;
-      margin: 0;
+        & > .spacer {
+            flex-grow: 1;
+        }
     }
 
-    & > .spacer {
-      flex-grow: 1;
-    }
-  }
+    .vist-header.mobile {
+        padding: 0 16px;
 
-  .vist-header.mobile {
-    padding: 0 16px;
-
-    & > h1 {
-      margin: 0 16px;
+        & > h1 {
+            margin: 0 16px;
+        }
     }
-  }
 }

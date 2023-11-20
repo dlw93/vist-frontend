@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { TitleService } from '@app/services/title.service';
 import { Router } from '@angular/router';
 
@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
-  constructor(private titleService: TitleService, private router: Router) {
+  constructor(private titleService: TitleService, @Inject(Router) private router: Router) {
     titleService.title = "Welcome";
   }
 

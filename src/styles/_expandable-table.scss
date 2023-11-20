@@ -1,8 +1,6 @@
-@import '@angular/material/theming';
+@use '@angular/material' as mat;
 
 @mixin vist-expandable-table($theme) {
-    $primary: map-get($theme, primary);
-
     table[vistExpandable] {
         td, th {
             padding: 0 15px;
@@ -24,7 +22,7 @@
 
             &:hover > td,
             &.selected > td {
-                color: mat-color($primary);
+                color: mat.get-theme-color($theme, primary);
             }
         }
 
